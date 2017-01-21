@@ -1,4 +1,4 @@
-# quantlibaddin
+# LibreOffice QuantLib Addin
 LibreOffice-Calc QuantLib Addin
 
 This document provides first steps with<br />
