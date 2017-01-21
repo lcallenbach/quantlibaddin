@@ -9,7 +9,7 @@ This code has been tested for QuantLib-1.9.1 under Linux using Anaconda3 and
 LibreOffice 5.2. <br />
 <br />
 
-# Code generation
+# code generation
 Change to the directory gensrc. Execute 'python main.py -o'. <br />
 Requirements:<br />
   1. Python 3
@@ -17,7 +17,7 @@ Requirements:<br />
 
 Both requirements are met using Anaconda3. <br />
 
-# Code compilation
+# code compilation
 Change to the directory 'Calc'. Edit the file 'environment.sh' -
 the meaning of the variables is the following:<br />
   1. L_PATH: path to your QuantLib source code (e.g. QL_PATH=/test/QuantLib)
@@ -39,7 +39,7 @@ Requirements: <br />
   3. compile QuantLib library and corresponding header files 
   4. C++ compiler (e.g. g++ under Gnu/Linux)
 
-#License
+# license
 The python code us under GNU General Public License version 3. The major part of the 
 C++ code in the Calc/, oh/ and qlo/ directory are under QuantLib license. Some files 
 are under BSD license (e.g. the Makefile in Calc/). For these licenses see<br />
