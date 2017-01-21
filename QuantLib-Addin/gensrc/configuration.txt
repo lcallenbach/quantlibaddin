@@ -1,0 +1,4 @@
+gensrcPath     .
+metadataPath   ./metadata
+stubPath       ./stubs
+configPath     ./config
