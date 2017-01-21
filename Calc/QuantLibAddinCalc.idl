@@ -1,0 +1,345 @@
+#include <com/sun/star/uno/XInterface.idl>
+#include <com/sun/star/uno/Exception.idl>
+#include <com/sun/star/lang/XInitialization.idl>
+#include <com/sun/star/lang/XServiceName.idl>
+#include <com/sun/star/lang/XLocalizable.idl>
+#include <com/sun/star/sheet/XAddIn.idl>
+
+module quantlib {
+  interface XCalcAddins {
+
+                sequence<sequence<any> > qlPlainVanillaPayoff(
+			[in] any ObjectId,
+			[in] any OptionType,
+			[in] any Strike
+                );
+
+                sequence<sequence<any> > qlFraRateHelper(
+			[in] any ObjectId,
+			[in] any Rate,
+			[in] any MonthsToStart,
+			[in] any MonthsToEnd,
+			[in] any FixingDays,
+			[in] any Calendar,
+			[in] any Convention,
+			[in] any EndOfMonth,
+			[in] any DayCounter,
+			[in] any Pillar,
+			[in] any CustomPillarDate
+                );
+
+                sequence<sequence<any> > qlPiecewiseDefaultCurve(
+			[in] any ObjectId,
+			[in] any Traits,
+			[in] any Interpolator,
+			[in] any ReferenceDate,
+			[in] sequence<sequence<any > > BootstrapInstruments,
+			[in] any DayCounter,
+			[in] any Accuracy
+                );
+
+                sequence<sequence<any> > qlVanillaOption(
+			[in] any ObjectId,
+			[in] any StrikedTypePayoff,
+			[in] any Exercise
+                );
+
+                sequence<sequence<any> > qlInterpolation1D(
+			[in] any ObjectId,
+			[in] any Interpolator1DID,
+			[in] sequence<sequence<any > > XVector,
+			[in] sequence<sequence<any > > YVector
+                );
+
+                sequence<sequence<any> > qlAnalyticEuropeanEngine(
+			[in] any ObjectId,
+			[in] any GeneralizedBlackSchlolesProcess
+                );
+
+                sequence<sequence<any> > qlSpreadCdsHelper(
+			[in] any ObjectId,
+			[in] any RunningSpread,
+			[in] any Tenor,
+			[in] any SettlementDays,
+			[in] any Calendar,
+			[in] any Frequency,
+			[in] any PaymentConvention,
+			[in] any Rule,
+			[in] any DayCounter,
+			[in] any RecoveryRate,
+			[in] any DiscountCurve,
+			[in] any SettlesAccrual,
+			[in] any PaysAtDefaultTime
+                );
+
+                sequence<sequence<any> > qlZeroCurve(
+			[in] any ObjectId,
+			[in] sequence<sequence<any > > Dates,
+			[in] sequence<sequence<any > > ZeroRates,
+			[in] any DayCounterDayCounter
+                );
+
+                sequence<sequence<any> > qlEuribor365(
+			[in] any ObjectId,
+			[in] any Tenor,
+			[in] any ForwardCurve
+                );
+
+                sequence<sequence<any> > qlInterpolation2D(
+			[in] any ObjectId,
+			[in] any Interpolator2DID,
+			[in] sequence<sequence<any > > XVector,
+			[in] sequence<sequence<any > > YVector,
+			[in] sequence<sequence<any > > ZData
+                );
+
+                sequence<sequence<any> > qlSimpleQuote(
+			[in] any ObjectId,
+			[in] any Value
+                );
+
+                sequence<sequence<any> > qlFuturesRateHelper(
+			[in] any ObjectId,
+			[in] any Price,
+			[in] any IborStartDate,
+			[in] any IborIndex,
+			[in] any ConvexityAdjustment,
+			[in] any Type
+                );
+
+                sequence<sequence<any> > qlUpfrontCdsHelper(
+			[in] any ObjectId,
+			[in] any Upfront,
+			[in] any RunningSpread,
+			[in] any Tenor,
+			[in] any SettlementDays,
+			[in] any Calendar,
+			[in] any Frequency,
+			[in] any PaymentConvention,
+			[in] any Rule,
+			[in] any DayCounter,
+			[in] any RecoveryRate,
+			[in] any DiscountCurve,
+			[in] any UpfrontSettlementDays,
+			[in] any SettlesAccrual,
+			[in] any PaysAtDefaultTime
+                );
+
+                sequence<sequence<any> > qlBlackVarianceSurface(
+			[in] any ObjectId,
+			[in] any ReferenceDate,
+			[in] any Calendar,
+			[in] sequence<sequence<any > > Dates,
+			[in] sequence<sequence<any > > Strikes,
+			[in] sequence<sequence<any > > BlackVolMatrix,
+			[in] any DayCounter,
+			[in] any LowerExtrapolation,
+			[in] any UpperExtrapolation
+                );
+
+                sequence<sequence<any> > qlEuribor(
+			[in] any ObjectId,
+			[in] any Tenor,
+			[in] any ForwardCurve
+                );
+
+                sequence<sequence<any> > qlSchedule(
+			[in] any ObjectId,
+			[in] any EffectiveDate,
+			[in] any TerminationDate,
+			[in] any Period,
+			[in] any Calendar,
+			[in] any Convention,
+			[in] any TerminationConvention,
+			[in] any Rule,
+			[in] any EndOfMonth,
+			[in] any FirstDate,
+			[in] any NextToLastDate
+                );
+
+                sequence<sequence<any> > qlSwapRateHelper(
+			[in] any ObjectId,
+			[in] any Rate,
+			[in] any Tenor,
+			[in] any Calendar,
+			[in] any FixedFrequency,
+			[in] any FixedConvention,
+			[in] any FixedDayCounter,
+			[in] any IborIndex,
+			[in] any Spread,
+			[in] any FwdStartPeriod
+                );
+
+                sequence<sequence<any> > qlEuropeanExercise(
+			[in] any ObjectId,
+			[in] any ExerciseDate
+                );
+
+                sequence<sequence<any> > qlDiscountCurve(
+			[in] any ObjectId,
+			[in] sequence<sequence<any > > Dates,
+			[in] sequence<sequence<any > > Discounts,
+			[in] any DayCounter
+                );
+
+                sequence<sequence<any> > qlPiecewiseYieldCurve(
+			[in] any ObjectId,
+			[in] any Traits,
+			[in] any Interpolator,
+			[in] any ReferenceDate,
+			[in] sequence<sequence<any > > BootstrapInstruments,
+			[in] any DayCounter,
+			[in] any Accuracy
+                );
+
+                sequence<sequence<any> > qlGeneralizedBlackScholesProcess(
+			[in] any ObjectId,
+			[in] any Quote,
+			[in] any DividendTS,
+			[in] any RiskFreeTS,
+			[in] any BlackVolTS
+                );
+
+                sequence<sequence<any> > qlDepositRateHelper(
+			[in] any ObjectId,
+			[in] any Rate,
+			[in] any Period,
+			[in] any FixingDays,
+			[in] any Calendar,
+			[in] any BusinessDayConvention,
+			[in] any EndOfMonth,
+			[in] any DayCounter
+                );
+
+                sequence<sequence<any> > qlInterpolatedHazardRateCurve(
+			[in] any ObjectId,
+			[in] any Interpolator,
+			[in] sequence<sequence<any > > Dates,
+			[in] sequence<sequence<any > > HazardRates,
+			[in] any DayCounter,
+			[in] any Calendar
+                );
+
+                sequence<sequence<any> > qlCalendarIsHoliday(
+			[in] any ObjectId,
+			[in] any Date
+                );
+
+                sequence<sequence<any> > qlDefaultTSHazardRate(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlDefaultTSSurvivalProbability(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlInstrumentIsExpired(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlYieldTSDiscount(
+			[in] any ObjectId,
+			[in] any Date
+                );
+
+                sequence<sequence<any> > qlCalendarIsBusinessDay(
+			[in] any ObjectId,
+			[in] any Date
+                );
+
+                sequence<sequence<any> > qlInstrumentNPV(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlQuoteValue(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlDefaultTSDefaultProbability(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlBlackVolTermStructureBlackVol(
+			[in] any ObjectId,
+			[in] any Maturity,
+			[in] any Strike,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlCalendarName(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlDayCounterYearFraction(
+			[in] any ObjectId,
+			[in] any StartDate,
+			[in] any EndDate
+                );
+
+                sequence<sequence<any> > qlCalendarAdvance(
+			[in] any ObjectId,
+			[in] any StartDate,
+			[in] any Period,
+			[in] any BusinessDayConvention,
+			[in] any EndOfMonth
+                );
+
+                sequence<sequence<any> > qlInterpolatedValue1D(
+			[in] any ObjectId,
+			[in] any X,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlScheduleDates(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlInstrumentSetPricingEngine(
+			[in] any ObjectId,
+			[in] any PricingEngine
+                );
+
+                sequence<sequence<any> > qlDayCounterName(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlInterpolatedValue2D(
+			[in] any ObjectId,
+			[in] any X,
+			[in] any Y,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlDefaultTSDefaultDensity(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlDayCounterDayCount(
+			[in] any ObjectId,
+			[in] any StartDate,
+			[in] any EndDate
+                );
+
+                sequence<sequence<any> > qlSettingsSetEvaluationDate(
+			[in] any Date
+                );
+
+
+
+  };
+
+  service CalcAddins {
+    interface XCalcAddins;
+    interface com::sun::star::lang::XInitialization;
+    interface com::sun::star::lang::XServiceName;
+    interface com::sun::star::sheet::XAddIn;           
+  };
+};
