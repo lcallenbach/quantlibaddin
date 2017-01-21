@@ -36,7 +36,7 @@ be done. You can open the test sheet 'test.ods' by executing 'soffice path/test.
 Requirements: <br />
   1. installation of LibreOffice SDK 
   2.. development files for boost and compiled boost libraries (boost_regex, boost_serialization, lboost_filesystem, lboost_system)
-  3. compile QuantLib library and corresponding header files 
+  3. compile QuantLib library and boost files 
   4. C++ compiler (e.g. g++ under Gnu/Linux)
 
 # license
