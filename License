@@ -1,0 +1,9 @@
+The python code for generating the addin source code is under GPLv3 (see <http://www.gnu.org/licenses>), 
+the generated c++ source code is under the QuantLib license (see <http://quantlib.org/license.shtml>). 
+One Makefile for addin code compilation is under the BSD license. 
+
+I have spent some time to write the python code for the c++ source code generation and the relevant part 
+of the repository (under the code/ and metadata/ folders) should be under the GPLv3 so that anybody can 
+use and extent it to his own needs. Since the generated c++ code is under the QuantLib license have more 
+freedoms for the generated addin code. Please be aware of my intended distinction between c++ code 
+generation (GPLv3) and c++ code usage (QuantLib license).
