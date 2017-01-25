@@ -39,10 +39,3 @@ Requirements: <br />
   3. QuantLib library and QuantLib header files 
   4. C++ compiler (e.g. g++ under Gnu/Linux)
 
-# license
-The python code us under GNU General Public License version 3. The major part of the 
-C++ code in the Calc/, oh/ and qlo/ directory are under QuantLib license. Some files 
-are under BSD license (e.g. the Makefile in Calc/). For these licenses see e.g. <br />
-  1. <http://www.gnu.org/licenses/>
-  2. <http://quantlib.org/license.shtml>
-
