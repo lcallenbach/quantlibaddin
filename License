@@ -8,7 +8,7 @@ total view: one Makefile for addin code compilation is  a modified copy of
 a makefile used in the examples of the LibreOffice SDK and under the BSD 
 license].
 
-SSo what you can do (and I think most of you will do): generate the c++ 
+So what you can do (and I think most of you will do): generate the c++ 
 code (or use the generated  code) in the Calc directory which is under the 
 QuantLib license (and if you provide source code look at the BSD license of 
 the Makefile) and compile and install the addin. The license of the c++ code 
@@ -18,8 +18,8 @@ for details).
 But: I have spent some time to write the python code for the c++ source 
 code generation. I am interested in CopyLeft in the license and so the 
 relevant part of the repository (the folders code/ and metadata/) are under 
-the GPLv3 so that anybody can use and extent it to his own needs – but has 
-to be aware of the CopyLeft. 
+the GPLv3 so that anybody can use and extent it – but has to be aware of 
+the CopyLeft. 
 
 Please be aware of my intended distinction between python code generation 
 (GPLv3) and c++ code for the addin compilation (QuantLib license).
