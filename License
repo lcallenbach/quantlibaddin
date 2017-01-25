@@ -1,9 +1,25 @@
-The python code for generating the addin source code is under GPLv3 (see <http://www.gnu.org/licenses>), 
-the generated c++ source code is under the QuantLib license (see <http://quantlib.org/license.shtml>). 
-One Makefile for addin code compilation is under the BSD license. 
+This repository consists of two different source code types:  python code 
+(for c++ code generation) and  c++ code (to compile the addin for LibreOffice/Calc). 
 
-I have spent some time to write the python code for the c++ source code generation and the relevant part 
-of the repository (under the code/ and metadata/ folders) should be under the GPLv3 so that anybody can 
-use and extent it to his own needs. Since the generated c++ code is under the QuantLib license have more 
-freedoms for the generated addin code. Please be aware of my intended distinction between c++ code 
-generation (GPLv3) and c++ code usage (QuantLib license).
+The python code for generating the addin c++ source code is under GPLv3 
+(see <http://www.gnu.org/licenses>), the generated c++ source code is under 
+the QuantLib license (see <http://quantlib.org/license.shtml>) [for the 
+total view: one Makefile for addin code compilation is  a modified copy of 
+a makefile used in the examples of the LibreOffice SDK and under the BSD 
+license].
+
+SSo what you can do (and I think most of you will do): generate the c++ 
+code (or use the generated  code) in the Calc directory which is under the 
+QuantLib license (and if you provide source code look at the BSD license of 
+the Makefile) and compile and install the addin. The license of the c++ code 
+is just the license used for QuantLib in the community (see QuantLib license 
+for details).  
+
+But: I have spent some time to write the python code for the c++ source 
+code generation. I am interested in CopyLeft in the license and so the 
+relevant part of the repository (the folders code/ and metadata/) are under 
+the GPLv3 so that anybody can use and extent it to his own needs – but has 
+to be aware of the CopyLeft. 
+
+Please be aware of my intended distinction between python code generation 
+(GPLv3) and c++ code for the addin compilation (QuantLib license).
