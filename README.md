@@ -39,3 +39,5 @@ Requirements: <br />
   3. QuantLib library and QuantLib header files 
   4. C++ compiler (e.g. g++ under Gnu/Linux)
 
+# platforms
+Tested on Gnu/Linux amd64 with LibreOffice 5.2.
