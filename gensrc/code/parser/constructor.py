@@ -108,19 +108,26 @@ class Constructor(ParameterList, Parser):
             else:
                 parameters_text = first_parameter
 
+            # parse argument list 
             if parameters_text:                
                 liste = parameters_text.split(',')
                 Logger().debug(liste)
                 pos = 0
-                for item in liste:
-                    Logger().debug('processing '+item)
-                    text = item.strip()
-                    if text:
+                while pos<len(liste):
+                    text = liste[pos].strip()
+                    count = self.get_brackets(text)
+                    while count!=0 and pos<len(liste):
+                        pos += 1
+                        if pos<len(liste):
+                            text = text+','+liste[pos]
+                            count = self.get_brackets(text)
+                    Logger().debug('processing '+text+' '+str(count))
+                    if text and count==0:
                         parameter = Parameter(text)
                         self.parameter_list.append( parameter )
                     else:
                         Logger().error('constructor error parameter "%s" in \
-                            "%s" at position %d.' % (item, liste, pos))
+                            "%s" at position %d.' % (text, liste, pos))
                         sys.exit(5)
                     pos += 1        
                     Logger().debug('OK')

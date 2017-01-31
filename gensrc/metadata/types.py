@@ -25,6 +25,7 @@ ImplicitConversionsCalc = [
     ("QuantLib::Natural",       "long",       "long",      "Default", "Default"),
     ("QuantLib::Real",          "double",     "double",    "Default", "Default"),
     ("QuantLib::Rate",          "double",     "double",    "Default", "Default"),
+    ("QuantLib::Spread",        "double",     "double",    "Default", "Default"),
     ("QuantLib::DiscountFactor","double",     "double",    "Default", "Default"),
     ("QuantLib::Probability",   "double",     "double",    "Default", "Default"),
     ("QuantLib::Volatility",    "double",     "double",    "Default", "Default"),

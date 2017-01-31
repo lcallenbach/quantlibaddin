@@ -93,8 +93,9 @@ class Parameter(Parser):
                         setResultsName('variable_name')
         
         defaultValue = ZeroOrMore(' ') + '=' + ZeroOrMore(' ') + \
-                        Regex(r'[()a-zA-Z0-9<>: ]+').\
-                              setResultsName('default_value')
+                        Regex(r'.+').setResultsName('default_value')
+#                        Regex(r'[()a-zA-Z0-9<>:\., ]+').\
+#                              setResultsName('default_value')
         parameter = ZeroOrMore(' ') + vectorWord + variableWord + \
                         Optional( ZeroOrMore(' ') + defaultValue )
         

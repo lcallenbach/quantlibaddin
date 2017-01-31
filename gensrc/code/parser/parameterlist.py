@@ -32,4 +32,18 @@ class ParameterList(object):
         """Function to return parameter list.
         """
         return self.parameter_list
+
+
+    def get_brackets(self, text):
+        """Function to count opening and closing brackets in text.
+        """
+        count = 0
+        for i in range(len(text)):
+            if text[i]=='(':
+                count += 1
+                continue
+            if text[i]==')':
+                count -= 1
+                continue
+        return count
         
