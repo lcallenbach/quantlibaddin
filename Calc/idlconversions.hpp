@@ -210,6 +210,17 @@ namespace Addin {
 
 
 	/**
+         *   helper function 
+         **/
+
+	inline std::string getObjectName(IDL_string from) {
+	   std::string name;
+	   interfaceToString(from, name);
+           return name;
+        };
+
+
+	/**
          *   python conversion functions
          *   for repository objects
          **/ 
