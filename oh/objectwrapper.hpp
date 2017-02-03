@@ -4,7 +4,6 @@
  Copyright (C) 2004, 2005, 2006, 2007  Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
  Copyright (C) 2016 Lars Callenbach
-
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -98,28 +97,29 @@ namespace ObjectHandler {
         : object_(object), dirty_(false) { }
 
     inline void ObjectWrapper::recreate(){
+    std::cerr << "recreate begin " << object_->className() << " --" <<std::endl;
         try {
             object_->update();
             dirty_ = false;
         } catch (const std::exception &e) {
             OH_FAIL("Error in function ObjectWrapper::recreate() : " << e.what());
         }
+    std::cerr << "recreate end " << object_->className() << " --" << std::endl;
     }
 
     inline void ObjectWrapper::update(){
-    std::cerr << "update begin " << std::endl;
+    std::cerr << "update begin -- " << object_->className() << " --" << std::endl;
         object_->update();
         dirty_ = false;
         notifyObservers();
-    std::cerr << "update end " << std::endl;
+    std::cerr << "update end -- " << object_->className() << " --" << std::endl;
     }
 
     inline void ObjectWrapper::reset(boost::shared_ptr<Object> object) {
-    std::cerr << "reset start " << std::endl;
+    std::cerr << "reset start " << object_->className() << " --" << std::endl;
         object_ = object;
         dirty_ = false;
-        notifyObservers();
-    std::cerr << "reset end " << std::endl;
+    std::cerr << "reset end " << object_->className() << " --" << std::endl;
     }
 }
 

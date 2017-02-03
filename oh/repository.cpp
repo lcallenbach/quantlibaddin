@@ -112,16 +112,19 @@ namespace ObjectHandler {
 
     void Repository::registerObserver(shared_ptr<ObjectWrapper> objWrapper) {
 
+        std::cerr << "registerObserver start " << std::endl;
         objWrapper->unregisterWithAll();
-
+        std::cerr << "unregister start " << std::endl;
         const set<string>& relationObs =
             objWrapper->object()->getPrecedentObjects();
         set<string>::const_iterator iter = relationObs.begin();
         for(; iter != relationObs.end();  iter++) {
+            std::cerr << "register " << *iter << std::endl;
             shared_ptr<ObjectWrapper> objServable =
                                             getObjectWrapper(formatID(*iter));
             objWrapper->registerWith(objServable);
         }
+        std::cerr << "registerObserver end " << std::endl;
     }
 
     void Repository::deleteObject(const string &objectID) {

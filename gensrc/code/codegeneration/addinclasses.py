@@ -56,6 +56,8 @@ class AddinClasses(CodeGeneration):
         self.functions = functions
         
         self.suffix = '_cpp'
+        
+        self.is_constructorbody = False  # flag (not parameter in function calls)
 
         
     def generate_cpp(self):
@@ -97,6 +99,8 @@ class AddinClasses(CodeGeneration):
                 update_code = []
                 delete_code = []
 
+                self.is_constructorbody = True
+
                 # iterate over all possible constructors using counter to  
                 # distinguish between different constructors of same class
                 counter = 0
@@ -136,6 +140,8 @@ class AddinClasses(CodeGeneration):
                 lines.append((1, line))
                 lines.append((0, '};'))
                 
+                self.is_constructorbody = False
+
                 # generate member functions 
                 for key2 in self.memberfunctions.keys():
                     mem_func_class = self.memberfunctions[key2][0]
@@ -776,6 +782,8 @@ class AddinClasses(CodeGeneration):
         lines.append((1, line))
         line = 'std::cerr << "in upate() von %s" << std::endl;' % constructor.get_classname()
         lines.append((1, line))
+        line = 'this->precedentIDs_.clear();'
+        lines.append((1, line))
         
         index = 0
         for parameter in parameter_list:    
@@ -1040,6 +1048,7 @@ class AddinClasses(CodeGeneration):
             if self._is_templatearg(var_name):
                 line = 'scalarInterfaceToCpp(%s, %s, %s);' % \
                         (var_name, var_name+suffix, conv_func)
+                lines.append((1, line))
             else: 
                 line = None
                 if parameter.is_handle:
@@ -1051,7 +1060,12 @@ class AddinClasses(CodeGeneration):
                 if line is None:
                     line = 'scalarObject(%s, %s); ' % \
                         (var_name, var_name+suffix)
-            lines.append((1, line))
+                lines.append((1, line))
+                
+            if self.is_constructorbody:
+                line = 'this->precedentIDs_.insert(getObjectName(%s));' % var_name
+                lines.append((1, line))
+                
             if parameter.default_value is not None:
                 line = '} else { '
                 lines.append((0, line))

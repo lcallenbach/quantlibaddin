@@ -94,14 +94,14 @@ namespace ObjectHandler {
 
 
     protected:
+        //! List of precedent Object IDs
+        std::set<std::string> precedentIDs_;
         //! Object to be stored as (void *).
         void *object_;
 
     private:
         // Flag to indicate whether this Object is permanent.
         bool permanent_;
-        //! List of precedent Object IDs
-        std::set<std::string> precedentIDs_;
         //! A string identifiying the class of this Object.
         std::string className_;
     };
