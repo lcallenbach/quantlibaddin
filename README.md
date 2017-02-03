@@ -20,7 +20,7 @@ Both requirements are met using Anaconda3. <br />
 # code compilation
 Change to the directory 'Calc'. Edit the file 'environment.sh' -
 the meaning of the variables is the following:<br />
-  1. L_PATH: path to your QuantLib source code (e.g. QL_PATH=/test/QuantLib)
+  1. QL_PATH: path to your QuantLib source code (e.g. QL_PATH=/test/QuantLib)
   2. QL_LIB: path to the compiled QuantLib library (e.g. QL_LIB=/test/QuantLib/ql/.libs)
   3. BOOST_PATH: path to your boost development installation (header files, depending 
        on your system)
@@ -32,7 +32,7 @@ If both paths are set call 'make' (for parallel execution of 4 processes call 'm
 
 
 If you have used the auto-installation feature of the LibreOffice SDK nothing else has to 
-be done. You can open the test sheet 'test.ods' by executing 'soffice path/test.ods'. <br />
+be done. You can open the test sheet 'Examples.ods' by executing 'soffice path/Examples.ods'. <br />
 Requirements: <br />
   1. installation of LibreOffice SDK 
   2.. development files for boost and compiled boost libraries (boost_regex, boost_serialization, lboost_filesystem, lboost_system)
