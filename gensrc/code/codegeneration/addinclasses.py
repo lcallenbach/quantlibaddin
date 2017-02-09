@@ -508,7 +508,11 @@ class AddinClasses(CodeGeneration):
                 continue
                         
             var_name = parameter.get_variablename()
-            argument_list = argument_list + ', ' + var_name + self.suffix
+            reference = ''
+            if is_object and not (parameter.is_handle or parameter.is_sharedptr):
+                reference = '*'
+            argument_list = argument_list + ', ' + reference + \
+                var_name + self.suffix
         if len(argument_list)>1:
             argument_list = argument_list[2:]
             
@@ -1026,10 +1030,13 @@ class AddinClasses(CodeGeneration):
         suffix = self.suffix
         
         typ_cpp = class_name
+        reference = '*'
         if parameter.is_handle:
             typ_cpp = 'QuantLib::Handle<'+class_name+' > '
+            reference = ''
         if parameter.is_sharedptr:
             typ_cpp = 'boost::shared_ptr<' + class_name + ' > '     
+            reference = ''
         conv = self.find_conversion(class_name)
         conv_func = conv.fromidl
         typ_idl = self.prefix + conv.idl
@@ -1038,7 +1045,7 @@ class AddinClasses(CodeGeneration):
         if dimension==0:
             line = '%s %s;' % (typ_idl, var_name)
             lines.append((0, line))
-            line = '%s %s;' % (typ_cpp, var_name+suffix)
+            line = '%s %s%s;' % (typ_cpp, reference, var_name+suffix)
             lines.append((0, line))
             line = 'if(%s.hasValue()) { ' % (var_name+self.idl_suffix)
             lines.append((0, line))
@@ -1058,8 +1065,10 @@ class AddinClasses(CodeGeneration):
                     line = 'scalarObjectSharedPtr(%s, %s); ' % \
                         (var_name, var_name+suffix)
                 if line is None:
-                    line = 'scalarObject(%s, %s); ' % \
-                        (var_name, var_name+suffix)
+                    if reference=='*':
+                        reference = '&'
+                    line = 'scalarObject(%s, %s%s); ' % \
+                        (var_name, reference, var_name+suffix)
                 lines.append((1, line))
                 
             if self.is_constructorbody:

@@ -23,8 +23,7 @@ ImplicitConversionsCalc = [
 ]
 
 
-QuantLibTypes = [
-    
+QuantLibTypes = [    
     ("EnumeratedType", "ql/option.hpp", "QuantLib::Option::Type", 
         "std::string", "Call", "QuantLib::Option::Call"),
     ("EnumeratedType", "ql/option.hpp", "QuantLib::Option::Type", 

@@ -226,10 +226,10 @@ namespace Addin {
          **/ 
 
 	template <class T_TO>
-	inline void scalarObject(IDL_string from, T_TO &to) {
+	inline void scalarObject(IDL_string from, T_TO **to) {
 	   std::string ObjectId_cpp;
 	   interfaceToString(from, ObjectId_cpp);
-	   to = static_cast<T_TO *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get());
+	   *to = static_cast<T_TO *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get());
 	};
 
 

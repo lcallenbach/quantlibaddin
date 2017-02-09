@@ -17,13 +17,9 @@
 """
 
 
-
 QuantLibTypes = [
-    ("Constructor", "ql/time/schedule.hpp", 
-        "QuantLib::Schedule(QuantLib::Date EffectiveDate, QuantLib::Date TerminationDate, QuantLib::Period Period, QuantLib::Calendar Calendar, QuantLib::BusinessDayConvention Convention, QuantLib::BusinessDayConvention TerminationConvention, QuantLib::DateGeneration::Rule Rule, bool EndOfMonth=0, QuantLib::Date FirstDate=QuantLib::Date(), QuantLib::Date NextToLastDate=QuantLib::Date())", 
-        "", "qlSchedule"),
-    ("MemberFunction", "ql/time/schedule.hpp", 
-        "QuantLib::Schedule()", 
-        "std::vector<QuantLib::Date> dates()", "qlScheduleDates")
+    ("Constructor", "ql/pricingengines/swap/discountingswapengine.hpp", 
+        "QuantLib::DiscountingSwapEngine(QuantLib::Handle<QuantLib::YieldTermStructure> DiscountCurve, bool IncludeSettlementDaysFlows = false, QuantLib::Date SettlementDate = QuantLib::Date(), QuantLib::Date NpvDate = QuantLib::Date())", 
+        "", "qlDiscountingSwapEngine"),
 ]
 

@@ -1,0 +1,35 @@
+"""
+ Python source for QuantLib addin in LibreOffice/Calc.
+ Copyright (C) 2016 Lars Callenbach
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+
+ImplicitConversionsCalc = [
+    ("QuantLib::VanillaSwap::Type",  "std::string", "string", "EnumeratedType", "<<"),
+]
+
+
+QuantLibTypes = [
+    ("Constructor", "ql/instruments/vanillaswap.hpp", 
+        "QuantLib::VanillaSwap(QuantLib::VanillaSwap::Type Type, QuantLib::Real Nominal, QuantLib::Schedule FixedSchedule, QuantLib::Rate FixedRate, QuantLib::DayCounter FixedDayCount, QuantLib::Schedule FloatSchedule, boost::shared_ptr<QuantLib::IborIndex> IborIndex, QuantLib::Spread Spread, QuantLib::DayCounter FloatingDayCount, QuantLib::BusinessDayConvention PaymentConvention)", 
+        "", "qlVanillaSwap"),
+    
+    ("EnumeratedType", "ql/instruments/vanillaswap.hpp", "QuantLib::VanillaSwap::Type", 
+        "std::string", "Receiver", "QuantLib::VanillaSwap::Receiver"),
+    ("EnumeratedType", "ql/instruments/vanillaswap.hpp", "QuantLib::VanillaSwap::Type", 
+        "std::string", "Payer", "QuantLib::VanillaSwap::Payer"),
+]
+
