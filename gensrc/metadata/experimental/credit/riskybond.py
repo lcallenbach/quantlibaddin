@@ -23,7 +23,7 @@ QuantLibTypes = [
         "qlRiskyBondCurrency"),
     ("Constructor", "ql/experimental/credit/riskybond.hpp", 
         "QuantLib::RiskyFixedBond(std::string Name, QuantLib::Currency Ccy, QuantLib::Real RecoveryRate, QuantLib::Handle<QuantLib::DefaultProbabilityTermStructure> DefaultTS, QuantLib::Schedule Schedule, QuantLib::Real Rate, QuantLib::DayCounter DayCounter, QuantLib::BusinessDayConvention PaymentConvention, std::vector<QuantLib::Real> Notionals, QuantLib::Handle<QuantLib::YieldTermStructure> YieldTS)",
-        "", "qlRiskyBond"),
+        "", "qlRiskyFixedBond"),
 ]
 
 
