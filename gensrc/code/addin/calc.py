@@ -368,14 +368,19 @@ class CalcAddin(AddinConfiguration, CodeGeneration):
         """
         lines = []
         class_name = parameter.get_classname()
+        is_enum = False
+
+        if self._is_enumerated_object(class_name):
+            is_enum = True
+            class_name = addin_classes.find_conversion(class_name).cpp
+        convert_to_idl = addin_classes.find_conversion(class_name).toidl                
+        if convert_to_idl=='Default':
+            convert_to_idl = 'convertToIdl'
+        
         typ_idl = addin_classes.prefix
         typ_idl += addin_classes.find_conversion(class_name).idl                
 
         dimension = parameter.get_dimension()            
-
-        convert_to_idl = addin_classes.find_conversion(class_name).toidl    
-        if convert_to_idl=='Default':
-            convert_to_idl = 'convertToIdl'
             
         line = '// return value'
         lines.append((0, line))
@@ -384,10 +389,21 @@ class CalcAddin(AddinConfiguration, CodeGeneration):
         else:
             line = 'SEQSEQ(' + typ_idl + ') returnValueCalc;'
         lines.append((0, line))
+
+        if is_enum:
+            conversion_func = self.get_addintype(parameter.get_classname())+'Back'
+            line = '%s returnValueEnum;' % class_name
+            lines.append((0, line))
+            line = '%s(returnValue, returnValueEnum);' % (conversion_func)
+            lines.append((0, line))
+            line = 'interfaceFromCpp(returnValueEnum, returnValueCalc, %s);' % \
+                    convert_to_idl
+            lines.append((0, line))
+        else:
+            line = 'interfaceFromCpp(returnValue, returnValueCalc, %s);' % \
+                    convert_to_idl
+            lines.append((0, line))
             
-        line = 'interfaceFromCpp(returnValue, returnValueCalc, %s);' % \
-                convert_to_idl
-        lines.append((0, line))
         line = 'SEQSEQ(IDL_any) returnValueAny;'
         lines.append((0, line))
         line = 'idlConversionToAny(returnValueCalc, returnValueAny);'
@@ -707,6 +723,20 @@ class CalcAddin(AddinConfiguration, CodeGeneration):
         text = text + ')'
         
         return (text, argument_list)
+
+        
+    def _is_enumerated_object(self, class_name):
+        """Function to look for class_name in enumerated objects.
+    
+        Identify whether class_name is an enumerated object.
+            
+        Returns:
+            True, if enumerated object type (else False).
+        """
+        for key in self.enumerations:
+            if class_name==self.enumerations[key]:
+                return True
+        return False
             
         
         

@@ -8,33 +8,27 @@
 module quantlib {
   interface XCalcAddins {
 
-                sequence<sequence<any> > qlAnalyticEuropeanEngine(
+                sequence<sequence<any> > qlSwapRateHelper(
 			[in] any ObjectId,
-			[in] any GeneralizedBlackSchlolesProcess
+			[in] any Rate,
+			[in] any Tenor,
+			[in] any Calendar,
+			[in] any FixedFrequency,
+			[in] any FixedConvention,
+			[in] any FixedDayCounter,
+			[in] any IborIndex,
+			[in] any Spread,
+			[in] any FwdStartPeriod
                 );
 
-                sequence<sequence<any> > qlFixedRateBond(
+                sequence<sequence<any> > qlPiecewiseDefaultCurve(
 			[in] any ObjectId,
-			[in] any SettlementDays,
-			[in] any CouponCalendar,
-			[in] any FaceAmount,
-			[in] any StartDate,
-			[in] any MaturityDate,
-			[in] any Tenor,
-			[in] sequence<sequence<any > > Coupons,
-			[in] any AccrualDayCounter,
-			[in] any AccrualConvention,
-			[in] any PaymentConvention,
-			[in] any Redemption,
-			[in] any IssueDate,
-			[in] any StubDate,
-			[in] any Rule,
-			[in] any EndOfMonth,
-			[in] any PaymentCalendar,
-			[in] any ExCouponPeriod,
-			[in] any ExCouponCalendar,
-			[in] any ExCouponConvention,
-			[in] any ExCouponEndOfMonth
+			[in] any Traits,
+			[in] any Interpolator,
+			[in] any ReferenceDate,
+			[in] sequence<sequence<any > > BootstrapInstruments,
+			[in] any DayCounter,
+			[in] any Accuracy
                 );
 
                 sequence<sequence<any> > qlUpfrontCdsHelper(
@@ -55,16 +49,49 @@ module quantlib {
 			[in] any PaysAtDefaultTime
                 );
 
-                sequence<sequence<any> > qlSimpleQuote(
+                sequence<sequence<any> > qlDiscountingBondEngine(
 			[in] any ObjectId,
-			[in] any Value
+			[in] any DiscountCurve,
+			[in] any IncludeSettlementDaysFlows
                 );
 
-                sequence<sequence<any> > qlInterpolation1D(
+                sequence<sequence<any> > qlEuribor365(
 			[in] any ObjectId,
-			[in] any Interpolator1DID,
-			[in] sequence<sequence<any > > XVector,
-			[in] sequence<sequence<any > > YVector
+			[in] any Tenor,
+			[in] any ForwardCurve
+                );
+
+                sequence<sequence<any> > qlFraRateHelper(
+			[in] any ObjectId,
+			[in] any Rate,
+			[in] any MonthsToStart,
+			[in] any MonthsToEnd,
+			[in] any FixingDays,
+			[in] any Calendar,
+			[in] any Convention,
+			[in] any EndOfMonth,
+			[in] any DayCounter,
+			[in] any Pillar,
+			[in] any CustomPillarDate
+                );
+
+                sequence<sequence<any> > qlRiskyBond(
+			[in] any ObjectId,
+			[in] any Name,
+			[in] any Ccy,
+			[in] any RecoveryRate,
+			[in] any DefaultTS,
+			[in] any Schedule,
+			[in] any Rate,
+			[in] any DayCounter,
+			[in] any PaymentConvention,
+			[in] sequence<sequence<any > > Notionals,
+			[in] any YieldTS
+                );
+
+                sequence<sequence<any> > qlEuropeanExercise(
+			[in] any ObjectId,
+			[in] any ExerciseDate
                 );
 
                 sequence<sequence<any> > qlDepositRateHelper(
@@ -78,17 +105,45 @@ module quantlib {
 			[in] any DayCounter
                 );
 
-                sequence<sequence<any> > qlEuropeanExercise(
+                sequence<sequence<any> > qlInterpolation1D(
 			[in] any ObjectId,
-			[in] any ExerciseDate
+			[in] any Interpolator1DID,
+			[in] sequence<sequence<any > > XVector,
+			[in] sequence<sequence<any > > YVector
                 );
 
-                sequence<sequence<any> > qlDiscountingSwapEngine(
+                sequence<sequence<any> > qlEuribor(
 			[in] any ObjectId,
-			[in] any DiscountCurve,
-			[in] any IncludeSettlementDaysFlows,
-			[in] any SettlementDate,
-			[in] any NpvDate
+			[in] any Tenor,
+			[in] any ForwardCurve
+                );
+
+                sequence<sequence<any> > qlGeneralizedBlackScholesProcess(
+			[in] any ObjectId,
+			[in] any Quote,
+			[in] any DividendTS,
+			[in] any RiskFreeTS,
+			[in] any BlackVolTS
+                );
+
+                sequence<sequence<any> > qlPlainVanillaPayoff(
+			[in] any ObjectId,
+			[in] any OptionType,
+			[in] any Strike
+                );
+
+                sequence<sequence<any> > qlSchedule(
+			[in] any ObjectId,
+			[in] any EffectiveDate,
+			[in] any TerminationDate,
+			[in] any Period,
+			[in] any Calendar,
+			[in] any Convention,
+			[in] any TerminationConvention,
+			[in] any Rule,
+			[in] any EndOfMonth,
+			[in] any FirstDate,
+			[in] any NextToLastDate
                 );
 
                 sequence<sequence<any> > qlFixedRateBondHelper(
@@ -110,17 +165,26 @@ module quantlib {
 			[in] any UseCleanPrice
                 );
 
-                sequence<sequence<any> > qlSwapRateHelper(
+                sequence<sequence<any> > qlSimpleQuote(
 			[in] any ObjectId,
-			[in] any Rate,
-			[in] any Tenor,
-			[in] any Calendar,
-			[in] any FixedFrequency,
-			[in] any FixedConvention,
-			[in] any FixedDayCounter,
-			[in] any IborIndex,
-			[in] any Spread,
-			[in] any FwdStartPeriod
+			[in] any Value
+                );
+
+                sequence<sequence<any> > qlInterpolatedHazardRateCurve(
+			[in] any ObjectId,
+			[in] any Interpolator,
+			[in] sequence<sequence<any > > Dates,
+			[in] sequence<sequence<any > > HazardRates,
+			[in] any DayCounter,
+			[in] any Calendar
+                );
+
+                sequence<sequence<any> > qlDiscountingSwapEngine(
+			[in] any ObjectId,
+			[in] any DiscountCurve,
+			[in] any IncludeSettlementDaysFlows,
+			[in] any SettlementDate,
+			[in] any NpvDate
                 );
 
                 sequence<sequence<any> > qlZeroCurve(
@@ -130,32 +194,35 @@ module quantlib {
 			[in] any DayCounterDayCounter
                 );
 
-                sequence<sequence<any> > qlSchedule(
+                sequence<sequence<any> > qlVanillaSwap(
 			[in] any ObjectId,
-			[in] any EffectiveDate,
-			[in] any TerminationDate,
-			[in] any Period,
-			[in] any Calendar,
-			[in] any Convention,
-			[in] any TerminationConvention,
-			[in] any Rule,
-			[in] any EndOfMonth,
-			[in] any FirstDate,
-			[in] any NextToLastDate
+			[in] any Type,
+			[in] any Nominal,
+			[in] any FixedSchedule,
+			[in] any FixedRate,
+			[in] any FixedDayCount,
+			[in] any FloatSchedule,
+			[in] any IborIndex,
+			[in] any Spread,
+			[in] any FloatingDayCount,
+			[in] any PaymentConvention
                 );
 
-                sequence<sequence<any> > qlFraRateHelper(
+                sequence<sequence<any> > qlFuturesRateHelper(
 			[in] any ObjectId,
-			[in] any Rate,
-			[in] any MonthsToStart,
-			[in] any MonthsToEnd,
-			[in] any FixingDays,
-			[in] any Calendar,
-			[in] any Convention,
-			[in] any EndOfMonth,
-			[in] any DayCounter,
-			[in] any Pillar,
-			[in] any CustomPillarDate
+			[in] any Price,
+			[in] any IborStartDate,
+			[in] any IborIndex,
+			[in] any ConvexityAdjustment,
+			[in] any Type
+                );
+
+                sequence<sequence<any> > qlInterpolation2D(
+			[in] any ObjectId,
+			[in] any Interpolator2DID,
+			[in] sequence<sequence<any > > XVector,
+			[in] sequence<sequence<any > > YVector,
+			[in] sequence<sequence<any > > ZData
                 );
 
                 sequence<sequence<any> > qlFloatingRateBond(
@@ -183,54 +250,34 @@ module quantlib {
 			[in] any EndOfMonth
                 );
 
-                sequence<sequence<any> > qlFuturesRateHelper(
+                sequence<sequence<any> > qlFixedRateBond(
 			[in] any ObjectId,
-			[in] any Price,
-			[in] any IborStartDate,
-			[in] any IborIndex,
-			[in] any ConvexityAdjustment,
-			[in] any Type
-                );
-
-                sequence<sequence<any> > qlInterpolation2D(
-			[in] any ObjectId,
-			[in] any Interpolator2DID,
-			[in] sequence<sequence<any > > XVector,
-			[in] sequence<sequence<any > > YVector,
-			[in] sequence<sequence<any > > ZData
+			[in] any SettlementDays,
+			[in] any CouponCalendar,
+			[in] any FaceAmount,
+			[in] any StartDate,
+			[in] any MaturityDate,
+			[in] any Tenor,
+			[in] sequence<sequence<any > > Coupons,
+			[in] any AccrualDayCounter,
+			[in] any AccrualConvention,
+			[in] any PaymentConvention,
+			[in] any Redemption,
+			[in] any IssueDate,
+			[in] any StubDate,
+			[in] any Rule,
+			[in] any EndOfMonth,
+			[in] any PaymentCalendar,
+			[in] any ExCouponPeriod,
+			[in] any ExCouponCalendar,
+			[in] any ExCouponConvention,
+			[in] any ExCouponEndOfMonth
                 );
 
                 sequence<sequence<any> > qlVanillaOption(
 			[in] any ObjectId,
 			[in] any StrikedTypePayoff,
 			[in] any Exercise
-                );
-
-                sequence<sequence<any> > qlPlainVanillaPayoff(
-			[in] any ObjectId,
-			[in] any OptionType,
-			[in] any Strike
-                );
-
-                sequence<sequence<any> > qlDiscountCurve(
-			[in] any ObjectId,
-			[in] sequence<sequence<any > > Dates,
-			[in] sequence<sequence<any > > Discounts,
-			[in] any DayCounter
-                );
-
-                sequence<sequence<any> > qlVanillaSwap(
-			[in] any ObjectId,
-			[in] any Type,
-			[in] any Nominal,
-			[in] any FixedSchedule,
-			[in] any FixedRate,
-			[in] any FixedDayCount,
-			[in] any FloatSchedule,
-			[in] any IborIndex,
-			[in] any Spread,
-			[in] any FloatingDayCount,
-			[in] any PaymentConvention
                 );
 
                 sequence<sequence<any> > qlPiecewiseYieldCurve(
@@ -243,13 +290,16 @@ module quantlib {
 			[in] any Accuracy
                 );
 
-                sequence<sequence<any> > qlInterpolatedHazardRateCurve(
+                sequence<sequence<any> > qlDiscountCurve(
 			[in] any ObjectId,
-			[in] any Interpolator,
 			[in] sequence<sequence<any > > Dates,
-			[in] sequence<sequence<any > > HazardRates,
-			[in] any DayCounter,
-			[in] any Calendar
+			[in] sequence<sequence<any > > Discounts,
+			[in] any DayCounter
+                );
+
+                sequence<sequence<any> > qlAnalyticEuropeanEngine(
+			[in] any ObjectId,
+			[in] any GeneralizedBlackSchlolesProcess
                 );
 
                 sequence<sequence<any> > qlBlackVarianceSurface(
@@ -264,16 +314,11 @@ module quantlib {
 			[in] any UpperExtrapolation
                 );
 
-                sequence<sequence<any> > qlEuribor365(
+                sequence<sequence<any> > qlBondHelper(
 			[in] any ObjectId,
-			[in] any Tenor,
-			[in] any ForwardCurve
-                );
-
-                sequence<sequence<any> > qlEuribor(
-			[in] any ObjectId,
-			[in] any Tenor,
-			[in] any ForwardCurve
+			[in] any Price,
+			[in] any Bond,
+			[in] any UseCleanPrice
                 );
 
                 sequence<sequence<any> > qlSpreadCdsHelper(
@@ -292,35 +337,79 @@ module quantlib {
 			[in] any PaysAtDefaultTime
                 );
 
-                sequence<sequence<any> > qlPiecewiseDefaultCurve(
+                sequence<sequence<any> > qlDayCounterYearFraction(
 			[in] any ObjectId,
-			[in] any Traits,
-			[in] any Interpolator,
-			[in] any ReferenceDate,
-			[in] sequence<sequence<any > > BootstrapInstruments,
-			[in] any DayCounter,
-			[in] any Accuracy
+			[in] any StartDate,
+			[in] any EndDate
                 );
 
-                sequence<sequence<any> > qlBondHelper(
-			[in] any ObjectId,
-			[in] any Price,
-			[in] any Bond,
-			[in] any UseCleanPrice
+                sequence<sequence<any> > qlInstrumentNPV(
+			[in] any ObjectId
                 );
 
-                sequence<sequence<any> > qlGeneralizedBlackScholesProcess(
+                sequence<sequence<any> > qlDayCounterDayCount(
 			[in] any ObjectId,
-			[in] any Quote,
-			[in] any DividendTS,
-			[in] any RiskFreeTS,
-			[in] any BlackVolTS
+			[in] any StartDate,
+			[in] any EndDate
                 );
 
-                sequence<sequence<any> > qlDiscountingBondEngine(
+                sequence<sequence<any> > qlRiskyBondCurrency(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlDayCounterName(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlInterpolatedValue2D(
 			[in] any ObjectId,
-			[in] any DiscountCurve,
-			[in] any IncludeSettlementDaysFlows
+			[in] any X,
+			[in] any Y,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlYieldTSDiscount(
+			[in] any ObjectId,
+			[in] any Date
+                );
+
+                sequence<sequence<any> > qlCalendarIsBusinessDay(
+			[in] any ObjectId,
+			[in] any Date
+                );
+
+                sequence<sequence<any> > qlInstrumentIsExpired(
+			[in] any ObjectId
+                );
+
+                sequence<sequence<any> > qlInterpolatedValue1D(
+			[in] any ObjectId,
+			[in] any X,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlDefaultTSDefaultDensity(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlDefaultTSSurvivalProbability(
+			[in] any ObjectId,
+			[in] any Date,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlBlackVolTermStructureBlackVol(
+			[in] any ObjectId,
+			[in] any Maturity,
+			[in] any Strike,
+			[in] any Extrapolate
+                );
+
+                sequence<sequence<any> > qlCalendarIsHoliday(
+			[in] any ObjectId,
+			[in] any Date
                 );
 
                 sequence<sequence<any> > qlInstrumentSetPricingEngine(
@@ -332,19 +421,8 @@ module quantlib {
 			[in] any ObjectId
                 );
 
-                sequence<sequence<any> > qlCalendarIsHoliday(
-			[in] any ObjectId,
-			[in] any Date
-                );
-
                 sequence<sequence<any> > qlQuoteValue(
 			[in] any ObjectId
-                );
-
-                sequence<sequence<any> > qlDefaultTSSurvivalProbability(
-			[in] any ObjectId,
-			[in] any Date,
-			[in] any Extrapolate
                 );
 
                 sequence<sequence<any> > qlCalendarAdvance(
@@ -355,31 +433,10 @@ module quantlib {
 			[in] any EndOfMonth
                 );
 
-                sequence<sequence<any> > qlInterpolatedValue1D(
+                sequence<sequence<any> > qlDefaultTSDefaultProbability(
 			[in] any ObjectId,
-			[in] any X,
+			[in] any Date,
 			[in] any Extrapolate
-                );
-
-                sequence<sequence<any> > qlInterpolatedValue2D(
-			[in] any ObjectId,
-			[in] any X,
-			[in] any Y,
-			[in] any Extrapolate
-                );
-
-                sequence<sequence<any> > qlInstrumentNPV(
-			[in] any ObjectId
-                );
-
-                sequence<sequence<any> > qlCalendarName(
-			[in] any ObjectId
-                );
-
-                sequence<sequence<any> > qlDayCounterDayCount(
-			[in] any ObjectId,
-			[in] any StartDate,
-			[in] any EndDate
                 );
 
                 sequence<sequence<any> > qlDefaultTSHazardRate(
@@ -388,47 +445,8 @@ module quantlib {
 			[in] any Extrapolate
                 );
 
-                sequence<sequence<any> > qlDefaultTSDefaultProbability(
-			[in] any ObjectId,
-			[in] any Date,
-			[in] any Extrapolate
-                );
-
-                sequence<sequence<any> > qlYieldTSDiscount(
-			[in] any ObjectId,
-			[in] any Date
-                );
-
-                sequence<sequence<any> > qlDefaultTSDefaultDensity(
-			[in] any ObjectId,
-			[in] any Date,
-			[in] any Extrapolate
-                );
-
-                sequence<sequence<any> > qlDayCounterYearFraction(
-			[in] any ObjectId,
-			[in] any StartDate,
-			[in] any EndDate
-                );
-
-                sequence<sequence<any> > qlInstrumentIsExpired(
+                sequence<sequence<any> > qlCalendarName(
 			[in] any ObjectId
-                );
-
-                sequence<sequence<any> > qlDayCounterName(
-			[in] any ObjectId
-                );
-
-                sequence<sequence<any> > qlCalendarIsBusinessDay(
-			[in] any ObjectId,
-			[in] any Date
-                );
-
-                sequence<sequence<any> > qlBlackVolTermStructureBlackVol(
-			[in] any ObjectId,
-			[in] any Maturity,
-			[in] any Strike,
-			[in] any Extrapolate
                 );
 
                 sequence<sequence<any> > qlSettingsSetEvaluationDate(

@@ -18,184 +18,65 @@
 */
 #include <addin.hpp>
 namespace Addin {
-    class QuantLib_AnalyticEuropeanEngineError: public std::exception {
+    class QuantLib_SwapRateHelperError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::AnalyticEuropeanEngine";
+            return "Wrong template arguments for QuantLib::SwapRateHelper";
         };
     };
     
-    QuantLib_AnalyticEuropeanEngine::QuantLib_AnalyticEuropeanEngine(IDL_any GeneralizedBlackSchlolesProcess_any)
-            : ObjectHandler::Object(std::string("QuantLib_AnalyticEuropeanEngine"))
+    QuantLib_SwapRateHelper::QuantLib_SwapRateHelper(IDL_any Rate_any, IDL_any Tenor_any, IDL_any Calendar_any, IDL_any FixedFrequency_any, IDL_any FixedConvention_any, IDL_any FixedDayCounter_any, IDL_any IborIndex_any, IDL_any Spread_any, IDL_any FwdStartPeriod_any)
+            : ObjectHandler::Object(std::string("QuantLib_SwapRateHelper"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(GeneralizedBlackSchlolesProcess_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_AnalyticEuropeanEngine::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::AnalyticEuropeanEngine" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any GeneralizedBlackSchlolesProcess_any;
-            GeneralizedBlackSchlolesProcess_any = boost::any_cast<IDL_any >(arguments_[0]);
-            
-            // parameter conversions 
-            IDL_string GeneralizedBlackSchlolesProcess;
-            boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >  GeneralizedBlackSchlolesProcess_cpp;
-            if(GeneralizedBlackSchlolesProcess_any.hasValue()) { 
-                scalarAnyToIDL(GeneralizedBlackSchlolesProcess_any, GeneralizedBlackSchlolesProcess);
-                scalarObjectSharedPtr(GeneralizedBlackSchlolesProcess, GeneralizedBlackSchlolesProcess_cpp); 
-                this->precedentIDs_.insert(getObjectName(GeneralizedBlackSchlolesProcess));
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::AnalyticEuropeanEngine(GeneralizedBlackSchlolesProcess_cpp));
-        }
-        
-    };
-    
-    void QuantLib_AnalyticEuropeanEngine::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any GeneralizedBlackSchlolesProcess_any;
-            GeneralizedBlackSchlolesProcess_any = boost::any_cast<IDL_any >(arguments_[0]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::AnalyticEuropeanEngine *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_FixedRateBondError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::FixedRateBond";
-        };
-    };
-    
-    QuantLib_FixedRateBond::QuantLib_FixedRateBond(IDL_any SettlementDays_any, IDL_any CouponCalendar_any, IDL_any FaceAmount_any, IDL_any StartDate_any, IDL_any MaturityDate_any, IDL_any Tenor_any, SEQSEQ(IDL_any) Coupons_any, IDL_any AccrualDayCounter_any, IDL_any AccrualConvention_any, IDL_any PaymentConvention_any, IDL_any Redemption_any, IDL_any IssueDate_any, IDL_any StubDate_any, IDL_any Rule_any, IDL_any EndOfMonth_any, IDL_any PaymentCalendar_any, IDL_any ExCouponPeriod_any, IDL_any ExCouponCalendar_any, IDL_any ExCouponConvention_any, IDL_any ExCouponEndOfMonth_any)
-            : ObjectHandler::Object(std::string("QuantLib_FixedRateBond"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(SettlementDays_any);
-            arguments_.push_back(CouponCalendar_any);
-            arguments_.push_back(FaceAmount_any);
-            arguments_.push_back(StartDate_any);
-            arguments_.push_back(MaturityDate_any);
+            arguments_.push_back(Rate_any);
             arguments_.push_back(Tenor_any);
-            arguments_.push_back(Coupons_any);
-            arguments_.push_back(AccrualDayCounter_any);
-            arguments_.push_back(AccrualConvention_any);
-            arguments_.push_back(PaymentConvention_any);
-            arguments_.push_back(Redemption_any);
-            arguments_.push_back(IssueDate_any);
-            arguments_.push_back(StubDate_any);
-            arguments_.push_back(Rule_any);
-            arguments_.push_back(EndOfMonth_any);
-            arguments_.push_back(PaymentCalendar_any);
-            arguments_.push_back(ExCouponPeriod_any);
-            arguments_.push_back(ExCouponCalendar_any);
-            arguments_.push_back(ExCouponConvention_any);
-            arguments_.push_back(ExCouponEndOfMonth_any);
+            arguments_.push_back(Calendar_any);
+            arguments_.push_back(FixedFrequency_any);
+            arguments_.push_back(FixedConvention_any);
+            arguments_.push_back(FixedDayCounter_any);
+            arguments_.push_back(IborIndex_any);
+            arguments_.push_back(Spread_any);
+            arguments_.push_back(FwdStartPeriod_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_FixedRateBond::update() {
+    void QuantLib_SwapRateHelper::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::FixedRateBond" << std::endl;
+            std::cerr << "in upate() von QuantLib::SwapRateHelper" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any SettlementDays_any;
-            SettlementDays_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any CouponCalendar_any;
-            CouponCalendar_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FaceAmount_any;
-            FaceAmount_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any StartDate_any;
-            StartDate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any MaturityDate_any;
-            MaturityDate_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
             IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[5]);
-            SEQSEQ(IDL_any) Coupons_any;
-            Coupons_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[6]);
-            IDL_any AccrualDayCounter_any;
-            AccrualDayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any AccrualConvention_any;
-            AccrualConvention_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any PaymentConvention_any;
-            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
-            IDL_any Redemption_any;
-            Redemption_any = boost::any_cast<IDL_any >(arguments_[10]);
-            IDL_any IssueDate_any;
-            IssueDate_any = boost::any_cast<IDL_any >(arguments_[11]);
-            IDL_any StubDate_any;
-            StubDate_any = boost::any_cast<IDL_any >(arguments_[12]);
-            IDL_any Rule_any;
-            Rule_any = boost::any_cast<IDL_any >(arguments_[13]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[14]);
-            IDL_any PaymentCalendar_any;
-            PaymentCalendar_any = boost::any_cast<IDL_any >(arguments_[15]);
-            IDL_any ExCouponPeriod_any;
-            ExCouponPeriod_any = boost::any_cast<IDL_any >(arguments_[16]);
-            IDL_any ExCouponCalendar_any;
-            ExCouponCalendar_any = boost::any_cast<IDL_any >(arguments_[17]);
-            IDL_any ExCouponConvention_any;
-            ExCouponConvention_any = boost::any_cast<IDL_any >(arguments_[18]);
-            IDL_any ExCouponEndOfMonth_any;
-            ExCouponEndOfMonth_any = boost::any_cast<IDL_any >(arguments_[19]);
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixedFrequency_any;
+            FixedFrequency_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any FixedConvention_any;
+            FixedConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any FixedDayCounter_any;
+            FixedDayCounter_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any Spread_any;
+            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FwdStartPeriod_any;
+            FwdStartPeriod_any = boost::any_cast<IDL_any >(arguments_[8]);
             
             // parameter conversions 
-            IDL_long SettlementDays;
-            long SettlementDays_cpp;
-            if(SettlementDays_any.hasValue()) { 
-                scalarAnyToIDL(SettlementDays_any, SettlementDays);
-                scalarInterfaceToCpp(SettlementDays, SettlementDays_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string CouponCalendar;
-            QuantLib::Calendar CouponCalendar_cpp;
-            if(CouponCalendar_any.hasValue()) { 
-                scalarAnyToIDL(CouponCalendar_any, CouponCalendar);
-                scalarInterfaceToCpp(CouponCalendar, CouponCalendar_cpp, QuantLib_CalendarEnum);
-            }
-            
-            IDL_double FaceAmount;
-            double FaceAmount_cpp;
-            if(FaceAmount_any.hasValue()) { 
-                scalarAnyToIDL(FaceAmount_any, FaceAmount);
-                scalarInterfaceToCpp(FaceAmount, FaceAmount_cpp, interfaceToIdentity);
-            }
-            
-            IDL_long StartDate;
-            QuantLib::Date StartDate_cpp;
-            if(StartDate_any.hasValue()) { 
-                scalarAnyToIDL(StartDate_any, StartDate);
-                scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
-            }
-            
-            IDL_long MaturityDate;
-            QuantLib::Date MaturityDate_cpp;
-            if(MaturityDate_any.hasValue()) { 
-                scalarAnyToIDL(MaturityDate_any, MaturityDate);
-                scalarInterfaceToCpp(MaturityDate, MaturityDate_cpp, interfaceToDate);
+            IDL_double Rate;
+            double Rate_cpp;
+            if(Rate_any.hasValue()) { 
+                scalarAnyToIDL(Rate_any, Rate);
+                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
             }
             
             IDL_string Tenor;
@@ -205,182 +86,264 @@ namespace Addin {
                 scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
             }
             
-            SEQSEQ(IDL_double) Coupons;
-            std::vector<double> Coupons_cpp;
-            if(Coupons_any.getLength()>0) { 
-                vectorAnyToIDL(Coupons_any, Coupons);
-                vectorInterfaceToCpp(Coupons, Coupons_cpp, interfaceToIdentity);
+            IDL_string Calendar;
+            QuantLib::Calendar Calendar_cpp;
+            if(Calendar_any.hasValue()) { 
+                scalarAnyToIDL(Calendar_any, Calendar);
+                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
             }
             
-            IDL_string AccrualDayCounter;
-            QuantLib::DayCounter AccrualDayCounter_cpp;
-            if(AccrualDayCounter_any.hasValue()) { 
-                scalarAnyToIDL(AccrualDayCounter_any, AccrualDayCounter);
-                scalarInterfaceToCpp(AccrualDayCounter, AccrualDayCounter_cpp, QuantLib_DayCounterEnum);
+            IDL_string FixedFrequency;
+            QuantLib::Frequency FixedFrequency_cpp;
+            if(FixedFrequency_any.hasValue()) { 
+                scalarAnyToIDL(FixedFrequency_any, FixedFrequency);
+                scalarInterfaceToCpp(FixedFrequency, FixedFrequency_cpp, QuantLib_FrequencyEnum);
             }
             
-            IDL_string AccrualConvention;
-            QuantLib::BusinessDayConvention AccrualConvention_cpp;
-            if(AccrualConvention_any.hasValue()) { 
-                scalarAnyToIDL(AccrualConvention_any, AccrualConvention);
-                scalarInterfaceToCpp(AccrualConvention, AccrualConvention_cpp, QuantLib_BusinessDayConventionEnum);
-            } else { 
-                AccrualConvention_cpp = QuantLib::Following; 
+            IDL_string FixedConvention;
+            QuantLib::BusinessDayConvention FixedConvention_cpp;
+            if(FixedConvention_any.hasValue()) { 
+                scalarAnyToIDL(FixedConvention_any, FixedConvention);
+                scalarInterfaceToCpp(FixedConvention, FixedConvention_cpp, QuantLib_BusinessDayConventionEnum);
             }
             
-            IDL_string PaymentConvention;
-            QuantLib::BusinessDayConvention PaymentConvention_cpp;
-            if(PaymentConvention_any.hasValue()) { 
-                scalarAnyToIDL(PaymentConvention_any, PaymentConvention);
-                scalarInterfaceToCpp(PaymentConvention, PaymentConvention_cpp, QuantLib_BusinessDayConventionEnum);
-            } else { 
-                PaymentConvention_cpp = QuantLib::Following; 
+            IDL_string FixedDayCounter;
+            QuantLib::DayCounter FixedDayCounter_cpp;
+            if(FixedDayCounter_any.hasValue()) { 
+                scalarAnyToIDL(FixedDayCounter_any, FixedDayCounter);
+                scalarInterfaceToCpp(FixedDayCounter, FixedDayCounter_cpp, QuantLib_DayCounterEnum);
             }
             
-            IDL_double Redemption;
-            double Redemption_cpp;
-            if(Redemption_any.hasValue()) { 
-                scalarAnyToIDL(Redemption_any, Redemption);
-                scalarInterfaceToCpp(Redemption, Redemption_cpp, interfaceToIdentity);
-            } else { 
-                Redemption_cpp = 100.0; 
+            IDL_string IborIndex;
+            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
+            if(IborIndex_any.hasValue()) { 
+                scalarAnyToIDL(IborIndex_any, IborIndex);
+                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
+                this->precedentIDs_.insert(getObjectName(IborIndex));
             }
             
-            IDL_long IssueDate;
-            QuantLib::Date IssueDate_cpp;
-            if(IssueDate_any.hasValue()) { 
-                scalarAnyToIDL(IssueDate_any, IssueDate);
-                scalarInterfaceToCpp(IssueDate, IssueDate_cpp, interfaceToDate);
-            } else { 
-                IssueDate_cpp = QuantLib::Date(); 
+            IDL_string Spread;
+            QuantLib::Handle<QuantLib::Quote >  Spread_cpp;
+            if(Spread_any.hasValue()) { 
+                scalarAnyToIDL(Spread_any, Spread);
+                scalarObjectHandle(Spread, Spread_cpp); 
+                this->precedentIDs_.insert(getObjectName(Spread));
             }
             
-            IDL_long StubDate;
-            QuantLib::Date StubDate_cpp;
-            if(StubDate_any.hasValue()) { 
-                scalarAnyToIDL(StubDate_any, StubDate);
-                scalarInterfaceToCpp(StubDate, StubDate_cpp, interfaceToDate);
-            } else { 
-                StubDate_cpp = QuantLib::Date(); 
-            }
-            
-            IDL_string Rule;
-            QuantLib::DateGeneration::Rule Rule_cpp;
-            if(Rule_any.hasValue()) { 
-                scalarAnyToIDL(Rule_any, Rule);
-                scalarInterfaceToCpp(Rule, Rule_cpp, QuantLib_DateGeneration_RuleEnum);
-            } else { 
-                Rule_cpp = QuantLib::DateGeneration::Backward; 
-            }
-            
-            IDL_long EndOfMonth;
-            int EndOfMonth_cpp;
-            if(EndOfMonth_any.hasValue()) { 
-                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
-                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
-            } else { 
-                EndOfMonth_cpp = false; 
-            }
-            
-            IDL_string PaymentCalendar;
-            QuantLib::Calendar PaymentCalendar_cpp;
-            if(PaymentCalendar_any.hasValue()) { 
-                scalarAnyToIDL(PaymentCalendar_any, PaymentCalendar);
-                scalarInterfaceToCpp(PaymentCalendar, PaymentCalendar_cpp, QuantLib_CalendarEnum);
-            } else { 
-                PaymentCalendar_cpp = QuantLib::Calendar(); 
-            }
-            
-            IDL_string ExCouponPeriod;
-            QuantLib::Period ExCouponPeriod_cpp;
-            if(ExCouponPeriod_any.hasValue()) { 
-                scalarAnyToIDL(ExCouponPeriod_any, ExCouponPeriod);
-                scalarInterfaceToCpp(ExCouponPeriod, ExCouponPeriod_cpp, interfaceToPeriod);
-            } else { 
-                ExCouponPeriod_cpp = QuantLib::Period(); 
-            }
-            
-            IDL_string ExCouponCalendar;
-            QuantLib::Calendar ExCouponCalendar_cpp;
-            if(ExCouponCalendar_any.hasValue()) { 
-                scalarAnyToIDL(ExCouponCalendar_any, ExCouponCalendar);
-                scalarInterfaceToCpp(ExCouponCalendar, ExCouponCalendar_cpp, QuantLib_CalendarEnum);
-            } else { 
-                ExCouponCalendar_cpp = QuantLib::Calendar(); 
-            }
-            
-            IDL_string ExCouponConvention;
-            QuantLib::BusinessDayConvention ExCouponConvention_cpp;
-            if(ExCouponConvention_any.hasValue()) { 
-                scalarAnyToIDL(ExCouponConvention_any, ExCouponConvention);
-                scalarInterfaceToCpp(ExCouponConvention, ExCouponConvention_cpp, QuantLib_BusinessDayConventionEnum);
-            } else { 
-                ExCouponConvention_cpp = QuantLib::Unadjusted; 
-            }
-            
-            IDL_long ExCouponEndOfMonth;
-            int ExCouponEndOfMonth_cpp;
-            if(ExCouponEndOfMonth_any.hasValue()) { 
-                scalarAnyToIDL(ExCouponEndOfMonth_any, ExCouponEndOfMonth);
-                scalarInterfaceToCpp(ExCouponEndOfMonth, ExCouponEndOfMonth_cpp, interfaceToIdentity);
-            } else { 
-                ExCouponEndOfMonth_cpp = false; 
+            IDL_string FwdStartPeriod;
+            QuantLib::Period FwdStartPeriod_cpp;
+            if(FwdStartPeriod_any.hasValue()) { 
+                scalarAnyToIDL(FwdStartPeriod_any, FwdStartPeriod);
+                scalarInterfaceToCpp(FwdStartPeriod, FwdStartPeriod_cpp, interfaceToPeriod);
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::FixedRateBond(SettlementDays_cpp, CouponCalendar_cpp, FaceAmount_cpp, StartDate_cpp, MaturityDate_cpp, Tenor_cpp, Coupons_cpp, AccrualDayCounter_cpp, AccrualConvention_cpp, PaymentConvention_cpp, Redemption_cpp, IssueDate_cpp, StubDate_cpp, Rule_cpp, EndOfMonth_cpp, PaymentCalendar_cpp, ExCouponPeriod_cpp, ExCouponCalendar_cpp, ExCouponConvention_cpp, ExCouponEndOfMonth_cpp));
+            object_ = (void *)(new QuantLib::SwapRateHelper(Rate_cpp, Tenor_cpp, Calendar_cpp, FixedFrequency_cpp, FixedConvention_cpp, FixedDayCounter_cpp, IborIndex_cpp, Spread_cpp, FwdStartPeriod_cpp));
         }
         
     };
     
-    void QuantLib_FixedRateBond::del() {
+    void QuantLib_SwapRateHelper::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any SettlementDays_any;
-            SettlementDays_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any CouponCalendar_any;
-            CouponCalendar_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FaceAmount_any;
-            FaceAmount_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any StartDate_any;
-            StartDate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any MaturityDate_any;
-            MaturityDate_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
             IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[5]);
-            SEQSEQ(IDL_any) Coupons_any;
-            Coupons_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[6]);
-            IDL_any AccrualDayCounter_any;
-            AccrualDayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any AccrualConvention_any;
-            AccrualConvention_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any PaymentConvention_any;
-            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
-            IDL_any Redemption_any;
-            Redemption_any = boost::any_cast<IDL_any >(arguments_[10]);
-            IDL_any IssueDate_any;
-            IssueDate_any = boost::any_cast<IDL_any >(arguments_[11]);
-            IDL_any StubDate_any;
-            StubDate_any = boost::any_cast<IDL_any >(arguments_[12]);
-            IDL_any Rule_any;
-            Rule_any = boost::any_cast<IDL_any >(arguments_[13]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[14]);
-            IDL_any PaymentCalendar_any;
-            PaymentCalendar_any = boost::any_cast<IDL_any >(arguments_[15]);
-            IDL_any ExCouponPeriod_any;
-            ExCouponPeriod_any = boost::any_cast<IDL_any >(arguments_[16]);
-            IDL_any ExCouponCalendar_any;
-            ExCouponCalendar_any = boost::any_cast<IDL_any >(arguments_[17]);
-            IDL_any ExCouponConvention_any;
-            ExCouponConvention_any = boost::any_cast<IDL_any >(arguments_[18]);
-            IDL_any ExCouponEndOfMonth_any;
-            ExCouponEndOfMonth_any = boost::any_cast<IDL_any >(arguments_[19]);
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixedFrequency_any;
+            FixedFrequency_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any FixedConvention_any;
+            FixedConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any FixedDayCounter_any;
+            FixedDayCounter_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any Spread_any;
+            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FwdStartPeriod_any;
+            FwdStartPeriod_any = boost::any_cast<IDL_any >(arguments_[8]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::FixedRateBond *)(object_);
+            delete (QuantLib::SwapRateHelper *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_PiecewiseDefaultCurveError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::PiecewiseDefaultCurve";
+        };
+    };
+    
+    QuantLib_PiecewiseDefaultCurve::QuantLib_PiecewiseDefaultCurve(IDL_any Traits_any, IDL_any Interpolator_any, IDL_any ReferenceDate_any, SEQSEQ(IDL_any) BootstrapInstruments_any, IDL_any DayCounter_any, IDL_any Accuracy_any)
+            : ObjectHandler::Object(std::string("QuantLib_PiecewiseDefaultCurve"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Traits_any);
+            arguments_.push_back(Interpolator_any);
+            arguments_.push_back(ReferenceDate_any);
+            arguments_.push_back(BootstrapInstruments_any);
+            arguments_.push_back(DayCounter_any);
+            arguments_.push_back(Accuracy_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_PiecewiseDefaultCurve::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::PiecewiseDefaultCurve" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Traits_any;
+            Traits_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Interpolator_any;
+            Interpolator_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any ReferenceDate_any;
+            ReferenceDate_any = boost::any_cast<IDL_any >(arguments_[2]);
+            SEQSEQ(IDL_any) BootstrapInstruments_any;
+            BootstrapInstruments_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[3]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Accuracy_any;
+            Accuracy_any = boost::any_cast<IDL_any >(arguments_[5]);
+            
+            // parameter conversions 
+            IDL_string Traits;
+            std::string Traits_cpp;
+            if(Traits_any.hasValue()) { 
+                scalarAnyToIDL(Traits_any, Traits);
+                scalarInterfaceToCpp(Traits, Traits_cpp, interfaceToString);
+            }
+            
+            IDL_string Interpolator;
+            std::string Interpolator_cpp;
+            if(Interpolator_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator_any, Interpolator);
+                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
+            }
+            
+            IDL_long ReferenceDate;
+            QuantLib::Date ReferenceDate_cpp;
+            if(ReferenceDate_any.hasValue()) { 
+                scalarAnyToIDL(ReferenceDate_any, ReferenceDate);
+                scalarInterfaceToCpp(ReferenceDate, ReferenceDate_cpp, interfaceToDate);
+            }
+            
+            SEQSEQ(IDL_string) BootstrapInstruments;
+            vectorAnyToIDL(BootstrapInstruments_any, BootstrapInstruments);
+            std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::DefaultProbabilityTermStructure> >  > BootstrapInstruments_cpp;
+            vectorObjectSharedPtr(BootstrapInstruments, BootstrapInstruments_cpp); 
+            
+            IDL_string DayCounter;
+            QuantLib::DayCounter DayCounter_cpp;
+            if(DayCounter_any.hasValue()) { 
+                scalarAnyToIDL(DayCounter_any, DayCounter);
+                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
+            }
+            
+            IDL_double Accuracy;
+            double Accuracy_cpp;
+            if(Accuracy_any.hasValue()) { 
+                scalarAnyToIDL(Accuracy_any, Accuracy);
+                scalarInterfaceToCpp(Accuracy, Accuracy_cpp, interfaceToIdentity);
+            }
+            
+            // create addin object
+            bool found=false;
+            if(Traits_cpp==std::string("SurvivalProbability")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+            };
+            if(Traits_cpp==std::string("HazardRate")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+            };
+            if(Traits_cpp==std::string("DefaultDensity")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
+                    found = true;
+                };
+            };
+            if(not found) throw QuantLib_PiecewiseDefaultCurveError();
+        }
+        
+    };
+    
+    void QuantLib_PiecewiseDefaultCurve::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Traits_any;
+            Traits_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Interpolator_any;
+            Interpolator_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            IDL_string Traits;
+            std::string Traits_cpp;
+            if(Traits_any.hasValue()) { 
+                scalarAnyToIDL(Traits_any, Traits);
+                scalarInterfaceToCpp(Traits, Traits_cpp, interfaceToString);
+            }
+            
+            IDL_string Interpolator;
+            std::string Interpolator_cpp;
+            if(Interpolator_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator_any, Interpolator);
+                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
+            }
+            
+            if(!object_) return;
+            // delete addin object
+            if(Traits_cpp==std::string("SurvivalProbability")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::Linear>*)(object_);
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::BackwardFlat>*)(object_);
+                };
+            };
+            if(Traits_cpp==std::string("HazardRate")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::Linear>*)(object_);
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::BackwardFlat>*)(object_);
+                };
+            };
+            if(Traits_cpp==std::string("DefaultDensity")) { 
+                if(Interpolator_cpp==std::string("Linear")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::Linear>*)(object_);
+                };
+                if(Interpolator_cpp==std::string("BackwardFlat")) { 
+                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::BackwardFlat>*)(object_);
+                };
+            };
         }
         object_ = (void *)(0L);
     };
@@ -603,59 +566,666 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_SimpleQuoteError: public std::exception {
+    class QuantLib_DiscountingBondEngineError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::SimpleQuote";
+            return "Wrong template arguments for QuantLib::DiscountingBondEngine";
         };
     };
     
-    QuantLib_SimpleQuote::QuantLib_SimpleQuote(IDL_any Value_any)
-            : ObjectHandler::Object(std::string("QuantLib_SimpleQuote"))
+    QuantLib_DiscountingBondEngine::QuantLib_DiscountingBondEngine(IDL_any DiscountCurve_any, IDL_any IncludeSettlementDaysFlows_any)
+            : ObjectHandler::Object(std::string("QuantLib_DiscountingBondEngine"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Value_any);
+            arguments_.push_back(DiscountCurve_any);
+            arguments_.push_back(IncludeSettlementDaysFlows_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_SimpleQuote::update() {
+    void QuantLib_DiscountingBondEngine::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::SimpleQuote" << std::endl;
+            std::cerr << "in upate() von QuantLib::DiscountingBondEngine" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Value_any;
-            Value_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any DiscountCurve_any;
+            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IncludeSettlementDaysFlows_any;
+            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
             
             // parameter conversions 
-            IDL_double Value;
-            double Value_cpp;
-            if(Value_any.hasValue()) { 
-                scalarAnyToIDL(Value_any, Value);
-                scalarInterfaceToCpp(Value, Value_cpp, interfaceToIdentity);
+            IDL_string DiscountCurve;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  DiscountCurve_cpp;
+            if(DiscountCurve_any.hasValue()) { 
+                scalarAnyToIDL(DiscountCurve_any, DiscountCurve);
+                scalarObjectHandle(DiscountCurve, DiscountCurve_cpp); 
+                this->precedentIDs_.insert(getObjectName(DiscountCurve));
+            }
+            
+            IDL_long IncludeSettlementDaysFlows;
+            int IncludeSettlementDaysFlows_cpp;
+            if(IncludeSettlementDaysFlows_any.hasValue()) { 
+                scalarAnyToIDL(IncludeSettlementDaysFlows_any, IncludeSettlementDaysFlows);
+                scalarInterfaceToCpp(IncludeSettlementDaysFlows, IncludeSettlementDaysFlows_cpp, interfaceToIdentity);
+            } else { 
+                IncludeSettlementDaysFlows_cpp = false; 
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::SimpleQuote(Value_cpp));
+            object_ = (void *)(new QuantLib::DiscountingBondEngine(DiscountCurve_cpp, IncludeSettlementDaysFlows_cpp));
         }
         
     };
     
-    void QuantLib_SimpleQuote::del() {
+    void QuantLib_DiscountingBondEngine::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Value_any;
-            Value_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any DiscountCurve_any;
+            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IncludeSettlementDaysFlows_any;
+            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::SimpleQuote *)(object_);
+            delete (QuantLib::DiscountingBondEngine *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_Euribor365Error: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::Euribor365";
+        };
+    };
+    
+    QuantLib_Euribor365::QuantLib_Euribor365(IDL_any Tenor_any, IDL_any ForwardCurve_any)
+            : ObjectHandler::Object(std::string("QuantLib_Euribor365"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Tenor_any);
+            arguments_.push_back(ForwardCurve_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_Euribor365::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::Euribor365" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any ForwardCurve_any;
+            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            IDL_string Tenor;
+            QuantLib::Period Tenor_cpp;
+            if(Tenor_any.hasValue()) { 
+                scalarAnyToIDL(Tenor_any, Tenor);
+                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
+            }
+            
+            IDL_string ForwardCurve;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  ForwardCurve_cpp;
+            if(ForwardCurve_any.hasValue()) { 
+                scalarAnyToIDL(ForwardCurve_any, ForwardCurve);
+                scalarObjectHandle(ForwardCurve, ForwardCurve_cpp); 
+                this->precedentIDs_.insert(getObjectName(ForwardCurve));
+            } else { 
+                ForwardCurve_cpp = QuantLib::Handle<QuantLib::YieldTermStructure>(); 
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::Euribor365(Tenor_cpp, ForwardCurve_cpp));
+        }
+        
+    };
+    
+    void QuantLib_Euribor365::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any ForwardCurve_any;
+            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::Euribor365 *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_FraRateHelperError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::FraRateHelper";
+        };
+    };
+    
+    QuantLib_FraRateHelper::QuantLib_FraRateHelper(IDL_any Rate_any, IDL_any MonthsToStart_any, IDL_any MonthsToEnd_any, IDL_any FixingDays_any, IDL_any Calendar_any, IDL_any Convention_any, IDL_any EndOfMonth_any, IDL_any DayCounter_any, IDL_any Pillar_any, IDL_any CustomPillarDate_any)
+            : ObjectHandler::Object(std::string("QuantLib_FraRateHelper"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Rate_any);
+            arguments_.push_back(MonthsToStart_any);
+            arguments_.push_back(MonthsToEnd_any);
+            arguments_.push_back(FixingDays_any);
+            arguments_.push_back(Calendar_any);
+            arguments_.push_back(Convention_any);
+            arguments_.push_back(EndOfMonth_any);
+            arguments_.push_back(DayCounter_any);
+            arguments_.push_back(Pillar_any);
+            arguments_.push_back(CustomPillarDate_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_FraRateHelper::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::FraRateHelper" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any MonthsToStart_any;
+            MonthsToStart_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any MonthsToEnd_any;
+            MonthsToEnd_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixingDays_any;
+            FixingDays_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Convention_any;
+            Convention_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any Pillar_any;
+            Pillar_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any CustomPillarDate_any;
+            CustomPillarDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            
+            // parameter conversions 
+            IDL_double Rate;
+            double Rate_cpp;
+            if(Rate_any.hasValue()) { 
+                scalarAnyToIDL(Rate_any, Rate);
+                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            }
+            
+            IDL_long MonthsToStart;
+            long MonthsToStart_cpp;
+            if(MonthsToStart_any.hasValue()) { 
+                scalarAnyToIDL(MonthsToStart_any, MonthsToStart);
+                scalarInterfaceToCpp(MonthsToStart, MonthsToStart_cpp, interfaceToIdentity);
+            }
+            
+            IDL_long MonthsToEnd;
+            long MonthsToEnd_cpp;
+            if(MonthsToEnd_any.hasValue()) { 
+                scalarAnyToIDL(MonthsToEnd_any, MonthsToEnd);
+                scalarInterfaceToCpp(MonthsToEnd, MonthsToEnd_cpp, interfaceToIdentity);
+            }
+            
+            IDL_long FixingDays;
+            long FixingDays_cpp;
+            if(FixingDays_any.hasValue()) { 
+                scalarAnyToIDL(FixingDays_any, FixingDays);
+                scalarInterfaceToCpp(FixingDays, FixingDays_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string Calendar;
+            QuantLib::Calendar Calendar_cpp;
+            if(Calendar_any.hasValue()) { 
+                scalarAnyToIDL(Calendar_any, Calendar);
+                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
+            }
+            
+            IDL_string Convention;
+            QuantLib::BusinessDayConvention Convention_cpp;
+            if(Convention_any.hasValue()) { 
+                scalarAnyToIDL(Convention_any, Convention);
+                scalarInterfaceToCpp(Convention, Convention_cpp, QuantLib_BusinessDayConventionEnum);
+            }
+            
+            IDL_long EndOfMonth;
+            int EndOfMonth_cpp;
+            if(EndOfMonth_any.hasValue()) { 
+                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
+                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string DayCounter;
+            QuantLib::DayCounter DayCounter_cpp;
+            if(DayCounter_any.hasValue()) { 
+                scalarAnyToIDL(DayCounter_any, DayCounter);
+                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
+            }
+            
+            IDL_string Pillar;
+            QuantLib::Pillar::Choice Pillar_cpp;
+            if(Pillar_any.hasValue()) { 
+                scalarAnyToIDL(Pillar_any, Pillar);
+                scalarInterfaceToCpp(Pillar, Pillar_cpp, QuantLib_Pillar_ChoiceEnum);
+            }
+            
+            IDL_long CustomPillarDate;
+            QuantLib::Date CustomPillarDate_cpp;
+            if(CustomPillarDate_any.hasValue()) { 
+                scalarAnyToIDL(CustomPillarDate_any, CustomPillarDate);
+                scalarInterfaceToCpp(CustomPillarDate, CustomPillarDate_cpp, interfaceToDate);
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::FraRateHelper(Rate_cpp, MonthsToStart_cpp, MonthsToEnd_cpp, FixingDays_cpp, Calendar_cpp, Convention_cpp, EndOfMonth_cpp, DayCounter_cpp, Pillar_cpp, CustomPillarDate_cpp));
+        }
+        
+    };
+    
+    void QuantLib_FraRateHelper::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any MonthsToStart_any;
+            MonthsToStart_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any MonthsToEnd_any;
+            MonthsToEnd_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixingDays_any;
+            FixingDays_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Convention_any;
+            Convention_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any Pillar_any;
+            Pillar_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any CustomPillarDate_any;
+            CustomPillarDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::FraRateHelper *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_RiskyFixedBondError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::RiskyFixedBond";
+        };
+    };
+    
+    QuantLib_RiskyFixedBond::QuantLib_RiskyFixedBond(IDL_any Name_any, IDL_any Ccy_any, IDL_any RecoveryRate_any, IDL_any DefaultTS_any, IDL_any Schedule_any, IDL_any Rate_any, IDL_any DayCounter_any, IDL_any PaymentConvention_any, SEQSEQ(IDL_any) Notionals_any, IDL_any YieldTS_any)
+            : ObjectHandler::Object(std::string("QuantLib_RiskyFixedBond"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Name_any);
+            arguments_.push_back(Ccy_any);
+            arguments_.push_back(RecoveryRate_any);
+            arguments_.push_back(DefaultTS_any);
+            arguments_.push_back(Schedule_any);
+            arguments_.push_back(Rate_any);
+            arguments_.push_back(DayCounter_any);
+            arguments_.push_back(PaymentConvention_any);
+            arguments_.push_back(Notionals_any);
+            arguments_.push_back(YieldTS_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_RiskyFixedBond::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::RiskyFixedBond" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Name_any;
+            Name_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Ccy_any;
+            Ccy_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any RecoveryRate_any;
+            RecoveryRate_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any DefaultTS_any;
+            DefaultTS_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Schedule_any;
+            Schedule_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[7]);
+            SEQSEQ(IDL_any) Notionals_any;
+            Notionals_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[8]);
+            IDL_any YieldTS_any;
+            YieldTS_any = boost::any_cast<IDL_any >(arguments_[9]);
+            
+            // parameter conversions 
+            IDL_string Name;
+            std::string *Name_cpp;
+            if(Name_any.hasValue()) { 
+                scalarAnyToIDL(Name_any, Name);
+                scalarObject(Name, &Name_cpp); 
+                this->precedentIDs_.insert(getObjectName(Name));
+            }
+            
+            IDL_string Ccy;
+            QuantLib::Currency Ccy_cpp;
+            if(Ccy_any.hasValue()) { 
+                scalarAnyToIDL(Ccy_any, Ccy);
+                scalarInterfaceToCpp(Ccy, Ccy_cpp, QuantLib_CurrencyEnum);
+            }
+            
+            IDL_double RecoveryRate;
+            double RecoveryRate_cpp;
+            if(RecoveryRate_any.hasValue()) { 
+                scalarAnyToIDL(RecoveryRate_any, RecoveryRate);
+                scalarInterfaceToCpp(RecoveryRate, RecoveryRate_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string DefaultTS;
+            QuantLib::Handle<QuantLib::DefaultProbabilityTermStructure >  DefaultTS_cpp;
+            if(DefaultTS_any.hasValue()) { 
+                scalarAnyToIDL(DefaultTS_any, DefaultTS);
+                scalarObjectHandle(DefaultTS, DefaultTS_cpp); 
+                this->precedentIDs_.insert(getObjectName(DefaultTS));
+            }
+            
+            IDL_string Schedule;
+            QuantLib::Schedule *Schedule_cpp;
+            if(Schedule_any.hasValue()) { 
+                scalarAnyToIDL(Schedule_any, Schedule);
+                scalarObject(Schedule, &Schedule_cpp); 
+                this->precedentIDs_.insert(getObjectName(Schedule));
+            }
+            
+            IDL_double Rate;
+            double Rate_cpp;
+            if(Rate_any.hasValue()) { 
+                scalarAnyToIDL(Rate_any, Rate);
+                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string DayCounter;
+            QuantLib::DayCounter DayCounter_cpp;
+            if(DayCounter_any.hasValue()) { 
+                scalarAnyToIDL(DayCounter_any, DayCounter);
+                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
+            }
+            
+            IDL_string PaymentConvention;
+            QuantLib::BusinessDayConvention PaymentConvention_cpp;
+            if(PaymentConvention_any.hasValue()) { 
+                scalarAnyToIDL(PaymentConvention_any, PaymentConvention);
+                scalarInterfaceToCpp(PaymentConvention, PaymentConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            }
+            
+            SEQSEQ(IDL_double) Notionals;
+            std::vector<double> Notionals_cpp;
+            if(Notionals_any.getLength()>0) { 
+                vectorAnyToIDL(Notionals_any, Notionals);
+                vectorInterfaceToCpp(Notionals, Notionals_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string YieldTS;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  YieldTS_cpp;
+            if(YieldTS_any.hasValue()) { 
+                scalarAnyToIDL(YieldTS_any, YieldTS);
+                scalarObjectHandle(YieldTS, YieldTS_cpp); 
+                this->precedentIDs_.insert(getObjectName(YieldTS));
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::RiskyFixedBond(*Name_cpp, Ccy_cpp, RecoveryRate_cpp, DefaultTS_cpp, *Schedule_cpp, Rate_cpp, DayCounter_cpp, PaymentConvention_cpp, Notionals_cpp, YieldTS_cpp));
+        }
+        
+    };
+    
+    void QuantLib_RiskyFixedBond::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Name_any;
+            Name_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Ccy_any;
+            Ccy_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any RecoveryRate_any;
+            RecoveryRate_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any DefaultTS_any;
+            DefaultTS_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Schedule_any;
+            Schedule_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[7]);
+            SEQSEQ(IDL_any) Notionals_any;
+            Notionals_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[8]);
+            IDL_any YieldTS_any;
+            YieldTS_any = boost::any_cast<IDL_any >(arguments_[9]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::RiskyFixedBond *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_EuropeanExerciseError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::EuropeanExercise";
+        };
+    };
+    
+    QuantLib_EuropeanExercise::QuantLib_EuropeanExercise(IDL_any ExerciseDate_any)
+            : ObjectHandler::Object(std::string("QuantLib_EuropeanExercise"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(ExerciseDate_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_EuropeanExercise::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::EuropeanExercise" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any ExerciseDate_any;
+            ExerciseDate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            IDL_long ExerciseDate;
+            QuantLib::Date ExerciseDate_cpp;
+            if(ExerciseDate_any.hasValue()) { 
+                scalarAnyToIDL(ExerciseDate_any, ExerciseDate);
+                scalarInterfaceToCpp(ExerciseDate, ExerciseDate_cpp, interfaceToDate);
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::EuropeanExercise(ExerciseDate_cpp));
+        }
+        
+    };
+    
+    void QuantLib_EuropeanExercise::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any ExerciseDate_any;
+            ExerciseDate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::EuropeanExercise *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_DepositRateHelperError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::DepositRateHelper";
+        };
+    };
+    
+    QuantLib_DepositRateHelper::QuantLib_DepositRateHelper(IDL_any Rate_any, IDL_any Period_any, IDL_any FixingDays_any, IDL_any Calendar_any, IDL_any BusinessDayConvention_any, IDL_any EndOfMonth_any, IDL_any DayCounter_any)
+            : ObjectHandler::Object(std::string("QuantLib_DepositRateHelper"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Rate_any);
+            arguments_.push_back(Period_any);
+            arguments_.push_back(FixingDays_any);
+            arguments_.push_back(Calendar_any);
+            arguments_.push_back(BusinessDayConvention_any);
+            arguments_.push_back(EndOfMonth_any);
+            arguments_.push_back(DayCounter_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_DepositRateHelper::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::DepositRateHelper" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Period_any;
+            Period_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FixingDays_any;
+            FixingDays_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any BusinessDayConvention_any;
+            BusinessDayConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            
+            // parameter conversions 
+            IDL_double Rate;
+            double Rate_cpp;
+            if(Rate_any.hasValue()) { 
+                scalarAnyToIDL(Rate_any, Rate);
+                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string Period;
+            QuantLib::Period Period_cpp;
+            if(Period_any.hasValue()) { 
+                scalarAnyToIDL(Period_any, Period);
+                scalarInterfaceToCpp(Period, Period_cpp, interfaceToPeriod);
+            }
+            
+            IDL_long FixingDays;
+            long FixingDays_cpp;
+            if(FixingDays_any.hasValue()) { 
+                scalarAnyToIDL(FixingDays_any, FixingDays);
+                scalarInterfaceToCpp(FixingDays, FixingDays_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string Calendar;
+            QuantLib::Calendar Calendar_cpp;
+            if(Calendar_any.hasValue()) { 
+                scalarAnyToIDL(Calendar_any, Calendar);
+                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
+            }
+            
+            IDL_string BusinessDayConvention;
+            QuantLib::BusinessDayConvention BusinessDayConvention_cpp;
+            if(BusinessDayConvention_any.hasValue()) { 
+                scalarAnyToIDL(BusinessDayConvention_any, BusinessDayConvention);
+                scalarInterfaceToCpp(BusinessDayConvention, BusinessDayConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            }
+            
+            IDL_long EndOfMonth;
+            int EndOfMonth_cpp;
+            if(EndOfMonth_any.hasValue()) { 
+                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
+                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string DayCounter;
+            QuantLib::DayCounter DayCounter_cpp;
+            if(DayCounter_any.hasValue()) { 
+                scalarAnyToIDL(DayCounter_any, DayCounter);
+                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::DepositRateHelper(Rate_cpp, Period_cpp, FixingDays_cpp, Calendar_cpp, BusinessDayConvention_cpp, EndOfMonth_cpp, DayCounter_cpp));
+        }
+        
+    };
+    
+    void QuantLib_DepositRateHelper::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Rate_any;
+            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Period_any;
+            Period_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FixingDays_any;
+            FixingDays_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any BusinessDayConvention_any;
+            BusinessDayConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::DepositRateHelper *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -800,59 +1370,313 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_DepositRateHelperError: public std::exception {
+    class QuantLib_EuriborError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::DepositRateHelper";
+            return "Wrong template arguments for QuantLib::Euribor";
         };
     };
     
-    QuantLib_DepositRateHelper::QuantLib_DepositRateHelper(IDL_any Rate_any, IDL_any Period_any, IDL_any FixingDays_any, IDL_any Calendar_any, IDL_any BusinessDayConvention_any, IDL_any EndOfMonth_any, IDL_any DayCounter_any)
-            : ObjectHandler::Object(std::string("QuantLib_DepositRateHelper"))
+    QuantLib_Euribor::QuantLib_Euribor(IDL_any Tenor_any, IDL_any ForwardCurve_any)
+            : ObjectHandler::Object(std::string("QuantLib_Euribor"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Rate_any);
-            arguments_.push_back(Period_any);
-            arguments_.push_back(FixingDays_any);
-            arguments_.push_back(Calendar_any);
-            arguments_.push_back(BusinessDayConvention_any);
-            arguments_.push_back(EndOfMonth_any);
-            arguments_.push_back(DayCounter_any);
+            arguments_.push_back(Tenor_any);
+            arguments_.push_back(ForwardCurve_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_DepositRateHelper::update() {
+    void QuantLib_Euribor::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::DepositRateHelper" << std::endl;
+            std::cerr << "in upate() von QuantLib::Euribor" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Period_any;
-            Period_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FixingDays_any;
-            FixingDays_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any BusinessDayConvention_any;
-            BusinessDayConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any ForwardCurve_any;
+            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
             
             // parameter conversions 
-            IDL_double Rate;
-            double Rate_cpp;
-            if(Rate_any.hasValue()) { 
-                scalarAnyToIDL(Rate_any, Rate);
-                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            IDL_string Tenor;
+            QuantLib::Period Tenor_cpp;
+            if(Tenor_any.hasValue()) { 
+                scalarAnyToIDL(Tenor_any, Tenor);
+                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
+            }
+            
+            IDL_string ForwardCurve;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  ForwardCurve_cpp;
+            if(ForwardCurve_any.hasValue()) { 
+                scalarAnyToIDL(ForwardCurve_any, ForwardCurve);
+                scalarObjectHandle(ForwardCurve, ForwardCurve_cpp); 
+                this->precedentIDs_.insert(getObjectName(ForwardCurve));
+            } else { 
+                ForwardCurve_cpp = QuantLib::Handle<QuantLib::YieldTermStructure>(); 
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::Euribor(Tenor_cpp, ForwardCurve_cpp));
+        }
+        
+    };
+    
+    void QuantLib_Euribor::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any ForwardCurve_any;
+            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::Euribor *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_GeneralizedBlackScholesProcessError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::GeneralizedBlackScholesProcess";
+        };
+    };
+    
+    QuantLib_GeneralizedBlackScholesProcess::QuantLib_GeneralizedBlackScholesProcess(IDL_any Quote_any, IDL_any DividendTS_any, IDL_any RiskFreeTS_any, IDL_any BlackVolTS_any)
+            : ObjectHandler::Object(std::string("QuantLib_GeneralizedBlackScholesProcess"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Quote_any);
+            arguments_.push_back(DividendTS_any);
+            arguments_.push_back(RiskFreeTS_any);
+            arguments_.push_back(BlackVolTS_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_GeneralizedBlackScholesProcess::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::GeneralizedBlackScholesProcess" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Quote_any;
+            Quote_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any DividendTS_any;
+            DividendTS_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any RiskFreeTS_any;
+            RiskFreeTS_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any BlackVolTS_any;
+            BlackVolTS_any = boost::any_cast<IDL_any >(arguments_[3]);
+            
+            // parameter conversions 
+            IDL_string Quote;
+            QuantLib::Handle<QuantLib::Quote >  Quote_cpp;
+            if(Quote_any.hasValue()) { 
+                scalarAnyToIDL(Quote_any, Quote);
+                scalarObjectHandle(Quote, Quote_cpp); 
+                this->precedentIDs_.insert(getObjectName(Quote));
+            }
+            
+            IDL_string DividendTS;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  DividendTS_cpp;
+            if(DividendTS_any.hasValue()) { 
+                scalarAnyToIDL(DividendTS_any, DividendTS);
+                scalarObjectHandle(DividendTS, DividendTS_cpp); 
+                this->precedentIDs_.insert(getObjectName(DividendTS));
+            }
+            
+            IDL_string RiskFreeTS;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  RiskFreeTS_cpp;
+            if(RiskFreeTS_any.hasValue()) { 
+                scalarAnyToIDL(RiskFreeTS_any, RiskFreeTS);
+                scalarObjectHandle(RiskFreeTS, RiskFreeTS_cpp); 
+                this->precedentIDs_.insert(getObjectName(RiskFreeTS));
+            }
+            
+            IDL_string BlackVolTS;
+            QuantLib::Handle<QuantLib::BlackVolTermStructure >  BlackVolTS_cpp;
+            if(BlackVolTS_any.hasValue()) { 
+                scalarAnyToIDL(BlackVolTS_any, BlackVolTS);
+                scalarObjectHandle(BlackVolTS, BlackVolTS_cpp); 
+                this->precedentIDs_.insert(getObjectName(BlackVolTS));
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::GeneralizedBlackScholesProcess(Quote_cpp, DividendTS_cpp, RiskFreeTS_cpp, BlackVolTS_cpp));
+        }
+        
+    };
+    
+    void QuantLib_GeneralizedBlackScholesProcess::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Quote_any;
+            Quote_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any DividendTS_any;
+            DividendTS_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any RiskFreeTS_any;
+            RiskFreeTS_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any BlackVolTS_any;
+            BlackVolTS_any = boost::any_cast<IDL_any >(arguments_[3]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::GeneralizedBlackScholesProcess *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_PlainVanillaPayoffError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::PlainVanillaPayoff";
+        };
+    };
+    
+    QuantLib_PlainVanillaPayoff::QuantLib_PlainVanillaPayoff(IDL_any OptionType_any, IDL_any Strike_any)
+            : ObjectHandler::Object(std::string("QuantLib_PlainVanillaPayoff"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(OptionType_any);
+            arguments_.push_back(Strike_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_PlainVanillaPayoff::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::PlainVanillaPayoff" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any OptionType_any;
+            OptionType_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Strike_any;
+            Strike_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            IDL_string OptionType;
+            QuantLib::Option::Type OptionType_cpp;
+            if(OptionType_any.hasValue()) { 
+                scalarAnyToIDL(OptionType_any, OptionType);
+                scalarInterfaceToCpp(OptionType, OptionType_cpp, QuantLib_Option_TypeEnum);
+            }
+            
+            IDL_double Strike;
+            double Strike_cpp;
+            if(Strike_any.hasValue()) { 
+                scalarAnyToIDL(Strike_any, Strike);
+                scalarInterfaceToCpp(Strike, Strike_cpp, interfaceToIdentity);
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::PlainVanillaPayoff(OptionType_cpp, Strike_cpp));
+        }
+        
+    };
+    
+    void QuantLib_PlainVanillaPayoff::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any OptionType_any;
+            OptionType_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Strike_any;
+            Strike_any = boost::any_cast<IDL_any >(arguments_[1]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::PlainVanillaPayoff *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_ScheduleError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::Schedule";
+        };
+    };
+    
+    QuantLib_Schedule::QuantLib_Schedule(IDL_any EffectiveDate_any, IDL_any TerminationDate_any, IDL_any Period_any, IDL_any Calendar_any, IDL_any Convention_any, IDL_any TerminationConvention_any, IDL_any Rule_any, IDL_any EndOfMonth_any, IDL_any FirstDate_any, IDL_any NextToLastDate_any)
+            : ObjectHandler::Object(std::string("QuantLib_Schedule"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(EffectiveDate_any);
+            arguments_.push_back(TerminationDate_any);
+            arguments_.push_back(Period_any);
+            arguments_.push_back(Calendar_any);
+            arguments_.push_back(Convention_any);
+            arguments_.push_back(TerminationConvention_any);
+            arguments_.push_back(Rule_any);
+            arguments_.push_back(EndOfMonth_any);
+            arguments_.push_back(FirstDate_any);
+            arguments_.push_back(NextToLastDate_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_Schedule::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::Schedule" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any EffectiveDate_any;
+            EffectiveDate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any TerminationDate_any;
+            TerminationDate_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any Period_any;
+            Period_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Convention_any;
+            Convention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any TerminationConvention_any;
+            TerminationConvention_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any Rule_any;
+            Rule_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FirstDate_any;
+            FirstDate_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any NextToLastDate_any;
+            NextToLastDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            
+            // parameter conversions 
+            IDL_long EffectiveDate;
+            QuantLib::Date EffectiveDate_cpp;
+            if(EffectiveDate_any.hasValue()) { 
+                scalarAnyToIDL(EffectiveDate_any, EffectiveDate);
+                scalarInterfaceToCpp(EffectiveDate, EffectiveDate_cpp, interfaceToDate);
+            }
+            
+            IDL_long TerminationDate;
+            QuantLib::Date TerminationDate_cpp;
+            if(TerminationDate_any.hasValue()) { 
+                scalarAnyToIDL(TerminationDate_any, TerminationDate);
+                scalarInterfaceToCpp(TerminationDate, TerminationDate_cpp, interfaceToDate);
             }
             
             IDL_string Period;
@@ -862,13 +1686,6 @@ namespace Addin {
                 scalarInterfaceToCpp(Period, Period_cpp, interfaceToPeriod);
             }
             
-            IDL_long FixingDays;
-            long FixingDays_cpp;
-            if(FixingDays_any.hasValue()) { 
-                scalarAnyToIDL(FixingDays_any, FixingDays);
-                scalarInterfaceToCpp(FixingDays, FixingDays_cpp, interfaceToIdentity);
-            }
-            
             IDL_string Calendar;
             QuantLib::Calendar Calendar_cpp;
             if(Calendar_any.hasValue()) { 
@@ -876,11 +1693,25 @@ namespace Addin {
                 scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
             }
             
-            IDL_string BusinessDayConvention;
-            QuantLib::BusinessDayConvention BusinessDayConvention_cpp;
-            if(BusinessDayConvention_any.hasValue()) { 
-                scalarAnyToIDL(BusinessDayConvention_any, BusinessDayConvention);
-                scalarInterfaceToCpp(BusinessDayConvention, BusinessDayConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            IDL_string Convention;
+            QuantLib::BusinessDayConvention Convention_cpp;
+            if(Convention_any.hasValue()) { 
+                scalarAnyToIDL(Convention_any, Convention);
+                scalarInterfaceToCpp(Convention, Convention_cpp, QuantLib_BusinessDayConventionEnum);
+            }
+            
+            IDL_string TerminationConvention;
+            QuantLib::BusinessDayConvention TerminationConvention_cpp;
+            if(TerminationConvention_any.hasValue()) { 
+                scalarAnyToIDL(TerminationConvention_any, TerminationConvention);
+                scalarInterfaceToCpp(TerminationConvention, TerminationConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            }
+            
+            IDL_string Rule;
+            QuantLib::DateGeneration::Rule Rule_cpp;
+            if(Rule_any.hasValue()) { 
+                scalarAnyToIDL(Rule_any, Rule);
+                scalarInterfaceToCpp(Rule, Rule_cpp, QuantLib_DateGeneration_RuleEnum);
             }
             
             IDL_long EndOfMonth;
@@ -888,203 +1719,82 @@ namespace Addin {
             if(EndOfMonth_any.hasValue()) { 
                 scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
                 scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
+            } else { 
+                EndOfMonth_cpp = 0; 
             }
             
-            IDL_string DayCounter;
-            QuantLib::DayCounter DayCounter_cpp;
-            if(DayCounter_any.hasValue()) { 
-                scalarAnyToIDL(DayCounter_any, DayCounter);
-                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
+            IDL_long FirstDate;
+            QuantLib::Date FirstDate_cpp;
+            if(FirstDate_any.hasValue()) { 
+                scalarAnyToIDL(FirstDate_any, FirstDate);
+                scalarInterfaceToCpp(FirstDate, FirstDate_cpp, interfaceToDate);
+            } else { 
+                FirstDate_cpp = QuantLib::Date(); 
+            }
+            
+            IDL_long NextToLastDate;
+            QuantLib::Date NextToLastDate_cpp;
+            if(NextToLastDate_any.hasValue()) { 
+                scalarAnyToIDL(NextToLastDate_any, NextToLastDate);
+                scalarInterfaceToCpp(NextToLastDate, NextToLastDate_cpp, interfaceToDate);
+            } else { 
+                NextToLastDate_cpp = QuantLib::Date(); 
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::DepositRateHelper(Rate_cpp, Period_cpp, FixingDays_cpp, Calendar_cpp, BusinessDayConvention_cpp, EndOfMonth_cpp, DayCounter_cpp));
+            object_ = (void *)(new QuantLib::Schedule(EffectiveDate_cpp, TerminationDate_cpp, Period_cpp, Calendar_cpp, Convention_cpp, TerminationConvention_cpp, Rule_cpp, EndOfMonth_cpp, FirstDate_cpp, NextToLastDate_cpp));
         }
         
     };
     
-    void QuantLib_DepositRateHelper::del() {
+    void QuantLib_Schedule::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any EffectiveDate_any;
+            EffectiveDate_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any TerminationDate_any;
+            TerminationDate_any = boost::any_cast<IDL_any >(arguments_[1]);
             IDL_any Period_any;
-            Period_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FixingDays_any;
-            FixingDays_any = boost::any_cast<IDL_any >(arguments_[2]);
+            Period_any = boost::any_cast<IDL_any >(arguments_[2]);
             IDL_any Calendar_any;
             Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any BusinessDayConvention_any;
-            BusinessDayConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Convention_any;
+            Convention_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any TerminationConvention_any;
+            TerminationConvention_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any Rule_any;
+            Rule_any = boost::any_cast<IDL_any >(arguments_[6]);
             IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[6]);
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FirstDate_any;
+            FirstDate_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any NextToLastDate_any;
+            NextToLastDate_any = boost::any_cast<IDL_any >(arguments_[9]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::DepositRateHelper *)(object_);
+            delete (QuantLib::Schedule *)(object_);
         }
         object_ = (void *)(0L);
     };
-    
-    class QuantLib_EuropeanExerciseError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::EuropeanExercise";
-        };
-    };
-    
-    QuantLib_EuropeanExercise::QuantLib_EuropeanExercise(IDL_any ExerciseDate_any)
-            : ObjectHandler::Object(std::string("QuantLib_EuropeanExercise"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(ExerciseDate_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_EuropeanExercise::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::EuropeanExercise" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any ExerciseDate_any;
-            ExerciseDate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            
-            // parameter conversions 
-            IDL_long ExerciseDate;
-            QuantLib::Date ExerciseDate_cpp;
-            if(ExerciseDate_any.hasValue()) { 
-                scalarAnyToIDL(ExerciseDate_any, ExerciseDate);
-                scalarInterfaceToCpp(ExerciseDate, ExerciseDate_cpp, interfaceToDate);
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::EuropeanExercise(ExerciseDate_cpp));
+    std::vector<QuantLib::Date> QuantLib_Schedule::dates(IDL_any ObjectId_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
         }
         
+    
+        QuantLib::Schedule *ObjectId_ref = (static_cast<QuantLib::Schedule *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return ObjectId_ref->dates();
     };
     
-    void QuantLib_EuropeanExercise::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any ExerciseDate_any;
-            ExerciseDate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::EuropeanExercise *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_DiscountingSwapEngineError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::DiscountingSwapEngine";
-        };
-    };
-    
-    QuantLib_DiscountingSwapEngine::QuantLib_DiscountingSwapEngine(IDL_any DiscountCurve_any, IDL_any IncludeSettlementDaysFlows_any, IDL_any SettlementDate_any, IDL_any NpvDate_any)
-            : ObjectHandler::Object(std::string("QuantLib_DiscountingSwapEngine"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(DiscountCurve_any);
-            arguments_.push_back(IncludeSettlementDaysFlows_any);
-            arguments_.push_back(SettlementDate_any);
-            arguments_.push_back(NpvDate_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_DiscountingSwapEngine::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::DiscountingSwapEngine" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any DiscountCurve_any;
-            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IncludeSettlementDaysFlows_any;
-            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any SettlementDate_any;
-            SettlementDate_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any NpvDate_any;
-            NpvDate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            
-            // parameter conversions 
-            IDL_string DiscountCurve;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  DiscountCurve_cpp;
-            if(DiscountCurve_any.hasValue()) { 
-                scalarAnyToIDL(DiscountCurve_any, DiscountCurve);
-                scalarObjectHandle(DiscountCurve, DiscountCurve_cpp); 
-                this->precedentIDs_.insert(getObjectName(DiscountCurve));
-            }
-            
-            IDL_long IncludeSettlementDaysFlows;
-            int IncludeSettlementDaysFlows_cpp;
-            if(IncludeSettlementDaysFlows_any.hasValue()) { 
-                scalarAnyToIDL(IncludeSettlementDaysFlows_any, IncludeSettlementDaysFlows);
-                scalarInterfaceToCpp(IncludeSettlementDaysFlows, IncludeSettlementDaysFlows_cpp, interfaceToIdentity);
-            } else { 
-                IncludeSettlementDaysFlows_cpp = false; 
-            }
-            
-            IDL_long SettlementDate;
-            QuantLib::Date SettlementDate_cpp;
-            if(SettlementDate_any.hasValue()) { 
-                scalarAnyToIDL(SettlementDate_any, SettlementDate);
-                scalarInterfaceToCpp(SettlementDate, SettlementDate_cpp, interfaceToDate);
-            } else { 
-                SettlementDate_cpp = QuantLib::Date(); 
-            }
-            
-            IDL_long NpvDate;
-            QuantLib::Date NpvDate_cpp;
-            if(NpvDate_any.hasValue()) { 
-                scalarAnyToIDL(NpvDate_any, NpvDate);
-                scalarInterfaceToCpp(NpvDate, NpvDate_cpp, interfaceToDate);
-            } else { 
-                NpvDate_cpp = QuantLib::Date(); 
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::DiscountingSwapEngine(DiscountCurve_cpp, IncludeSettlementDaysFlows_cpp, SettlementDate_cpp, NpvDate_cpp));
-        }
-        
-    };
-    
-    void QuantLib_DiscountingSwapEngine::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any DiscountCurve_any;
-            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IncludeSettlementDaysFlows_any;
-            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any SettlementDate_any;
-            SettlementDate_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any NpvDate_any;
-            NpvDate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::DiscountingSwapEngine *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
     
     class QuantLib_FixedRateBondHelperError: public std::exception {
         const char * what () const throw () { 
@@ -1331,72 +2041,131 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_SwapRateHelperError: public std::exception {
+    class QuantLib_SimpleQuoteError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::SwapRateHelper";
+            return "Wrong template arguments for QuantLib::SimpleQuote";
         };
     };
     
-    QuantLib_SwapRateHelper::QuantLib_SwapRateHelper(IDL_any Rate_any, IDL_any Tenor_any, IDL_any Calendar_any, IDL_any FixedFrequency_any, IDL_any FixedConvention_any, IDL_any FixedDayCounter_any, IDL_any IborIndex_any, IDL_any Spread_any, IDL_any FwdStartPeriod_any)
-            : ObjectHandler::Object(std::string("QuantLib_SwapRateHelper"))
+    QuantLib_SimpleQuote::QuantLib_SimpleQuote(IDL_any Value_any)
+            : ObjectHandler::Object(std::string("QuantLib_SimpleQuote"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Rate_any);
-            arguments_.push_back(Tenor_any);
-            arguments_.push_back(Calendar_any);
-            arguments_.push_back(FixedFrequency_any);
-            arguments_.push_back(FixedConvention_any);
-            arguments_.push_back(FixedDayCounter_any);
-            arguments_.push_back(IborIndex_any);
-            arguments_.push_back(Spread_any);
-            arguments_.push_back(FwdStartPeriod_any);
+            arguments_.push_back(Value_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_SwapRateHelper::update() {
+    void QuantLib_SimpleQuote::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::SwapRateHelper" << std::endl;
+            std::cerr << "in upate() von QuantLib::SimpleQuote" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixedFrequency_any;
-            FixedFrequency_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any FixedConvention_any;
-            FixedConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any FixedDayCounter_any;
-            FixedDayCounter_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any Spread_any;
-            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FwdStartPeriod_any;
-            FwdStartPeriod_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any Value_any;
+            Value_any = boost::any_cast<IDL_any >(arguments_[0]);
             
             // parameter conversions 
-            IDL_double Rate;
-            double Rate_cpp;
-            if(Rate_any.hasValue()) { 
-                scalarAnyToIDL(Rate_any, Rate);
-                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            IDL_double Value;
+            double Value_cpp;
+            if(Value_any.hasValue()) { 
+                scalarAnyToIDL(Value_any, Value);
+                scalarInterfaceToCpp(Value, Value_cpp, interfaceToIdentity);
             }
             
-            IDL_string Tenor;
-            QuantLib::Period Tenor_cpp;
-            if(Tenor_any.hasValue()) { 
-                scalarAnyToIDL(Tenor_any, Tenor);
-                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
+            // create addin object
+            object_ = (void *)(new QuantLib::SimpleQuote(Value_cpp));
+        }
+        
+    };
+    
+    void QuantLib_SimpleQuote::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Value_any;
+            Value_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::SimpleQuote *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_InterpolatedHazardRateCurveError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::InterpolatedHazardRateCurve";
+        };
+    };
+    
+    QuantLib_InterpolatedHazardRateCurve::QuantLib_InterpolatedHazardRateCurve(IDL_any Interpolator_any, SEQSEQ(IDL_any) Dates_any, SEQSEQ(IDL_any) HazardRates_any, IDL_any DayCounter_any, IDL_any Calendar_any)
+            : ObjectHandler::Object(std::string("QuantLib_InterpolatedHazardRateCurve"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Interpolator_any);
+            arguments_.push_back(Dates_any);
+            arguments_.push_back(HazardRates_any);
+            arguments_.push_back(DayCounter_any);
+            arguments_.push_back(Calendar_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_InterpolatedHazardRateCurve::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::InterpolatedHazardRateCurve" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Interpolator_any;
+            Interpolator_any = boost::any_cast<IDL_any >(arguments_[0]);
+            SEQSEQ(IDL_any) Dates_any;
+            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
+            SEQSEQ(IDL_any) HazardRates_any;
+            HazardRates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[2]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Calendar_any;
+            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
+            
+            // parameter conversions 
+            IDL_string Interpolator;
+            std::string Interpolator_cpp;
+            if(Interpolator_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator_any, Interpolator);
+                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
+            }
+            
+            SEQSEQ(IDL_long) Dates;
+            std::vector<QuantLib::Date> Dates_cpp;
+            if(Dates_any.getLength()>0) { 
+                vectorAnyToIDL(Dates_any, Dates);
+                vectorInterfaceToCpp(Dates, Dates_cpp, interfaceToDate);
+            }
+            
+            SEQSEQ(IDL_double) HazardRates;
+            std::vector<double> HazardRates_cpp;
+            if(HazardRates_any.getLength()>0) { 
+                vectorAnyToIDL(HazardRates_any, HazardRates);
+                vectorInterfaceToCpp(HazardRates, HazardRates_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string DayCounter;
+            QuantLib::DayCounter DayCounter_cpp;
+            if(DayCounter_any.hasValue()) { 
+                scalarAnyToIDL(DayCounter_any, DayCounter);
+                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
             }
             
             IDL_string Calendar;
@@ -1406,82 +2175,143 @@ namespace Addin {
                 scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
             }
             
-            IDL_string FixedFrequency;
-            QuantLib::Frequency FixedFrequency_cpp;
-            if(FixedFrequency_any.hasValue()) { 
-                scalarAnyToIDL(FixedFrequency_any, FixedFrequency);
-                scalarInterfaceToCpp(FixedFrequency, FixedFrequency_cpp, QuantLib_FrequencyEnum);
-            }
-            
-            IDL_string FixedConvention;
-            QuantLib::BusinessDayConvention FixedConvention_cpp;
-            if(FixedConvention_any.hasValue()) { 
-                scalarAnyToIDL(FixedConvention_any, FixedConvention);
-                scalarInterfaceToCpp(FixedConvention, FixedConvention_cpp, QuantLib_BusinessDayConventionEnum);
-            }
-            
-            IDL_string FixedDayCounter;
-            QuantLib::DayCounter FixedDayCounter_cpp;
-            if(FixedDayCounter_any.hasValue()) { 
-                scalarAnyToIDL(FixedDayCounter_any, FixedDayCounter);
-                scalarInterfaceToCpp(FixedDayCounter, FixedDayCounter_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_string IborIndex;
-            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
-            if(IborIndex_any.hasValue()) { 
-                scalarAnyToIDL(IborIndex_any, IborIndex);
-                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
-                this->precedentIDs_.insert(getObjectName(IborIndex));
-            }
-            
-            IDL_string Spread;
-            QuantLib::Handle<QuantLib::Quote >  Spread_cpp;
-            if(Spread_any.hasValue()) { 
-                scalarAnyToIDL(Spread_any, Spread);
-                scalarObjectHandle(Spread, Spread_cpp); 
-                this->precedentIDs_.insert(getObjectName(Spread));
-            }
-            
-            IDL_string FwdStartPeriod;
-            QuantLib::Period FwdStartPeriod_cpp;
-            if(FwdStartPeriod_any.hasValue()) { 
-                scalarAnyToIDL(FwdStartPeriod_any, FwdStartPeriod);
-                scalarInterfaceToCpp(FwdStartPeriod, FwdStartPeriod_cpp, interfaceToPeriod);
-            }
-            
             // create addin object
-            object_ = (void *)(new QuantLib::SwapRateHelper(Rate_cpp, Tenor_cpp, Calendar_cpp, FixedFrequency_cpp, FixedConvention_cpp, FixedDayCounter_cpp, IborIndex_cpp, Spread_cpp, FwdStartPeriod_cpp));
+            bool found=false;
+            if(Interpolator_cpp==std::string("Linear")) { 
+                object_ = (void *)(new QuantLib::InterpolatedHazardRateCurve<QuantLib::Linear>(Dates_cpp, HazardRates_cpp, DayCounter_cpp, Calendar_cpp));
+                found = true;
+            };
+            if(Interpolator_cpp==std::string("KrugerCubic")) { 
+                object_ = (void *)(new QuantLib::InterpolatedHazardRateCurve<QuantLib::Cubic>(Dates_cpp, HazardRates_cpp, DayCounter_cpp, Calendar_cpp));
+                found = true;
+            };
+            if(not found) throw QuantLib_InterpolatedHazardRateCurveError();
         }
         
     };
     
-    void QuantLib_SwapRateHelper::del() {
+    void QuantLib_InterpolatedHazardRateCurve::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixedFrequency_any;
-            FixedFrequency_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any FixedConvention_any;
-            FixedConvention_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any FixedDayCounter_any;
-            FixedDayCounter_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any Spread_any;
-            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FwdStartPeriod_any;
-            FwdStartPeriod_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any Interpolator_any;
+            Interpolator_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            IDL_string Interpolator;
+            std::string Interpolator_cpp;
+            if(Interpolator_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator_any, Interpolator);
+                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
+            }
+            
+            if(!object_) return;
+            // delete addin object
+            if(Interpolator_cpp==std::string("Linear")) { 
+                delete (QuantLib::InterpolatedHazardRateCurve<QuantLib::Linear>*)(object_);
+            };
+            if(Interpolator_cpp==std::string("KrugerCubic")) { 
+                delete (QuantLib::InterpolatedHazardRateCurve<QuantLib::Cubic>*)(object_);
+            };
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_DiscountingSwapEngineError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::DiscountingSwapEngine";
+        };
+    };
+    
+    QuantLib_DiscountingSwapEngine::QuantLib_DiscountingSwapEngine(IDL_any DiscountCurve_any, IDL_any IncludeSettlementDaysFlows_any, IDL_any SettlementDate_any, IDL_any NpvDate_any)
+            : ObjectHandler::Object(std::string("QuantLib_DiscountingSwapEngine"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(DiscountCurve_any);
+            arguments_.push_back(IncludeSettlementDaysFlows_any);
+            arguments_.push_back(SettlementDate_any);
+            arguments_.push_back(NpvDate_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_DiscountingSwapEngine::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::DiscountingSwapEngine" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any DiscountCurve_any;
+            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IncludeSettlementDaysFlows_any;
+            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any SettlementDate_any;
+            SettlementDate_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any NpvDate_any;
+            NpvDate_any = boost::any_cast<IDL_any >(arguments_[3]);
+            
+            // parameter conversions 
+            IDL_string DiscountCurve;
+            QuantLib::Handle<QuantLib::YieldTermStructure >  DiscountCurve_cpp;
+            if(DiscountCurve_any.hasValue()) { 
+                scalarAnyToIDL(DiscountCurve_any, DiscountCurve);
+                scalarObjectHandle(DiscountCurve, DiscountCurve_cpp); 
+                this->precedentIDs_.insert(getObjectName(DiscountCurve));
+            }
+            
+            IDL_long IncludeSettlementDaysFlows;
+            int IncludeSettlementDaysFlows_cpp;
+            if(IncludeSettlementDaysFlows_any.hasValue()) { 
+                scalarAnyToIDL(IncludeSettlementDaysFlows_any, IncludeSettlementDaysFlows);
+                scalarInterfaceToCpp(IncludeSettlementDaysFlows, IncludeSettlementDaysFlows_cpp, interfaceToIdentity);
+            } else { 
+                IncludeSettlementDaysFlows_cpp = false; 
+            }
+            
+            IDL_long SettlementDate;
+            QuantLib::Date SettlementDate_cpp;
+            if(SettlementDate_any.hasValue()) { 
+                scalarAnyToIDL(SettlementDate_any, SettlementDate);
+                scalarInterfaceToCpp(SettlementDate, SettlementDate_cpp, interfaceToDate);
+            } else { 
+                SettlementDate_cpp = QuantLib::Date(); 
+            }
+            
+            IDL_long NpvDate;
+            QuantLib::Date NpvDate_cpp;
+            if(NpvDate_any.hasValue()) { 
+                scalarAnyToIDL(NpvDate_any, NpvDate);
+                scalarInterfaceToCpp(NpvDate, NpvDate_cpp, interfaceToDate);
+            } else { 
+                NpvDate_cpp = QuantLib::Date(); 
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::DiscountingSwapEngine(DiscountCurve_cpp, IncludeSettlementDaysFlows_cpp, SettlementDate_cpp, NpvDate_cpp));
+        }
+        
+    };
+    
+    void QuantLib_DiscountingSwapEngine::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any DiscountCurve_any;
+            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IncludeSettlementDaysFlows_any;
+            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any SettlementDate_any;
+            SettlementDate_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any NpvDate_any;
+            NpvDate_any = boost::any_cast<IDL_any >(arguments_[3]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::SwapRateHelper *)(object_);
+            delete (QuantLib::DiscountingSwapEngine *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -1569,355 +2399,384 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_ScheduleError: public std::exception {
+    class QuantLib_VanillaSwapError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::Schedule";
+            return "Wrong template arguments for QuantLib::VanillaSwap";
         };
     };
     
-    QuantLib_Schedule::QuantLib_Schedule(IDL_any EffectiveDate_any, IDL_any TerminationDate_any, IDL_any Period_any, IDL_any Calendar_any, IDL_any Convention_any, IDL_any TerminationConvention_any, IDL_any Rule_any, IDL_any EndOfMonth_any, IDL_any FirstDate_any, IDL_any NextToLastDate_any)
-            : ObjectHandler::Object(std::string("QuantLib_Schedule"))
+    QuantLib_VanillaSwap::QuantLib_VanillaSwap(IDL_any Type_any, IDL_any Nominal_any, IDL_any FixedSchedule_any, IDL_any FixedRate_any, IDL_any FixedDayCount_any, IDL_any FloatSchedule_any, IDL_any IborIndex_any, IDL_any Spread_any, IDL_any FloatingDayCount_any, IDL_any PaymentConvention_any)
+            : ObjectHandler::Object(std::string("QuantLib_VanillaSwap"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(EffectiveDate_any);
-            arguments_.push_back(TerminationDate_any);
-            arguments_.push_back(Period_any);
-            arguments_.push_back(Calendar_any);
-            arguments_.push_back(Convention_any);
-            arguments_.push_back(TerminationConvention_any);
-            arguments_.push_back(Rule_any);
-            arguments_.push_back(EndOfMonth_any);
-            arguments_.push_back(FirstDate_any);
-            arguments_.push_back(NextToLastDate_any);
+            arguments_.push_back(Type_any);
+            arguments_.push_back(Nominal_any);
+            arguments_.push_back(FixedSchedule_any);
+            arguments_.push_back(FixedRate_any);
+            arguments_.push_back(FixedDayCount_any);
+            arguments_.push_back(FloatSchedule_any);
+            arguments_.push_back(IborIndex_any);
+            arguments_.push_back(Spread_any);
+            arguments_.push_back(FloatingDayCount_any);
+            arguments_.push_back(PaymentConvention_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_Schedule::update() {
+    void QuantLib_VanillaSwap::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::Schedule" << std::endl;
+            std::cerr << "in upate() von QuantLib::VanillaSwap" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any EffectiveDate_any;
-            EffectiveDate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any TerminationDate_any;
-            TerminationDate_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any Period_any;
-            Period_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Convention_any;
-            Convention_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any TerminationConvention_any;
-            TerminationConvention_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any Rule_any;
-            Rule_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FirstDate_any;
-            FirstDate_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any NextToLastDate_any;
-            NextToLastDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Type_any;
+            Type_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Nominal_any;
+            Nominal_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FixedSchedule_any;
+            FixedSchedule_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixedRate_any;
+            FixedRate_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any FixedDayCount_any;
+            FixedDayCount_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any FloatSchedule_any;
+            FloatSchedule_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any Spread_any;
+            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FloatingDayCount_any;
+            FloatingDayCount_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
             
             // parameter conversions 
-            IDL_long EffectiveDate;
-            QuantLib::Date EffectiveDate_cpp;
-            if(EffectiveDate_any.hasValue()) { 
-                scalarAnyToIDL(EffectiveDate_any, EffectiveDate);
-                scalarInterfaceToCpp(EffectiveDate, EffectiveDate_cpp, interfaceToDate);
+            IDL_string Type;
+            QuantLib::VanillaSwap::Type Type_cpp;
+            if(Type_any.hasValue()) { 
+                scalarAnyToIDL(Type_any, Type);
+                scalarInterfaceToCpp(Type, Type_cpp, QuantLib_VanillaSwap_TypeEnum);
             }
             
-            IDL_long TerminationDate;
-            QuantLib::Date TerminationDate_cpp;
-            if(TerminationDate_any.hasValue()) { 
-                scalarAnyToIDL(TerminationDate_any, TerminationDate);
-                scalarInterfaceToCpp(TerminationDate, TerminationDate_cpp, interfaceToDate);
+            IDL_double Nominal;
+            double Nominal_cpp;
+            if(Nominal_any.hasValue()) { 
+                scalarAnyToIDL(Nominal_any, Nominal);
+                scalarInterfaceToCpp(Nominal, Nominal_cpp, interfaceToIdentity);
             }
             
-            IDL_string Period;
-            QuantLib::Period Period_cpp;
-            if(Period_any.hasValue()) { 
-                scalarAnyToIDL(Period_any, Period);
-                scalarInterfaceToCpp(Period, Period_cpp, interfaceToPeriod);
+            IDL_string FixedSchedule;
+            QuantLib::Schedule *FixedSchedule_cpp;
+            if(FixedSchedule_any.hasValue()) { 
+                scalarAnyToIDL(FixedSchedule_any, FixedSchedule);
+                scalarObject(FixedSchedule, &FixedSchedule_cpp); 
+                this->precedentIDs_.insert(getObjectName(FixedSchedule));
             }
             
-            IDL_string Calendar;
-            QuantLib::Calendar Calendar_cpp;
-            if(Calendar_any.hasValue()) { 
-                scalarAnyToIDL(Calendar_any, Calendar);
-                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
+            IDL_double FixedRate;
+            double FixedRate_cpp;
+            if(FixedRate_any.hasValue()) { 
+                scalarAnyToIDL(FixedRate_any, FixedRate);
+                scalarInterfaceToCpp(FixedRate, FixedRate_cpp, interfaceToIdentity);
             }
             
-            IDL_string Convention;
-            QuantLib::BusinessDayConvention Convention_cpp;
-            if(Convention_any.hasValue()) { 
-                scalarAnyToIDL(Convention_any, Convention);
-                scalarInterfaceToCpp(Convention, Convention_cpp, QuantLib_BusinessDayConventionEnum);
+            IDL_string FixedDayCount;
+            QuantLib::DayCounter FixedDayCount_cpp;
+            if(FixedDayCount_any.hasValue()) { 
+                scalarAnyToIDL(FixedDayCount_any, FixedDayCount);
+                scalarInterfaceToCpp(FixedDayCount, FixedDayCount_cpp, QuantLib_DayCounterEnum);
             }
             
-            IDL_string TerminationConvention;
-            QuantLib::BusinessDayConvention TerminationConvention_cpp;
-            if(TerminationConvention_any.hasValue()) { 
-                scalarAnyToIDL(TerminationConvention_any, TerminationConvention);
-                scalarInterfaceToCpp(TerminationConvention, TerminationConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            IDL_string FloatSchedule;
+            QuantLib::Schedule *FloatSchedule_cpp;
+            if(FloatSchedule_any.hasValue()) { 
+                scalarAnyToIDL(FloatSchedule_any, FloatSchedule);
+                scalarObject(FloatSchedule, &FloatSchedule_cpp); 
+                this->precedentIDs_.insert(getObjectName(FloatSchedule));
             }
             
-            IDL_string Rule;
-            QuantLib::DateGeneration::Rule Rule_cpp;
-            if(Rule_any.hasValue()) { 
-                scalarAnyToIDL(Rule_any, Rule);
-                scalarInterfaceToCpp(Rule, Rule_cpp, QuantLib_DateGeneration_RuleEnum);
+            IDL_string IborIndex;
+            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
+            if(IborIndex_any.hasValue()) { 
+                scalarAnyToIDL(IborIndex_any, IborIndex);
+                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
+                this->precedentIDs_.insert(getObjectName(IborIndex));
             }
             
-            IDL_long EndOfMonth;
-            int EndOfMonth_cpp;
-            if(EndOfMonth_any.hasValue()) { 
-                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
-                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
-            } else { 
-                EndOfMonth_cpp = 0; 
+            IDL_double Spread;
+            double Spread_cpp;
+            if(Spread_any.hasValue()) { 
+                scalarAnyToIDL(Spread_any, Spread);
+                scalarInterfaceToCpp(Spread, Spread_cpp, interfaceToIdentity);
             }
             
-            IDL_long FirstDate;
-            QuantLib::Date FirstDate_cpp;
-            if(FirstDate_any.hasValue()) { 
-                scalarAnyToIDL(FirstDate_any, FirstDate);
-                scalarInterfaceToCpp(FirstDate, FirstDate_cpp, interfaceToDate);
-            } else { 
-                FirstDate_cpp = QuantLib::Date(); 
+            IDL_string FloatingDayCount;
+            QuantLib::DayCounter FloatingDayCount_cpp;
+            if(FloatingDayCount_any.hasValue()) { 
+                scalarAnyToIDL(FloatingDayCount_any, FloatingDayCount);
+                scalarInterfaceToCpp(FloatingDayCount, FloatingDayCount_cpp, QuantLib_DayCounterEnum);
             }
             
-            IDL_long NextToLastDate;
-            QuantLib::Date NextToLastDate_cpp;
-            if(NextToLastDate_any.hasValue()) { 
-                scalarAnyToIDL(NextToLastDate_any, NextToLastDate);
-                scalarInterfaceToCpp(NextToLastDate, NextToLastDate_cpp, interfaceToDate);
-            } else { 
-                NextToLastDate_cpp = QuantLib::Date(); 
+            IDL_string PaymentConvention;
+            QuantLib::BusinessDayConvention PaymentConvention_cpp;
+            if(PaymentConvention_any.hasValue()) { 
+                scalarAnyToIDL(PaymentConvention_any, PaymentConvention);
+                scalarInterfaceToCpp(PaymentConvention, PaymentConvention_cpp, QuantLib_BusinessDayConventionEnum);
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::Schedule(EffectiveDate_cpp, TerminationDate_cpp, Period_cpp, Calendar_cpp, Convention_cpp, TerminationConvention_cpp, Rule_cpp, EndOfMonth_cpp, FirstDate_cpp, NextToLastDate_cpp));
+            object_ = (void *)(new QuantLib::VanillaSwap(Type_cpp, Nominal_cpp, *FixedSchedule_cpp, FixedRate_cpp, FixedDayCount_cpp, *FloatSchedule_cpp, IborIndex_cpp, Spread_cpp, FloatingDayCount_cpp, PaymentConvention_cpp));
         }
         
     };
     
-    void QuantLib_Schedule::del() {
+    void QuantLib_VanillaSwap::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any EffectiveDate_any;
-            EffectiveDate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any TerminationDate_any;
-            TerminationDate_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any Period_any;
-            Period_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Convention_any;
-            Convention_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any TerminationConvention_any;
-            TerminationConvention_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any Rule_any;
-            Rule_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FirstDate_any;
-            FirstDate_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any NextToLastDate_any;
-            NextToLastDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Type_any;
+            Type_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Nominal_any;
+            Nominal_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FixedSchedule_any;
+            FixedSchedule_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any FixedRate_any;
+            FixedRate_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any FixedDayCount_any;
+            FixedDayCount_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any FloatSchedule_any;
+            FloatSchedule_any = boost::any_cast<IDL_any >(arguments_[5]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
+            IDL_any Spread_any;
+            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any FloatingDayCount_any;
+            FloatingDayCount_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::Schedule *)(object_);
+            delete (QuantLib::VanillaSwap *)(object_);
         }
         object_ = (void *)(0L);
     };
-    std::vector<QuantLib::Date> QuantLib_Schedule::dates(IDL_any ObjectId_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
     
-        QuantLib::Schedule *ObjectId_ref = (static_cast<QuantLib::Schedule *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return ObjectId_ref->dates();
-    };
-    
-    
-    class QuantLib_FraRateHelperError: public std::exception {
+    class QuantLib_FuturesRateHelperError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::FraRateHelper";
+            return "Wrong template arguments for QuantLib::FuturesRateHelper";
         };
     };
     
-    QuantLib_FraRateHelper::QuantLib_FraRateHelper(IDL_any Rate_any, IDL_any MonthsToStart_any, IDL_any MonthsToEnd_any, IDL_any FixingDays_any, IDL_any Calendar_any, IDL_any Convention_any, IDL_any EndOfMonth_any, IDL_any DayCounter_any, IDL_any Pillar_any, IDL_any CustomPillarDate_any)
-            : ObjectHandler::Object(std::string("QuantLib_FraRateHelper"))
+    QuantLib_FuturesRateHelper::QuantLib_FuturesRateHelper(IDL_any Price_any, IDL_any IborStartDate_any, IDL_any IborIndex_any, IDL_any ConvexityAdjustment_any, IDL_any Type_any)
+            : ObjectHandler::Object(std::string("QuantLib_FuturesRateHelper"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Rate_any);
-            arguments_.push_back(MonthsToStart_any);
-            arguments_.push_back(MonthsToEnd_any);
-            arguments_.push_back(FixingDays_any);
-            arguments_.push_back(Calendar_any);
-            arguments_.push_back(Convention_any);
-            arguments_.push_back(EndOfMonth_any);
-            arguments_.push_back(DayCounter_any);
-            arguments_.push_back(Pillar_any);
-            arguments_.push_back(CustomPillarDate_any);
+            arguments_.push_back(Price_any);
+            arguments_.push_back(IborStartDate_any);
+            arguments_.push_back(IborIndex_any);
+            arguments_.push_back(ConvexityAdjustment_any);
+            arguments_.push_back(Type_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_FraRateHelper::update() {
+    void QuantLib_FuturesRateHelper::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::FraRateHelper" << std::endl;
+            std::cerr << "in upate() von QuantLib::FuturesRateHelper" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any MonthsToStart_any;
-            MonthsToStart_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any MonthsToEnd_any;
-            MonthsToEnd_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixingDays_any;
-            FixingDays_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any Convention_any;
-            Convention_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any Pillar_any;
-            Pillar_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any CustomPillarDate_any;
-            CustomPillarDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Price_any;
+            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IborStartDate_any;
+            IborStartDate_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any ConvexityAdjustment_any;
+            ConvexityAdjustment_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Type_any;
+            Type_any = boost::any_cast<IDL_any >(arguments_[4]);
             
             // parameter conversions 
-            IDL_double Rate;
-            double Rate_cpp;
-            if(Rate_any.hasValue()) { 
-                scalarAnyToIDL(Rate_any, Rate);
-                scalarInterfaceToCpp(Rate, Rate_cpp, interfaceToIdentity);
+            IDL_double Price;
+            double Price_cpp;
+            if(Price_any.hasValue()) { 
+                scalarAnyToIDL(Price_any, Price);
+                scalarInterfaceToCpp(Price, Price_cpp, interfaceToIdentity);
             }
             
-            IDL_long MonthsToStart;
-            long MonthsToStart_cpp;
-            if(MonthsToStart_any.hasValue()) { 
-                scalarAnyToIDL(MonthsToStart_any, MonthsToStart);
-                scalarInterfaceToCpp(MonthsToStart, MonthsToStart_cpp, interfaceToIdentity);
+            IDL_long IborStartDate;
+            QuantLib::Date IborStartDate_cpp;
+            if(IborStartDate_any.hasValue()) { 
+                scalarAnyToIDL(IborStartDate_any, IborStartDate);
+                scalarInterfaceToCpp(IborStartDate, IborStartDate_cpp, interfaceToDate);
             }
             
-            IDL_long MonthsToEnd;
-            long MonthsToEnd_cpp;
-            if(MonthsToEnd_any.hasValue()) { 
-                scalarAnyToIDL(MonthsToEnd_any, MonthsToEnd);
-                scalarInterfaceToCpp(MonthsToEnd, MonthsToEnd_cpp, interfaceToIdentity);
+            IDL_string IborIndex;
+            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
+            if(IborIndex_any.hasValue()) { 
+                scalarAnyToIDL(IborIndex_any, IborIndex);
+                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
+                this->precedentIDs_.insert(getObjectName(IborIndex));
             }
             
-            IDL_long FixingDays;
-            long FixingDays_cpp;
-            if(FixingDays_any.hasValue()) { 
-                scalarAnyToIDL(FixingDays_any, FixingDays);
-                scalarInterfaceToCpp(FixingDays, FixingDays_cpp, interfaceToIdentity);
+            IDL_double ConvexityAdjustment;
+            double ConvexityAdjustment_cpp;
+            if(ConvexityAdjustment_any.hasValue()) { 
+                scalarAnyToIDL(ConvexityAdjustment_any, ConvexityAdjustment);
+                scalarInterfaceToCpp(ConvexityAdjustment, ConvexityAdjustment_cpp, interfaceToIdentity);
             }
             
-            IDL_string Calendar;
-            QuantLib::Calendar Calendar_cpp;
-            if(Calendar_any.hasValue()) { 
-                scalarAnyToIDL(Calendar_any, Calendar);
-                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
-            }
-            
-            IDL_string Convention;
-            QuantLib::BusinessDayConvention Convention_cpp;
-            if(Convention_any.hasValue()) { 
-                scalarAnyToIDL(Convention_any, Convention);
-                scalarInterfaceToCpp(Convention, Convention_cpp, QuantLib_BusinessDayConventionEnum);
-            }
-            
-            IDL_long EndOfMonth;
-            int EndOfMonth_cpp;
-            if(EndOfMonth_any.hasValue()) { 
-                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
-                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string DayCounter;
-            QuantLib::DayCounter DayCounter_cpp;
-            if(DayCounter_any.hasValue()) { 
-                scalarAnyToIDL(DayCounter_any, DayCounter);
-                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_string Pillar;
-            QuantLib::Pillar::Choice Pillar_cpp;
-            if(Pillar_any.hasValue()) { 
-                scalarAnyToIDL(Pillar_any, Pillar);
-                scalarInterfaceToCpp(Pillar, Pillar_cpp, QuantLib_Pillar_ChoiceEnum);
-            }
-            
-            IDL_long CustomPillarDate;
-            QuantLib::Date CustomPillarDate_cpp;
-            if(CustomPillarDate_any.hasValue()) { 
-                scalarAnyToIDL(CustomPillarDate_any, CustomPillarDate);
-                scalarInterfaceToCpp(CustomPillarDate, CustomPillarDate_cpp, interfaceToDate);
+            IDL_string Type;
+            QuantLib::Futures::Type Type_cpp;
+            if(Type_any.hasValue()) { 
+                scalarAnyToIDL(Type_any, Type);
+                scalarInterfaceToCpp(Type, Type_cpp, QuantLib_Futures_TypeEnum);
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::FraRateHelper(Rate_cpp, MonthsToStart_cpp, MonthsToEnd_cpp, FixingDays_cpp, Calendar_cpp, Convention_cpp, EndOfMonth_cpp, DayCounter_cpp, Pillar_cpp, CustomPillarDate_cpp));
+            object_ = (void *)(new QuantLib::FuturesRateHelper(Price_cpp, IborStartDate_cpp, IborIndex_cpp, ConvexityAdjustment_cpp, Type_cpp));
         }
         
     };
     
-    void QuantLib_FraRateHelper::del() {
+    void QuantLib_FuturesRateHelper::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Rate_any;
-            Rate_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any MonthsToStart_any;
-            MonthsToStart_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any MonthsToEnd_any;
-            MonthsToEnd_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixingDays_any;
-            FixingDays_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any Convention_any;
-            Convention_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any EndOfMonth_any;
-            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any Pillar_any;
-            Pillar_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any CustomPillarDate_any;
-            CustomPillarDate_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Price_any;
+            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any IborStartDate_any;
+            IborStartDate_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any IborIndex_any;
+            IborIndex_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any ConvexityAdjustment_any;
+            ConvexityAdjustment_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any Type_any;
+            Type_any = boost::any_cast<IDL_any >(arguments_[4]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::FraRateHelper *)(object_);
+            delete (QuantLib::FuturesRateHelper *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class Addin_AddinInterpolation2DError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for Addin::AddinInterpolation2D";
+        };
+    };
+    
+    Addin_AddinInterpolation2D::Addin_AddinInterpolation2D(IDL_any Interpolator2DID_any, SEQSEQ(IDL_any) XVector_any, SEQSEQ(IDL_any) YVector_any, SEQSEQ(IDL_any) ZData_any)
+            : ObjectHandler::Object(std::string("Addin_AddinInterpolation2D"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(Interpolator2DID_any);
+            arguments_.push_back(XVector_any);
+            arguments_.push_back(YVector_any);
+            arguments_.push_back(ZData_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void Addin_AddinInterpolation2D::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von Addin::AddinInterpolation2D" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any Interpolator2DID_any;
+            Interpolator2DID_any = boost::any_cast<IDL_any >(arguments_[0]);
+            SEQSEQ(IDL_any) XVector_any;
+            XVector_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
+            SEQSEQ(IDL_any) YVector_any;
+            YVector_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[2]);
+            SEQSEQ(IDL_any) ZData_any;
+            ZData_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[3]);
+            
+            // parameter conversions 
+            IDL_string Interpolator2DID;
+            std::string Interpolator2DID_cpp;
+            if(Interpolator2DID_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator2DID_any, Interpolator2DID);
+                scalarInterfaceToCpp(Interpolator2DID, Interpolator2DID_cpp, interfaceToString);
+            }
+            
+            SEQSEQ(IDL_double) XVector;
+            std::vector<double> XVector_cpp;
+            if(XVector_any.getLength()>0) { 
+                vectorAnyToIDL(XVector_any, XVector);
+                vectorInterfaceToCpp(XVector, XVector_cpp, interfaceToIdentity);
+            }
+            
+            SEQSEQ(IDL_double) YVector;
+            std::vector<double> YVector_cpp;
+            if(YVector_any.getLength()>0) { 
+                vectorAnyToIDL(YVector_any, YVector);
+                vectorInterfaceToCpp(YVector, YVector_cpp, interfaceToIdentity);
+            }
+            
+            SEQSEQ(IDL_double) ZData;
+            QuantLib::Matrix ZData_cpp;
+            if(ZData_any.getLength()>0) { 
+                vectorAnyToIDL(ZData_any, ZData);
+                interfaceToMatrix(ZData, ZData_cpp);
+            }
+            
+            // create addin object
+            bool found=false;
+            if(Interpolator2DID_cpp==std::string("Bilinear")) { 
+                object_ = (void *)(new Addin::AddinInterpolation2D<QuantLib::BilinearInterpolation>(XVector_cpp, YVector_cpp, ZData_cpp));
+                found = true;
+            };
+            if(Interpolator2DID_cpp==std::string("BicubicSpline")) { 
+                object_ = (void *)(new Addin::AddinInterpolation2D<QuantLib::BicubicSpline>(XVector_cpp, YVector_cpp, ZData_cpp));
+                found = true;
+            };
+            if(not found) throw Addin_AddinInterpolation2DError();
+        }
+        
+    };
+    
+    void Addin_AddinInterpolation2D::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any Interpolator2DID_any;
+            Interpolator2DID_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            IDL_string Interpolator2DID;
+            std::string Interpolator2DID_cpp;
+            if(Interpolator2DID_any.hasValue()) { 
+                scalarAnyToIDL(Interpolator2DID_any, Interpolator2DID);
+                scalarInterfaceToCpp(Interpolator2DID, Interpolator2DID_cpp, interfaceToString);
+            }
+            
+            if(!object_) return;
+            // delete addin object
+            if(Interpolator2DID_cpp==std::string("Bilinear")) { 
+                delete (Addin::AddinInterpolation2D<QuantLib::BilinearInterpolation>*)(object_);
+            };
+            if(Interpolator2DID_cpp==std::string("BicubicSpline")) { 
+                delete (Addin::AddinInterpolation2D<QuantLib::BicubicSpline>*)(object_);
+            };
         }
         object_ = (void *)(0L);
     };
@@ -2246,216 +3105,311 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_FuturesRateHelperError: public std::exception {
+    class QuantLib_FixedRateBondError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::FuturesRateHelper";
+            return "Wrong template arguments for QuantLib::FixedRateBond";
         };
     };
     
-    QuantLib_FuturesRateHelper::QuantLib_FuturesRateHelper(IDL_any Price_any, IDL_any IborStartDate_any, IDL_any IborIndex_any, IDL_any ConvexityAdjustment_any, IDL_any Type_any)
-            : ObjectHandler::Object(std::string("QuantLib_FuturesRateHelper"))
+    QuantLib_FixedRateBond::QuantLib_FixedRateBond(IDL_any SettlementDays_any, IDL_any CouponCalendar_any, IDL_any FaceAmount_any, IDL_any StartDate_any, IDL_any MaturityDate_any, IDL_any Tenor_any, SEQSEQ(IDL_any) Coupons_any, IDL_any AccrualDayCounter_any, IDL_any AccrualConvention_any, IDL_any PaymentConvention_any, IDL_any Redemption_any, IDL_any IssueDate_any, IDL_any StubDate_any, IDL_any Rule_any, IDL_any EndOfMonth_any, IDL_any PaymentCalendar_any, IDL_any ExCouponPeriod_any, IDL_any ExCouponCalendar_any, IDL_any ExCouponConvention_any, IDL_any ExCouponEndOfMonth_any)
+            : ObjectHandler::Object(std::string("QuantLib_FixedRateBond"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Price_any);
-            arguments_.push_back(IborStartDate_any);
-            arguments_.push_back(IborIndex_any);
-            arguments_.push_back(ConvexityAdjustment_any);
-            arguments_.push_back(Type_any);
+            arguments_.push_back(SettlementDays_any);
+            arguments_.push_back(CouponCalendar_any);
+            arguments_.push_back(FaceAmount_any);
+            arguments_.push_back(StartDate_any);
+            arguments_.push_back(MaturityDate_any);
+            arguments_.push_back(Tenor_any);
+            arguments_.push_back(Coupons_any);
+            arguments_.push_back(AccrualDayCounter_any);
+            arguments_.push_back(AccrualConvention_any);
+            arguments_.push_back(PaymentConvention_any);
+            arguments_.push_back(Redemption_any);
+            arguments_.push_back(IssueDate_any);
+            arguments_.push_back(StubDate_any);
+            arguments_.push_back(Rule_any);
+            arguments_.push_back(EndOfMonth_any);
+            arguments_.push_back(PaymentCalendar_any);
+            arguments_.push_back(ExCouponPeriod_any);
+            arguments_.push_back(ExCouponCalendar_any);
+            arguments_.push_back(ExCouponConvention_any);
+            arguments_.push_back(ExCouponEndOfMonth_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_FuturesRateHelper::update() {
+    void QuantLib_FixedRateBond::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::FuturesRateHelper" << std::endl;
+            std::cerr << "in upate() von QuantLib::FixedRateBond" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Price_any;
-            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IborStartDate_any;
-            IborStartDate_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any ConvexityAdjustment_any;
-            ConvexityAdjustment_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Type_any;
-            Type_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any SettlementDays_any;
+            SettlementDays_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any CouponCalendar_any;
+            CouponCalendar_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FaceAmount_any;
+            FaceAmount_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any StartDate_any;
+            StartDate_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any MaturityDate_any;
+            MaturityDate_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[5]);
+            SEQSEQ(IDL_any) Coupons_any;
+            Coupons_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[6]);
+            IDL_any AccrualDayCounter_any;
+            AccrualDayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any AccrualConvention_any;
+            AccrualConvention_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Redemption_any;
+            Redemption_any = boost::any_cast<IDL_any >(arguments_[10]);
+            IDL_any IssueDate_any;
+            IssueDate_any = boost::any_cast<IDL_any >(arguments_[11]);
+            IDL_any StubDate_any;
+            StubDate_any = boost::any_cast<IDL_any >(arguments_[12]);
+            IDL_any Rule_any;
+            Rule_any = boost::any_cast<IDL_any >(arguments_[13]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[14]);
+            IDL_any PaymentCalendar_any;
+            PaymentCalendar_any = boost::any_cast<IDL_any >(arguments_[15]);
+            IDL_any ExCouponPeriod_any;
+            ExCouponPeriod_any = boost::any_cast<IDL_any >(arguments_[16]);
+            IDL_any ExCouponCalendar_any;
+            ExCouponCalendar_any = boost::any_cast<IDL_any >(arguments_[17]);
+            IDL_any ExCouponConvention_any;
+            ExCouponConvention_any = boost::any_cast<IDL_any >(arguments_[18]);
+            IDL_any ExCouponEndOfMonth_any;
+            ExCouponEndOfMonth_any = boost::any_cast<IDL_any >(arguments_[19]);
             
             // parameter conversions 
-            IDL_double Price;
-            double Price_cpp;
-            if(Price_any.hasValue()) { 
-                scalarAnyToIDL(Price_any, Price);
-                scalarInterfaceToCpp(Price, Price_cpp, interfaceToIdentity);
+            IDL_long SettlementDays;
+            long SettlementDays_cpp;
+            if(SettlementDays_any.hasValue()) { 
+                scalarAnyToIDL(SettlementDays_any, SettlementDays);
+                scalarInterfaceToCpp(SettlementDays, SettlementDays_cpp, interfaceToIdentity);
             }
             
-            IDL_long IborStartDate;
-            QuantLib::Date IborStartDate_cpp;
-            if(IborStartDate_any.hasValue()) { 
-                scalarAnyToIDL(IborStartDate_any, IborStartDate);
-                scalarInterfaceToCpp(IborStartDate, IborStartDate_cpp, interfaceToDate);
+            IDL_string CouponCalendar;
+            QuantLib::Calendar CouponCalendar_cpp;
+            if(CouponCalendar_any.hasValue()) { 
+                scalarAnyToIDL(CouponCalendar_any, CouponCalendar);
+                scalarInterfaceToCpp(CouponCalendar, CouponCalendar_cpp, QuantLib_CalendarEnum);
             }
             
-            IDL_string IborIndex;
-            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
-            if(IborIndex_any.hasValue()) { 
-                scalarAnyToIDL(IborIndex_any, IborIndex);
-                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
-                this->precedentIDs_.insert(getObjectName(IborIndex));
+            IDL_double FaceAmount;
+            double FaceAmount_cpp;
+            if(FaceAmount_any.hasValue()) { 
+                scalarAnyToIDL(FaceAmount_any, FaceAmount);
+                scalarInterfaceToCpp(FaceAmount, FaceAmount_cpp, interfaceToIdentity);
             }
             
-            IDL_double ConvexityAdjustment;
-            double ConvexityAdjustment_cpp;
-            if(ConvexityAdjustment_any.hasValue()) { 
-                scalarAnyToIDL(ConvexityAdjustment_any, ConvexityAdjustment);
-                scalarInterfaceToCpp(ConvexityAdjustment, ConvexityAdjustment_cpp, interfaceToIdentity);
+            IDL_long StartDate;
+            QuantLib::Date StartDate_cpp;
+            if(StartDate_any.hasValue()) { 
+                scalarAnyToIDL(StartDate_any, StartDate);
+                scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
             }
             
-            IDL_string Type;
-            QuantLib::Futures::Type Type_cpp;
-            if(Type_any.hasValue()) { 
-                scalarAnyToIDL(Type_any, Type);
-                scalarInterfaceToCpp(Type, Type_cpp, QuantLib_Futures_TypeEnum);
+            IDL_long MaturityDate;
+            QuantLib::Date MaturityDate_cpp;
+            if(MaturityDate_any.hasValue()) { 
+                scalarAnyToIDL(MaturityDate_any, MaturityDate);
+                scalarInterfaceToCpp(MaturityDate, MaturityDate_cpp, interfaceToDate);
+            }
+            
+            IDL_string Tenor;
+            QuantLib::Period Tenor_cpp;
+            if(Tenor_any.hasValue()) { 
+                scalarAnyToIDL(Tenor_any, Tenor);
+                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
+            }
+            
+            SEQSEQ(IDL_double) Coupons;
+            std::vector<double> Coupons_cpp;
+            if(Coupons_any.getLength()>0) { 
+                vectorAnyToIDL(Coupons_any, Coupons);
+                vectorInterfaceToCpp(Coupons, Coupons_cpp, interfaceToIdentity);
+            }
+            
+            IDL_string AccrualDayCounter;
+            QuantLib::DayCounter AccrualDayCounter_cpp;
+            if(AccrualDayCounter_any.hasValue()) { 
+                scalarAnyToIDL(AccrualDayCounter_any, AccrualDayCounter);
+                scalarInterfaceToCpp(AccrualDayCounter, AccrualDayCounter_cpp, QuantLib_DayCounterEnum);
+            }
+            
+            IDL_string AccrualConvention;
+            QuantLib::BusinessDayConvention AccrualConvention_cpp;
+            if(AccrualConvention_any.hasValue()) { 
+                scalarAnyToIDL(AccrualConvention_any, AccrualConvention);
+                scalarInterfaceToCpp(AccrualConvention, AccrualConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            } else { 
+                AccrualConvention_cpp = QuantLib::Following; 
+            }
+            
+            IDL_string PaymentConvention;
+            QuantLib::BusinessDayConvention PaymentConvention_cpp;
+            if(PaymentConvention_any.hasValue()) { 
+                scalarAnyToIDL(PaymentConvention_any, PaymentConvention);
+                scalarInterfaceToCpp(PaymentConvention, PaymentConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            } else { 
+                PaymentConvention_cpp = QuantLib::Following; 
+            }
+            
+            IDL_double Redemption;
+            double Redemption_cpp;
+            if(Redemption_any.hasValue()) { 
+                scalarAnyToIDL(Redemption_any, Redemption);
+                scalarInterfaceToCpp(Redemption, Redemption_cpp, interfaceToIdentity);
+            } else { 
+                Redemption_cpp = 100.0; 
+            }
+            
+            IDL_long IssueDate;
+            QuantLib::Date IssueDate_cpp;
+            if(IssueDate_any.hasValue()) { 
+                scalarAnyToIDL(IssueDate_any, IssueDate);
+                scalarInterfaceToCpp(IssueDate, IssueDate_cpp, interfaceToDate);
+            } else { 
+                IssueDate_cpp = QuantLib::Date(); 
+            }
+            
+            IDL_long StubDate;
+            QuantLib::Date StubDate_cpp;
+            if(StubDate_any.hasValue()) { 
+                scalarAnyToIDL(StubDate_any, StubDate);
+                scalarInterfaceToCpp(StubDate, StubDate_cpp, interfaceToDate);
+            } else { 
+                StubDate_cpp = QuantLib::Date(); 
+            }
+            
+            IDL_string Rule;
+            QuantLib::DateGeneration::Rule Rule_cpp;
+            if(Rule_any.hasValue()) { 
+                scalarAnyToIDL(Rule_any, Rule);
+                scalarInterfaceToCpp(Rule, Rule_cpp, QuantLib_DateGeneration_RuleEnum);
+            } else { 
+                Rule_cpp = QuantLib::DateGeneration::Backward; 
+            }
+            
+            IDL_long EndOfMonth;
+            int EndOfMonth_cpp;
+            if(EndOfMonth_any.hasValue()) { 
+                scalarAnyToIDL(EndOfMonth_any, EndOfMonth);
+                scalarInterfaceToCpp(EndOfMonth, EndOfMonth_cpp, interfaceToIdentity);
+            } else { 
+                EndOfMonth_cpp = false; 
+            }
+            
+            IDL_string PaymentCalendar;
+            QuantLib::Calendar PaymentCalendar_cpp;
+            if(PaymentCalendar_any.hasValue()) { 
+                scalarAnyToIDL(PaymentCalendar_any, PaymentCalendar);
+                scalarInterfaceToCpp(PaymentCalendar, PaymentCalendar_cpp, QuantLib_CalendarEnum);
+            } else { 
+                PaymentCalendar_cpp = QuantLib::Calendar(); 
+            }
+            
+            IDL_string ExCouponPeriod;
+            QuantLib::Period ExCouponPeriod_cpp;
+            if(ExCouponPeriod_any.hasValue()) { 
+                scalarAnyToIDL(ExCouponPeriod_any, ExCouponPeriod);
+                scalarInterfaceToCpp(ExCouponPeriod, ExCouponPeriod_cpp, interfaceToPeriod);
+            } else { 
+                ExCouponPeriod_cpp = QuantLib::Period(); 
+            }
+            
+            IDL_string ExCouponCalendar;
+            QuantLib::Calendar ExCouponCalendar_cpp;
+            if(ExCouponCalendar_any.hasValue()) { 
+                scalarAnyToIDL(ExCouponCalendar_any, ExCouponCalendar);
+                scalarInterfaceToCpp(ExCouponCalendar, ExCouponCalendar_cpp, QuantLib_CalendarEnum);
+            } else { 
+                ExCouponCalendar_cpp = QuantLib::Calendar(); 
+            }
+            
+            IDL_string ExCouponConvention;
+            QuantLib::BusinessDayConvention ExCouponConvention_cpp;
+            if(ExCouponConvention_any.hasValue()) { 
+                scalarAnyToIDL(ExCouponConvention_any, ExCouponConvention);
+                scalarInterfaceToCpp(ExCouponConvention, ExCouponConvention_cpp, QuantLib_BusinessDayConventionEnum);
+            } else { 
+                ExCouponConvention_cpp = QuantLib::Unadjusted; 
+            }
+            
+            IDL_long ExCouponEndOfMonth;
+            int ExCouponEndOfMonth_cpp;
+            if(ExCouponEndOfMonth_any.hasValue()) { 
+                scalarAnyToIDL(ExCouponEndOfMonth_any, ExCouponEndOfMonth);
+                scalarInterfaceToCpp(ExCouponEndOfMonth, ExCouponEndOfMonth_cpp, interfaceToIdentity);
+            } else { 
+                ExCouponEndOfMonth_cpp = false; 
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::FuturesRateHelper(Price_cpp, IborStartDate_cpp, IborIndex_cpp, ConvexityAdjustment_cpp, Type_cpp));
+            object_ = (void *)(new QuantLib::FixedRateBond(SettlementDays_cpp, CouponCalendar_cpp, FaceAmount_cpp, StartDate_cpp, MaturityDate_cpp, Tenor_cpp, Coupons_cpp, AccrualDayCounter_cpp, AccrualConvention_cpp, PaymentConvention_cpp, Redemption_cpp, IssueDate_cpp, StubDate_cpp, Rule_cpp, EndOfMonth_cpp, PaymentCalendar_cpp, ExCouponPeriod_cpp, ExCouponCalendar_cpp, ExCouponConvention_cpp, ExCouponEndOfMonth_cpp));
         }
         
     };
     
-    void QuantLib_FuturesRateHelper::del() {
+    void QuantLib_FixedRateBond::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Price_any;
-            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IborStartDate_any;
-            IborStartDate_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any ConvexityAdjustment_any;
-            ConvexityAdjustment_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Type_any;
-            Type_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any SettlementDays_any;
+            SettlementDays_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any CouponCalendar_any;
+            CouponCalendar_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any FaceAmount_any;
+            FaceAmount_any = boost::any_cast<IDL_any >(arguments_[2]);
+            IDL_any StartDate_any;
+            StartDate_any = boost::any_cast<IDL_any >(arguments_[3]);
+            IDL_any MaturityDate_any;
+            MaturityDate_any = boost::any_cast<IDL_any >(arguments_[4]);
+            IDL_any Tenor_any;
+            Tenor_any = boost::any_cast<IDL_any >(arguments_[5]);
+            SEQSEQ(IDL_any) Coupons_any;
+            Coupons_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[6]);
+            IDL_any AccrualDayCounter_any;
+            AccrualDayCounter_any = boost::any_cast<IDL_any >(arguments_[7]);
+            IDL_any AccrualConvention_any;
+            AccrualConvention_any = boost::any_cast<IDL_any >(arguments_[8]);
+            IDL_any PaymentConvention_any;
+            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
+            IDL_any Redemption_any;
+            Redemption_any = boost::any_cast<IDL_any >(arguments_[10]);
+            IDL_any IssueDate_any;
+            IssueDate_any = boost::any_cast<IDL_any >(arguments_[11]);
+            IDL_any StubDate_any;
+            StubDate_any = boost::any_cast<IDL_any >(arguments_[12]);
+            IDL_any Rule_any;
+            Rule_any = boost::any_cast<IDL_any >(arguments_[13]);
+            IDL_any EndOfMonth_any;
+            EndOfMonth_any = boost::any_cast<IDL_any >(arguments_[14]);
+            IDL_any PaymentCalendar_any;
+            PaymentCalendar_any = boost::any_cast<IDL_any >(arguments_[15]);
+            IDL_any ExCouponPeriod_any;
+            ExCouponPeriod_any = boost::any_cast<IDL_any >(arguments_[16]);
+            IDL_any ExCouponCalendar_any;
+            ExCouponCalendar_any = boost::any_cast<IDL_any >(arguments_[17]);
+            IDL_any ExCouponConvention_any;
+            ExCouponConvention_any = boost::any_cast<IDL_any >(arguments_[18]);
+            IDL_any ExCouponEndOfMonth_any;
+            ExCouponEndOfMonth_any = boost::any_cast<IDL_any >(arguments_[19]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::FuturesRateHelper *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class Addin_AddinInterpolation2DError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for Addin::AddinInterpolation2D";
-        };
-    };
-    
-    Addin_AddinInterpolation2D::Addin_AddinInterpolation2D(IDL_any Interpolator2DID_any, SEQSEQ(IDL_any) XVector_any, SEQSEQ(IDL_any) YVector_any, SEQSEQ(IDL_any) ZData_any)
-            : ObjectHandler::Object(std::string("Addin_AddinInterpolation2D"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Interpolator2DID_any);
-            arguments_.push_back(XVector_any);
-            arguments_.push_back(YVector_any);
-            arguments_.push_back(ZData_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void Addin_AddinInterpolation2D::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von Addin::AddinInterpolation2D" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Interpolator2DID_any;
-            Interpolator2DID_any = boost::any_cast<IDL_any >(arguments_[0]);
-            SEQSEQ(IDL_any) XVector_any;
-            XVector_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
-            SEQSEQ(IDL_any) YVector_any;
-            YVector_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[2]);
-            SEQSEQ(IDL_any) ZData_any;
-            ZData_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[3]);
-            
-            // parameter conversions 
-            IDL_string Interpolator2DID;
-            std::string Interpolator2DID_cpp;
-            if(Interpolator2DID_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator2DID_any, Interpolator2DID);
-                scalarInterfaceToCpp(Interpolator2DID, Interpolator2DID_cpp, interfaceToString);
-            }
-            
-            SEQSEQ(IDL_double) XVector;
-            std::vector<double> XVector_cpp;
-            if(XVector_any.getLength()>0) { 
-                vectorAnyToIDL(XVector_any, XVector);
-                vectorInterfaceToCpp(XVector, XVector_cpp, interfaceToIdentity);
-            }
-            
-            SEQSEQ(IDL_double) YVector;
-            std::vector<double> YVector_cpp;
-            if(YVector_any.getLength()>0) { 
-                vectorAnyToIDL(YVector_any, YVector);
-                vectorInterfaceToCpp(YVector, YVector_cpp, interfaceToIdentity);
-            }
-            
-            SEQSEQ(IDL_double) ZData;
-            QuantLib::Matrix ZData_cpp;
-            if(ZData_any.getLength()>0) { 
-                vectorAnyToIDL(ZData_any, ZData);
-                interfaceToMatrix(ZData, ZData_cpp);
-            }
-            
-            // create addin object
-            bool found=false;
-            if(Interpolator2DID_cpp==std::string("Bilinear")) { 
-                object_ = (void *)(new Addin::AddinInterpolation2D<QuantLib::BilinearInterpolation>(XVector_cpp, YVector_cpp, ZData_cpp));
-                found = true;
-            };
-            if(Interpolator2DID_cpp==std::string("BicubicSpline")) { 
-                object_ = (void *)(new Addin::AddinInterpolation2D<QuantLib::BicubicSpline>(XVector_cpp, YVector_cpp, ZData_cpp));
-                found = true;
-            };
-            if(not found) throw Addin_AddinInterpolation2DError();
-        }
-        
-    };
-    
-    void Addin_AddinInterpolation2D::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Interpolator2DID_any;
-            Interpolator2DID_any = boost::any_cast<IDL_any >(arguments_[0]);
-            
-            // parameter conversions 
-            IDL_string Interpolator2DID;
-            std::string Interpolator2DID_cpp;
-            if(Interpolator2DID_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator2DID_any, Interpolator2DID);
-                scalarInterfaceToCpp(Interpolator2DID, Interpolator2DID_cpp, interfaceToString);
-            }
-            
-            if(!object_) return;
-            // delete addin object
-            if(Interpolator2DID_cpp==std::string("Bilinear")) { 
-                delete (Addin::AddinInterpolation2D<QuantLib::BilinearInterpolation>*)(object_);
-            };
-            if(Interpolator2DID_cpp==std::string("BicubicSpline")) { 
-                delete (Addin::AddinInterpolation2D<QuantLib::BicubicSpline>*)(object_);
-            };
+            delete (QuantLib::FixedRateBond *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -2527,326 +3481,6 @@ namespace Addin {
             if(!object_) return;
             // delete addin object
             delete (QuantLib::VanillaOption *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_PlainVanillaPayoffError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::PlainVanillaPayoff";
-        };
-    };
-    
-    QuantLib_PlainVanillaPayoff::QuantLib_PlainVanillaPayoff(IDL_any OptionType_any, IDL_any Strike_any)
-            : ObjectHandler::Object(std::string("QuantLib_PlainVanillaPayoff"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(OptionType_any);
-            arguments_.push_back(Strike_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_PlainVanillaPayoff::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::PlainVanillaPayoff" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any OptionType_any;
-            OptionType_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Strike_any;
-            Strike_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            IDL_string OptionType;
-            QuantLib::Option::Type OptionType_cpp;
-            if(OptionType_any.hasValue()) { 
-                scalarAnyToIDL(OptionType_any, OptionType);
-                scalarInterfaceToCpp(OptionType, OptionType_cpp, QuantLib_Option_TypeEnum);
-            }
-            
-            IDL_double Strike;
-            double Strike_cpp;
-            if(Strike_any.hasValue()) { 
-                scalarAnyToIDL(Strike_any, Strike);
-                scalarInterfaceToCpp(Strike, Strike_cpp, interfaceToIdentity);
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::PlainVanillaPayoff(OptionType_cpp, Strike_cpp));
-        }
-        
-    };
-    
-    void QuantLib_PlainVanillaPayoff::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any OptionType_any;
-            OptionType_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Strike_any;
-            Strike_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::PlainVanillaPayoff *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_DiscountCurveError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::DiscountCurve";
-        };
-    };
-    
-    QuantLib_DiscountCurve::QuantLib_DiscountCurve(SEQSEQ(IDL_any) Dates_any, SEQSEQ(IDL_any) Discounts_any, IDL_any DayCounter_any)
-            : ObjectHandler::Object(std::string("QuantLib_DiscountCurve"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Dates_any);
-            arguments_.push_back(Discounts_any);
-            arguments_.push_back(DayCounter_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_DiscountCurve::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::DiscountCurve" << std::endl;
-            this->precedentIDs_.clear();
-            SEQSEQ(IDL_any) Dates_any;
-            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[0]);
-            SEQSEQ(IDL_any) Discounts_any;
-            Discounts_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[2]);
-            
-            // parameter conversions 
-            SEQSEQ(IDL_long) Dates;
-            std::vector<QuantLib::Date> Dates_cpp;
-            if(Dates_any.getLength()>0) { 
-                vectorAnyToIDL(Dates_any, Dates);
-                vectorInterfaceToCpp(Dates, Dates_cpp, interfaceToDate);
-            }
-            
-            SEQSEQ(IDL_double) Discounts;
-            std::vector<double> Discounts_cpp;
-            if(Discounts_any.getLength()>0) { 
-                vectorAnyToIDL(Discounts_any, Discounts);
-                vectorInterfaceToCpp(Discounts, Discounts_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string DayCounter;
-            QuantLib::DayCounter DayCounter_cpp;
-            if(DayCounter_any.hasValue()) { 
-                scalarAnyToIDL(DayCounter_any, DayCounter);
-                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
-            } else { 
-                DayCounter_cpp = QuantLib::Actual365Fixed(); 
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::DiscountCurve(Dates_cpp, Discounts_cpp, DayCounter_cpp));
-        }
-        
-    };
-    
-    void QuantLib_DiscountCurve::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            SEQSEQ(IDL_any) Dates_any;
-            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[0]);
-            SEQSEQ(IDL_any) Discounts_any;
-            Discounts_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[2]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::DiscountCurve *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_VanillaSwapError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::VanillaSwap";
-        };
-    };
-    
-    QuantLib_VanillaSwap::QuantLib_VanillaSwap(IDL_any Type_any, IDL_any Nominal_any, IDL_any FixedSchedule_any, IDL_any FixedRate_any, IDL_any FixedDayCount_any, IDL_any FloatSchedule_any, IDL_any IborIndex_any, IDL_any Spread_any, IDL_any FloatingDayCount_any, IDL_any PaymentConvention_any)
-            : ObjectHandler::Object(std::string("QuantLib_VanillaSwap"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Type_any);
-            arguments_.push_back(Nominal_any);
-            arguments_.push_back(FixedSchedule_any);
-            arguments_.push_back(FixedRate_any);
-            arguments_.push_back(FixedDayCount_any);
-            arguments_.push_back(FloatSchedule_any);
-            arguments_.push_back(IborIndex_any);
-            arguments_.push_back(Spread_any);
-            arguments_.push_back(FloatingDayCount_any);
-            arguments_.push_back(PaymentConvention_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_VanillaSwap::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::VanillaSwap" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Type_any;
-            Type_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Nominal_any;
-            Nominal_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FixedSchedule_any;
-            FixedSchedule_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixedRate_any;
-            FixedRate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any FixedDayCount_any;
-            FixedDayCount_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any FloatSchedule_any;
-            FloatSchedule_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any Spread_any;
-            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FloatingDayCount_any;
-            FloatingDayCount_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any PaymentConvention_any;
-            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
-            
-            // parameter conversions 
-            IDL_string Type;
-            QuantLib::VanillaSwap::Type Type_cpp;
-            if(Type_any.hasValue()) { 
-                scalarAnyToIDL(Type_any, Type);
-                scalarInterfaceToCpp(Type, Type_cpp, QuantLib_VanillaSwap_TypeEnum);
-            }
-            
-            IDL_double Nominal;
-            double Nominal_cpp;
-            if(Nominal_any.hasValue()) { 
-                scalarAnyToIDL(Nominal_any, Nominal);
-                scalarInterfaceToCpp(Nominal, Nominal_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string FixedSchedule;
-            QuantLib::Schedule *FixedSchedule_cpp;
-            if(FixedSchedule_any.hasValue()) { 
-                scalarAnyToIDL(FixedSchedule_any, FixedSchedule);
-                scalarObject(FixedSchedule, &FixedSchedule_cpp); 
-                this->precedentIDs_.insert(getObjectName(FixedSchedule));
-            }
-            
-            IDL_double FixedRate;
-            double FixedRate_cpp;
-            if(FixedRate_any.hasValue()) { 
-                scalarAnyToIDL(FixedRate_any, FixedRate);
-                scalarInterfaceToCpp(FixedRate, FixedRate_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string FixedDayCount;
-            QuantLib::DayCounter FixedDayCount_cpp;
-            if(FixedDayCount_any.hasValue()) { 
-                scalarAnyToIDL(FixedDayCount_any, FixedDayCount);
-                scalarInterfaceToCpp(FixedDayCount, FixedDayCount_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_string FloatSchedule;
-            QuantLib::Schedule *FloatSchedule_cpp;
-            if(FloatSchedule_any.hasValue()) { 
-                scalarAnyToIDL(FloatSchedule_any, FloatSchedule);
-                scalarObject(FloatSchedule, &FloatSchedule_cpp); 
-                this->precedentIDs_.insert(getObjectName(FloatSchedule));
-            }
-            
-            IDL_string IborIndex;
-            boost::shared_ptr<QuantLib::IborIndex >  IborIndex_cpp;
-            if(IborIndex_any.hasValue()) { 
-                scalarAnyToIDL(IborIndex_any, IborIndex);
-                scalarObjectSharedPtr(IborIndex, IborIndex_cpp); 
-                this->precedentIDs_.insert(getObjectName(IborIndex));
-            }
-            
-            IDL_double Spread;
-            double Spread_cpp;
-            if(Spread_any.hasValue()) { 
-                scalarAnyToIDL(Spread_any, Spread);
-                scalarInterfaceToCpp(Spread, Spread_cpp, interfaceToIdentity);
-            }
-            
-            IDL_string FloatingDayCount;
-            QuantLib::DayCounter FloatingDayCount_cpp;
-            if(FloatingDayCount_any.hasValue()) { 
-                scalarAnyToIDL(FloatingDayCount_any, FloatingDayCount);
-                scalarInterfaceToCpp(FloatingDayCount, FloatingDayCount_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_string PaymentConvention;
-            QuantLib::BusinessDayConvention PaymentConvention_cpp;
-            if(PaymentConvention_any.hasValue()) { 
-                scalarAnyToIDL(PaymentConvention_any, PaymentConvention);
-                scalarInterfaceToCpp(PaymentConvention, PaymentConvention_cpp, QuantLib_BusinessDayConventionEnum);
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::VanillaSwap(Type_cpp, Nominal_cpp, *FixedSchedule_cpp, FixedRate_cpp, FixedDayCount_cpp, *FloatSchedule_cpp, IborIndex_cpp, Spread_cpp, FloatingDayCount_cpp, PaymentConvention_cpp));
-        }
-        
-    };
-    
-    void QuantLib_VanillaSwap::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Type_any;
-            Type_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Nominal_any;
-            Nominal_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any FixedSchedule_any;
-            FixedSchedule_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any FixedRate_any;
-            FixedRate_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any FixedDayCount_any;
-            FixedDayCount_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any FloatSchedule_any;
-            FloatSchedule_any = boost::any_cast<IDL_any >(arguments_[5]);
-            IDL_any IborIndex_any;
-            IborIndex_any = boost::any_cast<IDL_any >(arguments_[6]);
-            IDL_any Spread_any;
-            Spread_any = boost::any_cast<IDL_any >(arguments_[7]);
-            IDL_any FloatingDayCount_any;
-            FloatingDayCount_any = boost::any_cast<IDL_any >(arguments_[8]);
-            IDL_any PaymentConvention_any;
-            PaymentConvention_any = boost::any_cast<IDL_any >(arguments_[9]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::VanillaSwap *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -3026,55 +3660,42 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_InterpolatedHazardRateCurveError: public std::exception {
+    class QuantLib_DiscountCurveError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::InterpolatedHazardRateCurve";
+            return "Wrong template arguments for QuantLib::DiscountCurve";
         };
     };
     
-    QuantLib_InterpolatedHazardRateCurve::QuantLib_InterpolatedHazardRateCurve(IDL_any Interpolator_any, SEQSEQ(IDL_any) Dates_any, SEQSEQ(IDL_any) HazardRates_any, IDL_any DayCounter_any, IDL_any Calendar_any)
-            : ObjectHandler::Object(std::string("QuantLib_InterpolatedHazardRateCurve"))
+    QuantLib_DiscountCurve::QuantLib_DiscountCurve(SEQSEQ(IDL_any) Dates_any, SEQSEQ(IDL_any) Discounts_any, IDL_any DayCounter_any)
+            : ObjectHandler::Object(std::string("QuantLib_DiscountCurve"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Interpolator_any);
             arguments_.push_back(Dates_any);
-            arguments_.push_back(HazardRates_any);
+            arguments_.push_back(Discounts_any);
             arguments_.push_back(DayCounter_any);
-            arguments_.push_back(Calendar_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_InterpolatedHazardRateCurve::update() {
+    void QuantLib_DiscountCurve::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::InterpolatedHazardRateCurve" << std::endl;
+            std::cerr << "in upate() von QuantLib::DiscountCurve" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Interpolator_any;
-            Interpolator_any = boost::any_cast<IDL_any >(arguments_[0]);
             SEQSEQ(IDL_any) Dates_any;
-            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
-            SEQSEQ(IDL_any) HazardRates_any;
-            HazardRates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[2]);
+            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[0]);
+            SEQSEQ(IDL_any) Discounts_any;
+            Discounts_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
             IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[3]);
-            IDL_any Calendar_any;
-            Calendar_any = boost::any_cast<IDL_any >(arguments_[4]);
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[2]);
             
             // parameter conversions 
-            IDL_string Interpolator;
-            std::string Interpolator_cpp;
-            if(Interpolator_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator_any, Interpolator);
-                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
-            }
-            
             SEQSEQ(IDL_long) Dates;
             std::vector<QuantLib::Date> Dates_cpp;
             if(Dates_any.getLength()>0) { 
@@ -3082,11 +3703,11 @@ namespace Addin {
                 vectorInterfaceToCpp(Dates, Dates_cpp, interfaceToDate);
             }
             
-            SEQSEQ(IDL_double) HazardRates;
-            std::vector<double> HazardRates_cpp;
-            if(HazardRates_any.getLength()>0) { 
-                vectorAnyToIDL(HazardRates_any, HazardRates);
-                vectorInterfaceToCpp(HazardRates, HazardRates_cpp, interfaceToIdentity);
+            SEQSEQ(IDL_double) Discounts;
+            std::vector<double> Discounts_cpp;
+            if(Discounts_any.getLength()>0) { 
+                vectorAnyToIDL(Discounts_any, Discounts);
+                vectorInterfaceToCpp(Discounts, Discounts_cpp, interfaceToIdentity);
             }
             
             IDL_string DayCounter;
@@ -3094,52 +3715,88 @@ namespace Addin {
             if(DayCounter_any.hasValue()) { 
                 scalarAnyToIDL(DayCounter_any, DayCounter);
                 scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_string Calendar;
-            QuantLib::Calendar Calendar_cpp;
-            if(Calendar_any.hasValue()) { 
-                scalarAnyToIDL(Calendar_any, Calendar);
-                scalarInterfaceToCpp(Calendar, Calendar_cpp, QuantLib_CalendarEnum);
+            } else { 
+                DayCounter_cpp = QuantLib::Actual365Fixed(); 
             }
             
             // create addin object
-            bool found=false;
-            if(Interpolator_cpp==std::string("Linear")) { 
-                object_ = (void *)(new QuantLib::InterpolatedHazardRateCurve<QuantLib::Linear>(Dates_cpp, HazardRates_cpp, DayCounter_cpp, Calendar_cpp));
-                found = true;
-            };
-            if(Interpolator_cpp==std::string("KrugerCubic")) { 
-                object_ = (void *)(new QuantLib::InterpolatedHazardRateCurve<QuantLib::Cubic>(Dates_cpp, HazardRates_cpp, DayCounter_cpp, Calendar_cpp));
-                found = true;
-            };
-            if(not found) throw QuantLib_InterpolatedHazardRateCurveError();
+            object_ = (void *)(new QuantLib::DiscountCurve(Dates_cpp, Discounts_cpp, DayCounter_cpp));
         }
         
     };
     
-    void QuantLib_InterpolatedHazardRateCurve::del() {
+    void QuantLib_DiscountCurve::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Interpolator_any;
-            Interpolator_any = boost::any_cast<IDL_any >(arguments_[0]);
+            SEQSEQ(IDL_any) Dates_any;
+            Dates_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[0]);
+            SEQSEQ(IDL_any) Discounts_any;
+            Discounts_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[1]);
+            IDL_any DayCounter_any;
+            DayCounter_any = boost::any_cast<IDL_any >(arguments_[2]);
             
             // parameter conversions 
-            IDL_string Interpolator;
-            std::string Interpolator_cpp;
-            if(Interpolator_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator_any, Interpolator);
-                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
-            }
-            
             if(!object_) return;
             // delete addin object
-            if(Interpolator_cpp==std::string("Linear")) { 
-                delete (QuantLib::InterpolatedHazardRateCurve<QuantLib::Linear>*)(object_);
-            };
-            if(Interpolator_cpp==std::string("KrugerCubic")) { 
-                delete (QuantLib::InterpolatedHazardRateCurve<QuantLib::Cubic>*)(object_);
-            };
+            delete (QuantLib::DiscountCurve *)(object_);
+        }
+        object_ = (void *)(0L);
+    };
+    
+    class QuantLib_AnalyticEuropeanEngineError: public std::exception {
+        const char * what () const throw () { 
+            return "Wrong template arguments for QuantLib::AnalyticEuropeanEngine";
+        };
+    };
+    
+    QuantLib_AnalyticEuropeanEngine::QuantLib_AnalyticEuropeanEngine(IDL_any GeneralizedBlackSchlolesProcess_any)
+            : ObjectHandler::Object(std::string("QuantLib_AnalyticEuropeanEngine"))
+        {
+            // set constructor method
+            object_ = 0L;
+            method_ = 0;
+            
+            // store parameters 
+            arguments_.push_back(GeneralizedBlackSchlolesProcess_any);
+            
+            // call update to create object
+            update();
+        };
+    
+    void QuantLib_AnalyticEuropeanEngine::update() {
+        del();
+        if (method_==0) {
+            // convert back from boost::any
+            std::cerr << "in upate() von QuantLib::AnalyticEuropeanEngine" << std::endl;
+            this->precedentIDs_.clear();
+            IDL_any GeneralizedBlackSchlolesProcess_any;
+            GeneralizedBlackSchlolesProcess_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            IDL_string GeneralizedBlackSchlolesProcess;
+            boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess >  GeneralizedBlackSchlolesProcess_cpp;
+            if(GeneralizedBlackSchlolesProcess_any.hasValue()) { 
+                scalarAnyToIDL(GeneralizedBlackSchlolesProcess_any, GeneralizedBlackSchlolesProcess);
+                scalarObjectSharedPtr(GeneralizedBlackSchlolesProcess, GeneralizedBlackSchlolesProcess_cpp); 
+                this->precedentIDs_.insert(getObjectName(GeneralizedBlackSchlolesProcess));
+            }
+            
+            // create addin object
+            object_ = (void *)(new QuantLib::AnalyticEuropeanEngine(GeneralizedBlackSchlolesProcess_cpp));
+        }
+        
+    };
+    
+    void QuantLib_AnalyticEuropeanEngine::del() {
+        if (method_==0) {
+            // convert back from boost::any
+            IDL_any GeneralizedBlackSchlolesProcess_any;
+            GeneralizedBlackSchlolesProcess_any = boost::any_cast<IDL_any >(arguments_[0]);
+            
+            // parameter conversions 
+            if(!object_) return;
+            // delete addin object
+            delete (QuantLib::AnalyticEuropeanEngine *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -3285,146 +3942,85 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_Euribor365Error: public std::exception {
+    class QuantLib_BondHelperError: public std::exception {
         const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::Euribor365";
+            return "Wrong template arguments for QuantLib::BondHelper";
         };
     };
     
-    QuantLib_Euribor365::QuantLib_Euribor365(IDL_any Tenor_any, IDL_any ForwardCurve_any)
-            : ObjectHandler::Object(std::string("QuantLib_Euribor365"))
+    QuantLib_BondHelper::QuantLib_BondHelper(IDL_any Price_any, IDL_any Bond_any, IDL_any UseCleanPrice_any)
+            : ObjectHandler::Object(std::string("QuantLib_BondHelper"))
         {
             // set constructor method
             object_ = 0L;
             method_ = 0;
             
             // store parameters 
-            arguments_.push_back(Tenor_any);
-            arguments_.push_back(ForwardCurve_any);
+            arguments_.push_back(Price_any);
+            arguments_.push_back(Bond_any);
+            arguments_.push_back(UseCleanPrice_any);
             
             // call update to create object
             update();
         };
     
-    void QuantLib_Euribor365::update() {
+    void QuantLib_BondHelper::update() {
         del();
         if (method_==0) {
             // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::Euribor365" << std::endl;
+            std::cerr << "in upate() von QuantLib::BondHelper" << std::endl;
             this->precedentIDs_.clear();
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any ForwardCurve_any;
-            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any Price_any;
+            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Bond_any;
+            Bond_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any UseCleanPrice_any;
+            UseCleanPrice_any = boost::any_cast<IDL_any >(arguments_[2]);
             
             // parameter conversions 
-            IDL_string Tenor;
-            QuantLib::Period Tenor_cpp;
-            if(Tenor_any.hasValue()) { 
-                scalarAnyToIDL(Tenor_any, Tenor);
-                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
+            IDL_string Price;
+            QuantLib::Handle<QuantLib::Quote >  Price_cpp;
+            if(Price_any.hasValue()) { 
+                scalarAnyToIDL(Price_any, Price);
+                scalarObjectHandle(Price, Price_cpp); 
+                this->precedentIDs_.insert(getObjectName(Price));
             }
             
-            IDL_string ForwardCurve;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  ForwardCurve_cpp;
-            if(ForwardCurve_any.hasValue()) { 
-                scalarAnyToIDL(ForwardCurve_any, ForwardCurve);
-                scalarObjectHandle(ForwardCurve, ForwardCurve_cpp); 
-                this->precedentIDs_.insert(getObjectName(ForwardCurve));
-            } else { 
-                ForwardCurve_cpp = QuantLib::Handle<QuantLib::YieldTermStructure>(); 
+            IDL_string Bond;
+            boost::shared_ptr<QuantLib::Bond >  Bond_cpp;
+            if(Bond_any.hasValue()) { 
+                scalarAnyToIDL(Bond_any, Bond);
+                scalarObjectSharedPtr(Bond, Bond_cpp); 
+                this->precedentIDs_.insert(getObjectName(Bond));
+            }
+            
+            IDL_long UseCleanPrice;
+            int UseCleanPrice_cpp;
+            if(UseCleanPrice_any.hasValue()) { 
+                scalarAnyToIDL(UseCleanPrice_any, UseCleanPrice);
+                scalarInterfaceToCpp(UseCleanPrice, UseCleanPrice_cpp, interfaceToIdentity);
             }
             
             // create addin object
-            object_ = (void *)(new QuantLib::Euribor365(Tenor_cpp, ForwardCurve_cpp));
+            object_ = (void *)(new QuantLib::BondHelper(Price_cpp, Bond_cpp, UseCleanPrice_cpp));
         }
         
     };
     
-    void QuantLib_Euribor365::del() {
+    void QuantLib_BondHelper::del() {
         if (method_==0) {
             // convert back from boost::any
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any ForwardCurve_any;
-            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any Price_any;
+            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
+            IDL_any Bond_any;
+            Bond_any = boost::any_cast<IDL_any >(arguments_[1]);
+            IDL_any UseCleanPrice_any;
+            UseCleanPrice_any = boost::any_cast<IDL_any >(arguments_[2]);
             
             // parameter conversions 
             if(!object_) return;
             // delete addin object
-            delete (QuantLib::Euribor365 *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_EuriborError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::Euribor";
-        };
-    };
-    
-    QuantLib_Euribor::QuantLib_Euribor(IDL_any Tenor_any, IDL_any ForwardCurve_any)
-            : ObjectHandler::Object(std::string("QuantLib_Euribor"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Tenor_any);
-            arguments_.push_back(ForwardCurve_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_Euribor::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::Euribor" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any ForwardCurve_any;
-            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            IDL_string Tenor;
-            QuantLib::Period Tenor_cpp;
-            if(Tenor_any.hasValue()) { 
-                scalarAnyToIDL(Tenor_any, Tenor);
-                scalarInterfaceToCpp(Tenor, Tenor_cpp, interfaceToPeriod);
-            }
-            
-            IDL_string ForwardCurve;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  ForwardCurve_cpp;
-            if(ForwardCurve_any.hasValue()) { 
-                scalarAnyToIDL(ForwardCurve_any, ForwardCurve);
-                scalarObjectHandle(ForwardCurve, ForwardCurve_cpp); 
-                this->precedentIDs_.insert(getObjectName(ForwardCurve));
-            } else { 
-                ForwardCurve_cpp = QuantLib::Handle<QuantLib::YieldTermStructure>(); 
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::Euribor(Tenor_cpp, ForwardCurve_cpp));
-        }
-        
-    };
-    
-    void QuantLib_Euribor::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Tenor_any;
-            Tenor_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any ForwardCurve_any;
-            ForwardCurve_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::Euribor *)(object_);
+            delete (QuantLib::BondHelper *)(object_);
         }
         object_ = (void *)(0L);
     };
@@ -3623,434 +4219,7 @@ namespace Addin {
         object_ = (void *)(0L);
     };
     
-    class QuantLib_PiecewiseDefaultCurveError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::PiecewiseDefaultCurve";
-        };
-    };
-    
-    QuantLib_PiecewiseDefaultCurve::QuantLib_PiecewiseDefaultCurve(IDL_any Traits_any, IDL_any Interpolator_any, IDL_any ReferenceDate_any, SEQSEQ(IDL_any) BootstrapInstruments_any, IDL_any DayCounter_any, IDL_any Accuracy_any)
-            : ObjectHandler::Object(std::string("QuantLib_PiecewiseDefaultCurve"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Traits_any);
-            arguments_.push_back(Interpolator_any);
-            arguments_.push_back(ReferenceDate_any);
-            arguments_.push_back(BootstrapInstruments_any);
-            arguments_.push_back(DayCounter_any);
-            arguments_.push_back(Accuracy_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_PiecewiseDefaultCurve::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::PiecewiseDefaultCurve" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Traits_any;
-            Traits_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Interpolator_any;
-            Interpolator_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any ReferenceDate_any;
-            ReferenceDate_any = boost::any_cast<IDL_any >(arguments_[2]);
-            SEQSEQ(IDL_any) BootstrapInstruments_any;
-            BootstrapInstruments_any = boost::any_cast<SEQSEQ(IDL_any) >(arguments_[3]);
-            IDL_any DayCounter_any;
-            DayCounter_any = boost::any_cast<IDL_any >(arguments_[4]);
-            IDL_any Accuracy_any;
-            Accuracy_any = boost::any_cast<IDL_any >(arguments_[5]);
-            
-            // parameter conversions 
-            IDL_string Traits;
-            std::string Traits_cpp;
-            if(Traits_any.hasValue()) { 
-                scalarAnyToIDL(Traits_any, Traits);
-                scalarInterfaceToCpp(Traits, Traits_cpp, interfaceToString);
-            }
-            
-            IDL_string Interpolator;
-            std::string Interpolator_cpp;
-            if(Interpolator_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator_any, Interpolator);
-                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
-            }
-            
-            IDL_long ReferenceDate;
-            QuantLib::Date ReferenceDate_cpp;
-            if(ReferenceDate_any.hasValue()) { 
-                scalarAnyToIDL(ReferenceDate_any, ReferenceDate);
-                scalarInterfaceToCpp(ReferenceDate, ReferenceDate_cpp, interfaceToDate);
-            }
-            
-            SEQSEQ(IDL_string) BootstrapInstruments;
-            vectorAnyToIDL(BootstrapInstruments_any, BootstrapInstruments);
-            std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::DefaultProbabilityTermStructure> >  > BootstrapInstruments_cpp;
-            vectorObjectSharedPtr(BootstrapInstruments, BootstrapInstruments_cpp); 
-            
-            IDL_string DayCounter;
-            QuantLib::DayCounter DayCounter_cpp;
-            if(DayCounter_any.hasValue()) { 
-                scalarAnyToIDL(DayCounter_any, DayCounter);
-                scalarInterfaceToCpp(DayCounter, DayCounter_cpp, QuantLib_DayCounterEnum);
-            }
-            
-            IDL_double Accuracy;
-            double Accuracy_cpp;
-            if(Accuracy_any.hasValue()) { 
-                scalarAnyToIDL(Accuracy_any, Accuracy);
-                scalarInterfaceToCpp(Accuracy, Accuracy_cpp, interfaceToIdentity);
-            }
-            
-            // create addin object
-            bool found=false;
-            if(Traits_cpp==std::string("SurvivalProbability")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-            };
-            if(Traits_cpp==std::string("HazardRate")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-            };
-            if(Traits_cpp==std::string("DefaultDensity")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::Linear>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    object_ = (void *)(new QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::BackwardFlat>(ReferenceDate_cpp, BootstrapInstruments_cpp, DayCounter_cpp, Accuracy_cpp));
-                    found = true;
-                };
-            };
-            if(not found) throw QuantLib_PiecewiseDefaultCurveError();
-        }
-        
-    };
-    
-    void QuantLib_PiecewiseDefaultCurve::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Traits_any;
-            Traits_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Interpolator_any;
-            Interpolator_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            IDL_string Traits;
-            std::string Traits_cpp;
-            if(Traits_any.hasValue()) { 
-                scalarAnyToIDL(Traits_any, Traits);
-                scalarInterfaceToCpp(Traits, Traits_cpp, interfaceToString);
-            }
-            
-            IDL_string Interpolator;
-            std::string Interpolator_cpp;
-            if(Interpolator_any.hasValue()) { 
-                scalarAnyToIDL(Interpolator_any, Interpolator);
-                scalarInterfaceToCpp(Interpolator, Interpolator_cpp, interfaceToString);
-            }
-            
-            if(!object_) return;
-            // delete addin object
-            if(Traits_cpp==std::string("SurvivalProbability")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::Linear>*)(object_);
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::SurvivalProbability,QuantLib::BackwardFlat>*)(object_);
-                };
-            };
-            if(Traits_cpp==std::string("HazardRate")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::Linear>*)(object_);
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::HazardRate,QuantLib::BackwardFlat>*)(object_);
-                };
-            };
-            if(Traits_cpp==std::string("DefaultDensity")) { 
-                if(Interpolator_cpp==std::string("Linear")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::Linear>*)(object_);
-                };
-                if(Interpolator_cpp==std::string("BackwardFlat")) { 
-                    delete (QuantLib::PiecewiseDefaultCurve<QuantLib::DefaultDensity,QuantLib::BackwardFlat>*)(object_);
-                };
-            };
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_BondHelperError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::BondHelper";
-        };
-    };
-    
-    QuantLib_BondHelper::QuantLib_BondHelper(IDL_any Price_any, IDL_any Bond_any, IDL_any UseCleanPrice_any)
-            : ObjectHandler::Object(std::string("QuantLib_BondHelper"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Price_any);
-            arguments_.push_back(Bond_any);
-            arguments_.push_back(UseCleanPrice_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_BondHelper::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::BondHelper" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Price_any;
-            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Bond_any;
-            Bond_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any UseCleanPrice_any;
-            UseCleanPrice_any = boost::any_cast<IDL_any >(arguments_[2]);
-            
-            // parameter conversions 
-            IDL_string Price;
-            QuantLib::Handle<QuantLib::Quote >  Price_cpp;
-            if(Price_any.hasValue()) { 
-                scalarAnyToIDL(Price_any, Price);
-                scalarObjectHandle(Price, Price_cpp); 
-                this->precedentIDs_.insert(getObjectName(Price));
-            }
-            
-            IDL_string Bond;
-            boost::shared_ptr<QuantLib::Bond >  Bond_cpp;
-            if(Bond_any.hasValue()) { 
-                scalarAnyToIDL(Bond_any, Bond);
-                scalarObjectSharedPtr(Bond, Bond_cpp); 
-                this->precedentIDs_.insert(getObjectName(Bond));
-            }
-            
-            IDL_long UseCleanPrice;
-            int UseCleanPrice_cpp;
-            if(UseCleanPrice_any.hasValue()) { 
-                scalarAnyToIDL(UseCleanPrice_any, UseCleanPrice);
-                scalarInterfaceToCpp(UseCleanPrice, UseCleanPrice_cpp, interfaceToIdentity);
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::BondHelper(Price_cpp, Bond_cpp, UseCleanPrice_cpp));
-        }
-        
-    };
-    
-    void QuantLib_BondHelper::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Price_any;
-            Price_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any Bond_any;
-            Bond_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any UseCleanPrice_any;
-            UseCleanPrice_any = boost::any_cast<IDL_any >(arguments_[2]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::BondHelper *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_GeneralizedBlackScholesProcessError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::GeneralizedBlackScholesProcess";
-        };
-    };
-    
-    QuantLib_GeneralizedBlackScholesProcess::QuantLib_GeneralizedBlackScholesProcess(IDL_any Quote_any, IDL_any DividendTS_any, IDL_any RiskFreeTS_any, IDL_any BlackVolTS_any)
-            : ObjectHandler::Object(std::string("QuantLib_GeneralizedBlackScholesProcess"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(Quote_any);
-            arguments_.push_back(DividendTS_any);
-            arguments_.push_back(RiskFreeTS_any);
-            arguments_.push_back(BlackVolTS_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_GeneralizedBlackScholesProcess::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::GeneralizedBlackScholesProcess" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any Quote_any;
-            Quote_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any DividendTS_any;
-            DividendTS_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any RiskFreeTS_any;
-            RiskFreeTS_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any BlackVolTS_any;
-            BlackVolTS_any = boost::any_cast<IDL_any >(arguments_[3]);
-            
-            // parameter conversions 
-            IDL_string Quote;
-            QuantLib::Handle<QuantLib::Quote >  Quote_cpp;
-            if(Quote_any.hasValue()) { 
-                scalarAnyToIDL(Quote_any, Quote);
-                scalarObjectHandle(Quote, Quote_cpp); 
-                this->precedentIDs_.insert(getObjectName(Quote));
-            }
-            
-            IDL_string DividendTS;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  DividendTS_cpp;
-            if(DividendTS_any.hasValue()) { 
-                scalarAnyToIDL(DividendTS_any, DividendTS);
-                scalarObjectHandle(DividendTS, DividendTS_cpp); 
-                this->precedentIDs_.insert(getObjectName(DividendTS));
-            }
-            
-            IDL_string RiskFreeTS;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  RiskFreeTS_cpp;
-            if(RiskFreeTS_any.hasValue()) { 
-                scalarAnyToIDL(RiskFreeTS_any, RiskFreeTS);
-                scalarObjectHandle(RiskFreeTS, RiskFreeTS_cpp); 
-                this->precedentIDs_.insert(getObjectName(RiskFreeTS));
-            }
-            
-            IDL_string BlackVolTS;
-            QuantLib::Handle<QuantLib::BlackVolTermStructure >  BlackVolTS_cpp;
-            if(BlackVolTS_any.hasValue()) { 
-                scalarAnyToIDL(BlackVolTS_any, BlackVolTS);
-                scalarObjectHandle(BlackVolTS, BlackVolTS_cpp); 
-                this->precedentIDs_.insert(getObjectName(BlackVolTS));
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::GeneralizedBlackScholesProcess(Quote_cpp, DividendTS_cpp, RiskFreeTS_cpp, BlackVolTS_cpp));
-        }
-        
-    };
-    
-    void QuantLib_GeneralizedBlackScholesProcess::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any Quote_any;
-            Quote_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any DividendTS_any;
-            DividendTS_any = boost::any_cast<IDL_any >(arguments_[1]);
-            IDL_any RiskFreeTS_any;
-            RiskFreeTS_any = boost::any_cast<IDL_any >(arguments_[2]);
-            IDL_any BlackVolTS_any;
-            BlackVolTS_any = boost::any_cast<IDL_any >(arguments_[3]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::GeneralizedBlackScholesProcess *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    class QuantLib_DiscountingBondEngineError: public std::exception {
-        const char * what () const throw () { 
-            return "Wrong template arguments for QuantLib::DiscountingBondEngine";
-        };
-    };
-    
-    QuantLib_DiscountingBondEngine::QuantLib_DiscountingBondEngine(IDL_any DiscountCurve_any, IDL_any IncludeSettlementDaysFlows_any)
-            : ObjectHandler::Object(std::string("QuantLib_DiscountingBondEngine"))
-        {
-            // set constructor method
-            object_ = 0L;
-            method_ = 0;
-            
-            // store parameters 
-            arguments_.push_back(DiscountCurve_any);
-            arguments_.push_back(IncludeSettlementDaysFlows_any);
-            
-            // call update to create object
-            update();
-        };
-    
-    void QuantLib_DiscountingBondEngine::update() {
-        del();
-        if (method_==0) {
-            // convert back from boost::any
-            std::cerr << "in upate() von QuantLib::DiscountingBondEngine" << std::endl;
-            this->precedentIDs_.clear();
-            IDL_any DiscountCurve_any;
-            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IncludeSettlementDaysFlows_any;
-            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            IDL_string DiscountCurve;
-            QuantLib::Handle<QuantLib::YieldTermStructure >  DiscountCurve_cpp;
-            if(DiscountCurve_any.hasValue()) { 
-                scalarAnyToIDL(DiscountCurve_any, DiscountCurve);
-                scalarObjectHandle(DiscountCurve, DiscountCurve_cpp); 
-                this->precedentIDs_.insert(getObjectName(DiscountCurve));
-            }
-            
-            IDL_long IncludeSettlementDaysFlows;
-            int IncludeSettlementDaysFlows_cpp;
-            if(IncludeSettlementDaysFlows_any.hasValue()) { 
-                scalarAnyToIDL(IncludeSettlementDaysFlows_any, IncludeSettlementDaysFlows);
-                scalarInterfaceToCpp(IncludeSettlementDaysFlows, IncludeSettlementDaysFlows_cpp, interfaceToIdentity);
-            } else { 
-                IncludeSettlementDaysFlows_cpp = false; 
-            }
-            
-            // create addin object
-            object_ = (void *)(new QuantLib::DiscountingBondEngine(DiscountCurve_cpp, IncludeSettlementDaysFlows_cpp));
-        }
-        
-    };
-    
-    void QuantLib_DiscountingBondEngine::del() {
-        if (method_==0) {
-            // convert back from boost::any
-            IDL_any DiscountCurve_any;
-            DiscountCurve_any = boost::any_cast<IDL_any >(arguments_[0]);
-            IDL_any IncludeSettlementDaysFlows_any;
-            IncludeSettlementDaysFlows_any = boost::any_cast<IDL_any >(arguments_[1]);
-            
-            // parameter conversions 
-            if(!object_) return;
-            // delete addin object
-            delete (QuantLib::DiscountingBondEngine *)(object_);
-        }
-        object_ = (void *)(0L);
-    };
-    
-    void QuantLib_Instrument::setPricingEngine(IDL_any ObjectId_any, IDL_any PricingEngine_any)
+    double QuantLib_DayCounter::yearFraction(IDL_any ObjectId_any, IDL_any StartDate_any, IDL_any EndDate_any)
     {
         
         // parameter conversions 
@@ -4061,18 +4230,83 @@ namespace Addin {
             scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
         }
         
-        IDL_string PricingEngine;
-        boost::shared_ptr<QuantLib::PricingEngine >  PricingEngine_cpp;
-        if(PricingEngine_any.hasValue()) { 
-            scalarAnyToIDL(PricingEngine_any, PricingEngine);
-            scalarObjectSharedPtr(PricingEngine, PricingEngine_cpp); 
+        IDL_long StartDate;
+        QuantLib::Date StartDate_cpp;
+        if(StartDate_any.hasValue()) { 
+            scalarAnyToIDL(StartDate_any, StartDate);
+            scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
+        }
+        
+        IDL_long EndDate;
+        QuantLib::Date EndDate_cpp;
+        if(EndDate_any.hasValue()) { 
+            scalarAnyToIDL(EndDate_any, EndDate);
+            scalarInterfaceToCpp(EndDate, EndDate_cpp, interfaceToDate);
         }
         
     
-        QuantLib::Instrument *ObjectId_ref = (static_cast<QuantLib::Instrument *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return ObjectId_ref->setPricingEngine(PricingEngine_cpp);
+        // convert enumerated type
+        QuantLib::DayCounter ObjectIdEnum_cpp;
+        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
+        // return value   
+
+        return ObjectIdEnum_cpp.yearFraction(StartDate_cpp, EndDate_cpp);
     };
+    
+    QuantLib::BigInteger QuantLib_DayCounter::dayCount(IDL_any ObjectId_any, IDL_any StartDate_any, IDL_any EndDate_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_long StartDate;
+        QuantLib::Date StartDate_cpp;
+        if(StartDate_any.hasValue()) { 
+            scalarAnyToIDL(StartDate_any, StartDate);
+            scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
+        }
+        
+        IDL_long EndDate;
+        QuantLib::Date EndDate_cpp;
+        if(EndDate_any.hasValue()) { 
+            scalarAnyToIDL(EndDate_any, EndDate);
+            scalarInterfaceToCpp(EndDate, EndDate_cpp, interfaceToDate);
+        }
+        
+    
+        // convert enumerated type
+        QuantLib::DayCounter ObjectIdEnum_cpp;
+        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
+        // return value   
+
+        return ObjectIdEnum_cpp.dayCount(StartDate_cpp, EndDate_cpp);
+    };
+    
+    std::string QuantLib_DayCounter::name(IDL_any ObjectId_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+    
+        // convert enumerated type
+        QuantLib::DayCounter ObjectIdEnum_cpp;
+        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
+        // return value   
+
+        return ObjectIdEnum_cpp.name();
+    };
+    
     
     QuantLib::Real QuantLib_Instrument::NPV(IDL_any ObjectId_any)
     {
@@ -4108,6 +4342,139 @@ namespace Addin {
         return ObjectId_ref->isExpired();
     };
     
+    void QuantLib_Instrument::setPricingEngine(IDL_any ObjectId_any, IDL_any PricingEngine_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_string PricingEngine;
+        boost::shared_ptr<QuantLib::PricingEngine >  PricingEngine_cpp;
+        if(PricingEngine_any.hasValue()) { 
+            scalarAnyToIDL(PricingEngine_any, PricingEngine);
+            scalarObjectSharedPtr(PricingEngine, PricingEngine_cpp); 
+        }
+        
+    
+        QuantLib::Instrument *ObjectId_ref = (static_cast<QuantLib::Instrument *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return ObjectId_ref->setPricingEngine(PricingEngine_cpp);
+    };
+    
+    
+    QuantLib::Currency QuantLib_RiskyBond::ccy(IDL_any ObjectId_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+    
+        QuantLib::RiskyBond *ObjectId_ref = (static_cast<QuantLib::RiskyBond *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return ObjectId_ref->ccy();
+    };
+    
+    
+    QuantLib::Real QuantLib_Interpolation2D::addinOperator(IDL_any ObjectId_any, IDL_any X_any, IDL_any Y_any, IDL_any Extrapolate_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_double X;
+        double X_cpp;
+        if(X_any.hasValue()) { 
+            scalarAnyToIDL(X_any, X);
+            scalarInterfaceToCpp(X, X_cpp, interfaceToIdentity);
+        }
+        
+        IDL_double Y;
+        double Y_cpp;
+        if(Y_any.hasValue()) { 
+            scalarAnyToIDL(Y_any, Y);
+            scalarInterfaceToCpp(Y, Y_cpp, interfaceToIdentity);
+        }
+        
+        IDL_long Extrapolate;
+        int Extrapolate_cpp;
+        if(Extrapolate_any.hasValue()) { 
+            scalarAnyToIDL(Extrapolate_any, Extrapolate);
+            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
+        }
+        
+    
+        QuantLib::Interpolation2D *ObjectId_ref = (static_cast<QuantLib::Interpolation2D *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return (*ObjectId_ref)(X_cpp, Y_cpp, Extrapolate_cpp);
+    };
+    
+    
+    QuantLib::DiscountFactor QuantLib_YieldTermStructure::discount(IDL_any ObjectId_any, IDL_any Date_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_long Date;
+        QuantLib::Date Date_cpp;
+        if(Date_any.hasValue()) { 
+            scalarAnyToIDL(Date_any, Date);
+            scalarInterfaceToCpp(Date, Date_cpp, interfaceToDate);
+        }
+        
+    
+        QuantLib::YieldTermStructure *ObjectId_ref = (static_cast<QuantLib::YieldTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return ObjectId_ref->discount(Date_cpp);
+    };
+    
+    
+    bool QuantLib_Calendar::isBusinessDay(IDL_any ObjectId_any, IDL_any Date_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_long Date;
+        QuantLib::Date Date_cpp;
+        if(Date_any.hasValue()) { 
+            scalarAnyToIDL(Date_any, Date);
+            scalarInterfaceToCpp(Date, Date_cpp, interfaceToDate);
+        }
+        
+    
+        // convert enumerated type
+        QuantLib::Calendar ObjectIdEnum_cpp;
+        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_CalendarEnum);
+        // return value   
+
+        return ObjectIdEnum_cpp.isBusinessDay(Date_cpp);
+    };
     
     bool QuantLib_Calendar::isHoliday(IDL_any ObjectId_any, IDL_any Date_any)
     {
@@ -4204,7 +4571,40 @@ namespace Addin {
         return ObjectIdEnum_cpp.name();
     };
     
-    bool QuantLib_Calendar::isBusinessDay(IDL_any ObjectId_any, IDL_any Date_any)
+    
+    QuantLib::Real QuantLib_Interpolation::addinOperator(IDL_any ObjectId_any, IDL_any X_any, IDL_any Extrapolate_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+        IDL_double X;
+        double X_cpp;
+        if(X_any.hasValue()) { 
+            scalarAnyToIDL(X_any, X);
+            scalarInterfaceToCpp(X, X_cpp, interfaceToIdentity);
+        }
+        
+        IDL_long Extrapolate;
+        int Extrapolate_cpp;
+        if(Extrapolate_any.hasValue()) { 
+            scalarAnyToIDL(Extrapolate_any, Extrapolate);
+            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
+        }
+        
+    
+        QuantLib::Interpolation *ObjectId_ref = (static_cast<QuantLib::Interpolation *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return (*ObjectId_ref)(X_cpp, Extrapolate_cpp);
+    };
+    
+    
+    QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::defaultDensity(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
     {
         
         // parameter conversions 
@@ -4222,33 +4622,20 @@ namespace Addin {
             scalarInterfaceToCpp(Date, Date_cpp, interfaceToDate);
         }
         
-    
-        // convert enumerated type
-        QuantLib::Calendar ObjectIdEnum_cpp;
-        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_CalendarEnum);
-        // return value   
-
-        return ObjectIdEnum_cpp.isBusinessDay(Date_cpp);
-    };
-    
-    
-    QuantLib::Real QuantLib_Quote::value(IDL_any ObjectId_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        IDL_long Extrapolate;
+        int Extrapolate_cpp;
+        if(Extrapolate_any.hasValue()) { 
+            scalarAnyToIDL(Extrapolate_any, Extrapolate);
+            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
+        } else { 
+            Extrapolate_cpp = false; 
         }
         
     
-        QuantLib::Quote *ObjectId_ref = (static_cast<QuantLib::Quote *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        QuantLib::DefaultProbabilityTermStructure *ObjectId_ref = (static_cast<QuantLib::DefaultProbabilityTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
         // return value  
-        return ObjectId_ref->value();
+        return ObjectId_ref->defaultDensity(Date_cpp, Extrapolate_cpp);
     };
-    
     
     QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::survivalProbability(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
     {
@@ -4281,39 +4668,6 @@ namespace Addin {
         QuantLib::DefaultProbabilityTermStructure *ObjectId_ref = (static_cast<QuantLib::DefaultProbabilityTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
         // return value  
         return ObjectId_ref->survivalProbability(Date_cpp, Extrapolate_cpp);
-    };
-    
-    QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::hazardRate(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_long Date;
-        QuantLib::Date Date_cpp;
-        if(Date_any.hasValue()) { 
-            scalarAnyToIDL(Date_any, Date);
-            scalarInterfaceToCpp(Date, Date_cpp, interfaceToDate);
-        }
-        
-        IDL_long Extrapolate;
-        int Extrapolate_cpp;
-        if(Extrapolate_any.hasValue()) { 
-            scalarAnyToIDL(Extrapolate_any, Extrapolate);
-            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
-        } else { 
-            Extrapolate_cpp = false; 
-        }
-        
-    
-        QuantLib::DefaultProbabilityTermStructure *ObjectId_ref = (static_cast<QuantLib::DefaultProbabilityTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return ObjectId_ref->hazardRate(Date_cpp, Extrapolate_cpp);
     };
     
     QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::defaultProbability(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
@@ -4349,7 +4703,7 @@ namespace Addin {
         return ObjectId_ref->defaultProbability(Date_cpp, Extrapolate_cpp);
     };
     
-    QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::defaultDensity(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
+    QuantLib::Probability QuantLib_DefaultProbabilityTermStructure::hazardRate(IDL_any ObjectId_any, IDL_any Date_any, IDL_any Extrapolate_any)
     {
         
         // parameter conversions 
@@ -4379,192 +4733,7 @@ namespace Addin {
     
         QuantLib::DefaultProbabilityTermStructure *ObjectId_ref = (static_cast<QuantLib::DefaultProbabilityTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
         // return value  
-        return ObjectId_ref->defaultDensity(Date_cpp, Extrapolate_cpp);
-    };
-    
-    
-    QuantLib::Real QuantLib_Interpolation::addinOperator(IDL_any ObjectId_any, IDL_any X_any, IDL_any Extrapolate_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_double X;
-        double X_cpp;
-        if(X_any.hasValue()) { 
-            scalarAnyToIDL(X_any, X);
-            scalarInterfaceToCpp(X, X_cpp, interfaceToIdentity);
-        }
-        
-        IDL_long Extrapolate;
-        int Extrapolate_cpp;
-        if(Extrapolate_any.hasValue()) { 
-            scalarAnyToIDL(Extrapolate_any, Extrapolate);
-            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
-        }
-        
-    
-        QuantLib::Interpolation *ObjectId_ref = (static_cast<QuantLib::Interpolation *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return (*ObjectId_ref)(X_cpp, Extrapolate_cpp);
-    };
-    
-    
-    QuantLib::Real QuantLib_Interpolation2D::addinOperator(IDL_any ObjectId_any, IDL_any X_any, IDL_any Y_any, IDL_any Extrapolate_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_double X;
-        double X_cpp;
-        if(X_any.hasValue()) { 
-            scalarAnyToIDL(X_any, X);
-            scalarInterfaceToCpp(X, X_cpp, interfaceToIdentity);
-        }
-        
-        IDL_double Y;
-        double Y_cpp;
-        if(Y_any.hasValue()) { 
-            scalarAnyToIDL(Y_any, Y);
-            scalarInterfaceToCpp(Y, Y_cpp, interfaceToIdentity);
-        }
-        
-        IDL_long Extrapolate;
-        int Extrapolate_cpp;
-        if(Extrapolate_any.hasValue()) { 
-            scalarAnyToIDL(Extrapolate_any, Extrapolate);
-            scalarInterfaceToCpp(Extrapolate, Extrapolate_cpp, interfaceToIdentity);
-        }
-        
-    
-        QuantLib::Interpolation2D *ObjectId_ref = (static_cast<QuantLib::Interpolation2D *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return (*ObjectId_ref)(X_cpp, Y_cpp, Extrapolate_cpp);
-    };
-    
-    
-    QuantLib::BigInteger QuantLib_DayCounter::dayCount(IDL_any ObjectId_any, IDL_any StartDate_any, IDL_any EndDate_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_long StartDate;
-        QuantLib::Date StartDate_cpp;
-        if(StartDate_any.hasValue()) { 
-            scalarAnyToIDL(StartDate_any, StartDate);
-            scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
-        }
-        
-        IDL_long EndDate;
-        QuantLib::Date EndDate_cpp;
-        if(EndDate_any.hasValue()) { 
-            scalarAnyToIDL(EndDate_any, EndDate);
-            scalarInterfaceToCpp(EndDate, EndDate_cpp, interfaceToDate);
-        }
-        
-    
-        // convert enumerated type
-        QuantLib::DayCounter ObjectIdEnum_cpp;
-        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
-        // return value   
-
-        return ObjectIdEnum_cpp.dayCount(StartDate_cpp, EndDate_cpp);
-    };
-    
-    double QuantLib_DayCounter::yearFraction(IDL_any ObjectId_any, IDL_any StartDate_any, IDL_any EndDate_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_long StartDate;
-        QuantLib::Date StartDate_cpp;
-        if(StartDate_any.hasValue()) { 
-            scalarAnyToIDL(StartDate_any, StartDate);
-            scalarInterfaceToCpp(StartDate, StartDate_cpp, interfaceToDate);
-        }
-        
-        IDL_long EndDate;
-        QuantLib::Date EndDate_cpp;
-        if(EndDate_any.hasValue()) { 
-            scalarAnyToIDL(EndDate_any, EndDate);
-            scalarInterfaceToCpp(EndDate, EndDate_cpp, interfaceToDate);
-        }
-        
-    
-        // convert enumerated type
-        QuantLib::DayCounter ObjectIdEnum_cpp;
-        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
-        // return value   
-
-        return ObjectIdEnum_cpp.yearFraction(StartDate_cpp, EndDate_cpp);
-    };
-    
-    std::string QuantLib_DayCounter::name(IDL_any ObjectId_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-    
-        // convert enumerated type
-        QuantLib::DayCounter ObjectIdEnum_cpp;
-        scalarInterfaceToCpp(ObjectId, ObjectIdEnum_cpp, QuantLib_DayCounterEnum);
-        // return value   
-
-        return ObjectIdEnum_cpp.name();
-    };
-    
-    
-    QuantLib::DiscountFactor QuantLib_YieldTermStructure::discount(IDL_any ObjectId_any, IDL_any Date_any)
-    {
-        
-        // parameter conversions 
-        IDL_string ObjectId;
-        std::string ObjectId_cpp;
-        if(ObjectId_any.hasValue()) { 
-            scalarAnyToIDL(ObjectId_any, ObjectId);
-            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
-        }
-        
-        IDL_long Date;
-        QuantLib::Date Date_cpp;
-        if(Date_any.hasValue()) { 
-            scalarAnyToIDL(Date_any, Date);
-            scalarInterfaceToCpp(Date, Date_cpp, interfaceToDate);
-        }
-        
-    
-        QuantLib::YieldTermStructure *ObjectId_ref = (static_cast<QuantLib::YieldTermStructure *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
-        // return value  
-        return ObjectId_ref->discount(Date_cpp);
+        return ObjectId_ref->hazardRate(Date_cpp, Extrapolate_cpp);
     };
     
     
@@ -4607,6 +4776,24 @@ namespace Addin {
     };
     
     
+    QuantLib::Real QuantLib_Quote::value(IDL_any ObjectId_any)
+    {
+        
+        // parameter conversions 
+        IDL_string ObjectId;
+        std::string ObjectId_cpp;
+        if(ObjectId_any.hasValue()) { 
+            scalarAnyToIDL(ObjectId_any, ObjectId);
+            scalarInterfaceToCpp(ObjectId, ObjectId_cpp, interfaceToString);
+        }
+        
+    
+        QuantLib::Quote *ObjectId_ref = (static_cast<QuantLib::Quote *>(OH_GET_OBJECT_SIMPLE(ObjectId_cpp)->get()));
+        // return value  
+        return ObjectId_ref->value();
+    };
+    
+    
     void Addin_AddinSettings_setEvaluationDate(IDL_any Date_any)
     {
         
@@ -4623,327 +4810,27 @@ namespace Addin {
     };
     
     
-    // generating data for QuantLib::DateGeneration::Rule 
+    // generating data for QuantLib::VanillaSwap::Type 
     
-    class QuantLib_DateGeneration_RuleError: public std::exception {
+    class QuantLib_VanillaSwap_TypeError: public std::exception {
         const char * what () const throw () { 
-            return "No conversion defined for QuantLib::DateGeneration::Rule";
+            return "No conversion defined for QuantLib::VanillaSwap::Type";
         };
     };
     
-    void QuantLib_DateGeneration_RuleEnum(IDL_string fromtyp, QuantLib::DateGeneration::Rule &totyp){
+    void QuantLib_VanillaSwap_TypeEnum(IDL_string fromtyp, QuantLib::VanillaSwap::Type &totyp){
         std::string fromtyp_cpp;
         scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
         
-        if(fromtyp_cpp==std::string("TwentiethIMM")) { 
-            totyp = QuantLib::DateGeneration::TwentiethIMM;
+        if(fromtyp_cpp==std::string("Payer")) { 
+            totyp = QuantLib::VanillaSwap::Payer;
             return;
         };
-        if(fromtyp_cpp==std::string("CDS")) { 
-            totyp = QuantLib::DateGeneration::CDS;
+        if(fromtyp_cpp==std::string("Receiver")) { 
+            totyp = QuantLib::VanillaSwap::Receiver;
             return;
         };
-        if(fromtyp_cpp==std::string("Forward")) { 
-            totyp = QuantLib::DateGeneration::Forward;
-            return;
-        };
-        if(fromtyp_cpp==std::string("OldCDS")) { 
-            totyp = QuantLib::DateGeneration::OldCDS;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Backward")) { 
-            totyp = QuantLib::DateGeneration::Backward;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Twentieth")) { 
-            totyp = QuantLib::DateGeneration::Twentieth;
-            return;
-        };
-        if(fromtyp_cpp==std::string("ThirdWednesday")) { 
-            totyp = QuantLib::DateGeneration::ThirdWednesday;
-            return;
-        };
-        throw QuantLib_DateGeneration_RuleError();
-    };
-    
-    // generating data for QuantLib::BusinessDayConvention 
-    
-    class QuantLib_BusinessDayConventionError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::BusinessDayConvention";
-        };
-    };
-    
-    void QuantLib_BusinessDayConventionEnum(IDL_string fromtyp, QuantLib::BusinessDayConvention &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("Modified Following")) { 
-            totyp = QuantLib::ModifiedFollowing;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Preceding")) { 
-            totyp = QuantLib::Preceding;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Unadjusted")) { 
-            totyp = QuantLib::Unadjusted;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Nearest")) { 
-            totyp = QuantLib::Nearest;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Modified Preceding")) { 
-            totyp = QuantLib::ModifiedPreceding;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Following")) { 
-            totyp = QuantLib::Following;
-            return;
-        };
-        throw QuantLib_BusinessDayConventionError();
-    };
-    
-    void QuantLib_BusinessDayConventionBack(QuantLib::BusinessDayConvention fromtyp, std::string &totyp) {
-        std::stringstream s;
-        s << fromtyp;
-        totyp = s.str();
-    };
-    
-    // generating data for QuantLib::Frequency 
-    
-    class QuantLib_FrequencyError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::Frequency";
-        };
-    };
-    
-    void QuantLib_FrequencyEnum(IDL_string fromtyp, QuantLib::Frequency &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("Monthly")) { 
-            totyp = QuantLib::Monthly;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Weekly")) { 
-            totyp = QuantLib::Weekly;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Bimonthly")) { 
-            totyp = QuantLib::Bimonthly;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Annual")) { 
-            totyp = QuantLib::Annual;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Quarterly")) { 
-            totyp = QuantLib::Quarterly;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Every-Fourth-Week")) { 
-            totyp = QuantLib::EveryFourthWeek;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Semiannual")) { 
-            totyp = QuantLib::Semiannual;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Every-Fourth-Month")) { 
-            totyp = QuantLib::EveryFourthMonth;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Once")) { 
-            totyp = QuantLib::Once;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Biweekly")) { 
-            totyp = QuantLib::Biweekly;
-            return;
-        };
-        if(fromtyp_cpp==std::string("No-Frequency")) { 
-            totyp = QuantLib::NoFrequency;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Daily")) { 
-            totyp = QuantLib::Daily;
-            return;
-        };
-        throw QuantLib_FrequencyError();
-    };
-    
-    void QuantLib_FrequencyBack(QuantLib::Frequency fromtyp, std::string &totyp) {
-        std::stringstream s;
-        s << fromtyp;
-        totyp = s.str();
-    };
-    
-    // generating data for QuantLib::Pillar::Choice 
-    
-    class QuantLib_Pillar_ChoiceError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::Pillar::Choice";
-        };
-    };
-    
-    void QuantLib_Pillar_ChoiceEnum(IDL_string fromtyp, QuantLib::Pillar::Choice &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("CustomDate")) { 
-            totyp = QuantLib::Pillar::CustomDate;
-            return;
-        };
-        if(fromtyp_cpp==std::string("MaturityDate")) { 
-            totyp = QuantLib::Pillar::MaturityDate;
-            return;
-        };
-        if(fromtyp_cpp==std::string("LastRelevantDate")) { 
-            totyp = QuantLib::Pillar::LastRelevantDate;
-            return;
-        };
-        throw QuantLib_Pillar_ChoiceError();
-    };
-    
-    void QuantLib_Pillar_ChoiceBack(QuantLib::Pillar::Choice fromtyp, std::string &totyp) {
-        std::stringstream s;
-        s << fromtyp;
-        totyp = s.str();
-    };
-    
-    // generating data for QuantLib::DayCounter 
-    
-    class QuantLib_DayCounterError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::DayCounter";
-        };
-    };
-    
-    void QuantLib_DayCounterEnum(IDL_string fromtyp, QuantLib::DayCounter &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("Actual/Actual")) { 
-            totyp = QuantLib::ActualActual();
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/Actual (ISMA)")) { 
-            totyp = QuantLib::ActualActual(QuantLib::ActualActual::ISMA);
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/365 (Fixed)")) { 
-            totyp = QuantLib::Actual365Fixed();
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/365 (NL)")) { 
-            totyp = QuantLib::Actual365NoLeap();
-            return;
-        };
-        if(fromtyp_cpp==std::string("30/360 (Eurobond Basis)")) { 
-            totyp = QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis);
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/360")) { 
-            totyp = QuantLib::Actual360();
-            return;
-        };
-        if(fromtyp_cpp==std::string("30/360 (Bond Basis)")) { 
-            totyp = QuantLib::Thirty360(QuantLib::Thirty360::BondBasis);
-            return;
-        };
-        if(fromtyp_cpp==std::string("Simple")) { 
-            totyp = QuantLib::SimpleDayCounter();
-            return;
-        };
-        if(fromtyp_cpp==std::string("30/360 (Italian)")) { 
-            totyp = QuantLib::Thirty360(QuantLib::Thirty360::Italian);
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/Actual (ISDA)")) { 
-            totyp = QuantLib::ActualActual(QuantLib::ActualActual::ISDA);
-            return;
-        };
-        if(fromtyp_cpp==std::string("Actual/Actual (AFB)")) { 
-            totyp = QuantLib::ActualActual(QuantLib::ActualActual::AFB);
-            return;
-        };
-        if(fromtyp_cpp==std::string("30/360")) { 
-            totyp = QuantLib::Thirty360();
-            return;
-        };
-        throw QuantLib_DayCounterError();
-    };
-    
-    void QuantLib_DayCounterBack(QuantLib::DayCounter fromtyp, std::string &totyp) {
-        totyp = fromtyp.name();
-    };
-    
-    // generating data for QuantLib::TimeUnit 
-    
-    class QuantLib_TimeUnitError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::TimeUnit";
-        };
-    };
-    
-    void QuantLib_TimeUnitEnum(IDL_string fromtyp, QuantLib::TimeUnit &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("Months")) { 
-            totyp = QuantLib::Months;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Days")) { 
-            totyp = QuantLib::Days;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Years")) { 
-            totyp = QuantLib::Years;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Weeks")) { 
-            totyp = QuantLib::Weeks;
-            return;
-        };
-        throw QuantLib_TimeUnitError();
-    };
-    
-    void QuantLib_TimeUnitBack(QuantLib::TimeUnit fromtyp, std::string &totyp) {
-        std::stringstream s;
-        s << fromtyp;
-        totyp = s.str();
-    };
-    
-    // generating data for QuantLib::Futures::Type 
-    
-    class QuantLib_Futures_TypeError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::Futures::Type";
-        };
-    };
-    
-    void QuantLib_Futures_TypeEnum(IDL_string fromtyp, QuantLib::Futures::Type &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("ASX")) { 
-            totyp = QuantLib::Futures::ASX;
-            return;
-        };
-        if(fromtyp_cpp==std::string("IMM")) { 
-            totyp = QuantLib::Futures::IMM;
-            return;
-        };
-        throw QuantLib_Futures_TypeError();
-    };
-    
-    void QuantLib_Futures_TypeBack(QuantLib::Futures::Type fromtyp, std::string &totyp) {
-        std::stringstream s;
-        s << fromtyp;
-        totyp = s.str();
+        throw QuantLib_VanillaSwap_TypeError();
     };
     
     // generating data for QuantLib::Calendar 
@@ -4973,29 +4860,6 @@ namespace Addin {
         totyp = fromtyp.name();
     };
     
-    // generating data for QuantLib::VanillaSwap::Type 
-    
-    class QuantLib_VanillaSwap_TypeError: public std::exception {
-        const char * what () const throw () { 
-            return "No conversion defined for QuantLib::VanillaSwap::Type";
-        };
-    };
-    
-    void QuantLib_VanillaSwap_TypeEnum(IDL_string fromtyp, QuantLib::VanillaSwap::Type &totyp){
-        std::string fromtyp_cpp;
-        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
-        
-        if(fromtyp_cpp==std::string("Receiver")) { 
-            totyp = QuantLib::VanillaSwap::Receiver;
-            return;
-        };
-        if(fromtyp_cpp==std::string("Payer")) { 
-            totyp = QuantLib::VanillaSwap::Payer;
-            return;
-        };
-        throw QuantLib_VanillaSwap_TypeError();
-    };
-    
     // generating data for QuantLib::BlackVarianceSurface::Extrapolation 
     
     class QuantLib_BlackVarianceSurface_ExtrapolationError: public std::exception {
@@ -5019,6 +4883,319 @@ namespace Addin {
         throw QuantLib_BlackVarianceSurface_ExtrapolationError();
     };
     
+    // generating data for QuantLib::Frequency 
+    
+    class QuantLib_FrequencyError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::Frequency";
+        };
+    };
+    
+    void QuantLib_FrequencyEnum(IDL_string fromtyp, QuantLib::Frequency &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("Quarterly")) { 
+            totyp = QuantLib::Quarterly;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Annual")) { 
+            totyp = QuantLib::Annual;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Daily")) { 
+            totyp = QuantLib::Daily;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Weekly")) { 
+            totyp = QuantLib::Weekly;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Every-Fourth-Week")) { 
+            totyp = QuantLib::EveryFourthWeek;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Semiannual")) { 
+            totyp = QuantLib::Semiannual;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Biweekly")) { 
+            totyp = QuantLib::Biweekly;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Monthly")) { 
+            totyp = QuantLib::Monthly;
+            return;
+        };
+        if(fromtyp_cpp==std::string("No-Frequency")) { 
+            totyp = QuantLib::NoFrequency;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Once")) { 
+            totyp = QuantLib::Once;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Every-Fourth-Month")) { 
+            totyp = QuantLib::EveryFourthMonth;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Bimonthly")) { 
+            totyp = QuantLib::Bimonthly;
+            return;
+        };
+        throw QuantLib_FrequencyError();
+    };
+    
+    void QuantLib_FrequencyBack(QuantLib::Frequency fromtyp, std::string &totyp) {
+        std::stringstream s;
+        s << fromtyp;
+        totyp = s.str();
+    };
+    
+    // generating data for QuantLib::BusinessDayConvention 
+    
+    class QuantLib_BusinessDayConventionError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::BusinessDayConvention";
+        };
+    };
+    
+    void QuantLib_BusinessDayConventionEnum(IDL_string fromtyp, QuantLib::BusinessDayConvention &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("Following")) { 
+            totyp = QuantLib::Following;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Unadjusted")) { 
+            totyp = QuantLib::Unadjusted;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Modified Following")) { 
+            totyp = QuantLib::ModifiedFollowing;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Preceding")) { 
+            totyp = QuantLib::Preceding;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Modified Preceding")) { 
+            totyp = QuantLib::ModifiedPreceding;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Nearest")) { 
+            totyp = QuantLib::Nearest;
+            return;
+        };
+        throw QuantLib_BusinessDayConventionError();
+    };
+    
+    void QuantLib_BusinessDayConventionBack(QuantLib::BusinessDayConvention fromtyp, std::string &totyp) {
+        std::stringstream s;
+        s << fromtyp;
+        totyp = s.str();
+    };
+    
+    // generating data for QuantLib::DayCounter 
+    
+    class QuantLib_DayCounterError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::DayCounter";
+        };
+    };
+    
+    void QuantLib_DayCounterEnum(IDL_string fromtyp, QuantLib::DayCounter &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("30/360 (Eurobond Basis)")) { 
+            totyp = QuantLib::Thirty360(QuantLib::Thirty360::EurobondBasis);
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/Actual (AFB)")) { 
+            totyp = QuantLib::ActualActual(QuantLib::ActualActual::AFB);
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/360")) { 
+            totyp = QuantLib::Actual360();
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/Actual (ISDA)")) { 
+            totyp = QuantLib::ActualActual(QuantLib::ActualActual::ISDA);
+            return;
+        };
+        if(fromtyp_cpp==std::string("30/360")) { 
+            totyp = QuantLib::Thirty360();
+            return;
+        };
+        if(fromtyp_cpp==std::string("30/360 (Italian)")) { 
+            totyp = QuantLib::Thirty360(QuantLib::Thirty360::Italian);
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/365 (NL)")) { 
+            totyp = QuantLib::Actual365NoLeap();
+            return;
+        };
+        if(fromtyp_cpp==std::string("30/360 (Bond Basis)")) { 
+            totyp = QuantLib::Thirty360(QuantLib::Thirty360::BondBasis);
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/365 (Fixed)")) { 
+            totyp = QuantLib::Actual365Fixed();
+            return;
+        };
+        if(fromtyp_cpp==std::string("Simple")) { 
+            totyp = QuantLib::SimpleDayCounter();
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/Actual")) { 
+            totyp = QuantLib::ActualActual();
+            return;
+        };
+        if(fromtyp_cpp==std::string("Actual/Actual (ISMA)")) { 
+            totyp = QuantLib::ActualActual(QuantLib::ActualActual::ISMA);
+            return;
+        };
+        throw QuantLib_DayCounterError();
+    };
+    
+    void QuantLib_DayCounterBack(QuantLib::DayCounter fromtyp, std::string &totyp) {
+        totyp = fromtyp.name();
+    };
+    
+    // generating data for QuantLib::Currency 
+    
+    class QuantLib_CurrencyError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::Currency";
+        };
+    };
+    
+    void QuantLib_CurrencyEnum(IDL_string fromtyp, QuantLib::Currency &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("CZK")) { 
+            totyp = QuantLib::CZKCurrency();
+            return;
+        };
+        if(fromtyp_cpp==std::string("EUR")) { 
+            totyp = QuantLib::EURCurrency();
+            return;
+        };
+        throw QuantLib_CurrencyError();
+    };
+    
+    void QuantLib_CurrencyBack(QuantLib::Currency fromtyp, std::string &totyp) {
+        totyp = fromtyp.name();
+    };
+    
+    // generating data for QuantLib::Pillar::Choice 
+    
+    class QuantLib_Pillar_ChoiceError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::Pillar::Choice";
+        };
+    };
+    
+    void QuantLib_Pillar_ChoiceEnum(IDL_string fromtyp, QuantLib::Pillar::Choice &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("LastRelevantDate")) { 
+            totyp = QuantLib::Pillar::LastRelevantDate;
+            return;
+        };
+        if(fromtyp_cpp==std::string("CustomDate")) { 
+            totyp = QuantLib::Pillar::CustomDate;
+            return;
+        };
+        if(fromtyp_cpp==std::string("MaturityDate")) { 
+            totyp = QuantLib::Pillar::MaturityDate;
+            return;
+        };
+        throw QuantLib_Pillar_ChoiceError();
+    };
+    
+    void QuantLib_Pillar_ChoiceBack(QuantLib::Pillar::Choice fromtyp, std::string &totyp) {
+        std::stringstream s;
+        s << fromtyp;
+        totyp = s.str();
+    };
+    
+    // generating data for QuantLib::DateGeneration::Rule 
+    
+    class QuantLib_DateGeneration_RuleError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::DateGeneration::Rule";
+        };
+    };
+    
+    void QuantLib_DateGeneration_RuleEnum(IDL_string fromtyp, QuantLib::DateGeneration::Rule &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("Backward")) { 
+            totyp = QuantLib::DateGeneration::Backward;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Twentieth")) { 
+            totyp = QuantLib::DateGeneration::Twentieth;
+            return;
+        };
+        if(fromtyp_cpp==std::string("OldCDS")) { 
+            totyp = QuantLib::DateGeneration::OldCDS;
+            return;
+        };
+        if(fromtyp_cpp==std::string("CDS")) { 
+            totyp = QuantLib::DateGeneration::CDS;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Forward")) { 
+            totyp = QuantLib::DateGeneration::Forward;
+            return;
+        };
+        if(fromtyp_cpp==std::string("ThirdWednesday")) { 
+            totyp = QuantLib::DateGeneration::ThirdWednesday;
+            return;
+        };
+        if(fromtyp_cpp==std::string("TwentiethIMM")) { 
+            totyp = QuantLib::DateGeneration::TwentiethIMM;
+            return;
+        };
+        throw QuantLib_DateGeneration_RuleError();
+    };
+    
+    // generating data for QuantLib::Futures::Type 
+    
+    class QuantLib_Futures_TypeError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::Futures::Type";
+        };
+    };
+    
+    void QuantLib_Futures_TypeEnum(IDL_string fromtyp, QuantLib::Futures::Type &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("IMM")) { 
+            totyp = QuantLib::Futures::IMM;
+            return;
+        };
+        if(fromtyp_cpp==std::string("ASX")) { 
+            totyp = QuantLib::Futures::ASX;
+            return;
+        };
+        throw QuantLib_Futures_TypeError();
+    };
+    
+    void QuantLib_Futures_TypeBack(QuantLib::Futures::Type fromtyp, std::string &totyp) {
+        std::stringstream s;
+        s << fromtyp;
+        totyp = s.str();
+    };
+    
     // generating data for QuantLib::Option::Type 
     
     class QuantLib_Option_TypeError: public std::exception {
@@ -5031,15 +5208,52 @@ namespace Addin {
         std::string fromtyp_cpp;
         scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
         
-        if(fromtyp_cpp==std::string("Call")) { 
-            totyp = QuantLib::Option::Call;
-            return;
-        };
         if(fromtyp_cpp==std::string("Put")) { 
             totyp = QuantLib::Option::Put;
             return;
         };
+        if(fromtyp_cpp==std::string("Call")) { 
+            totyp = QuantLib::Option::Call;
+            return;
+        };
         throw QuantLib_Option_TypeError();
+    };
+    
+    // generating data for QuantLib::TimeUnit 
+    
+    class QuantLib_TimeUnitError: public std::exception {
+        const char * what () const throw () { 
+            return "No conversion defined for QuantLib::TimeUnit";
+        };
+    };
+    
+    void QuantLib_TimeUnitEnum(IDL_string fromtyp, QuantLib::TimeUnit &totyp){
+        std::string fromtyp_cpp;
+        scalarInterfaceToCpp(fromtyp, fromtyp_cpp, interfaceToString);
+        
+        if(fromtyp_cpp==std::string("Months")) { 
+            totyp = QuantLib::Months;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Days")) { 
+            totyp = QuantLib::Days;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Weeks")) { 
+            totyp = QuantLib::Weeks;
+            return;
+        };
+        if(fromtyp_cpp==std::string("Years")) { 
+            totyp = QuantLib::Years;
+            return;
+        };
+        throw QuantLib_TimeUnitError();
+    };
+    
+    void QuantLib_TimeUnitBack(QuantLib::TimeUnit fromtyp, std::string &totyp) {
+        std::stringstream s;
+        s << fromtyp;
+        totyp = s.str();
     };
     
 };
