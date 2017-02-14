@@ -477,7 +477,7 @@ class AddinClasses(CodeGeneration):
             if self._is_enumerated_object(class_name):
                 is_enum_object = True
             else:
-                if typ_cpp==self.default_class:
+                if typ_cpp==self.default_class and class_name!=self.default_class:
                     is_object = True
             
             if first_para and in_memfunc==True:
