@@ -19,7 +19,7 @@
 
 QuantLibTypes = [
     ("Constructor", "ql/termstructures/yield/piecewiseyieldcurve.hpp", 
-        "<Traits, Interpolator>QuantLib::PiecewiseYieldCurve(QuantLib::Date ReferenceDate, std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::YieldTermStructure> > > BootstrapInstruments, QuantLib::DayCounter DayCounter, QuantLib::Real Accuracy)", 
+        "<Traits, Interpolator>QuantLib::PiecewiseYieldCurve(QuantLib::Date ReferenceDate, std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::YieldTermStructure> > > BootstrapInstruments, QuantLib::DayCounter DayCounter, QuantLib::Real Accuracy = 1e-12)", 
         "", "qlPiecewiseYieldCurve"),
      
     ("TemplateArgument", "ql/termstructures/yield/bootstraptraits.hpp", 
