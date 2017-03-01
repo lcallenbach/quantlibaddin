@@ -31,7 +31,7 @@ QuantLibTypes = [
         "QuantLib::FuturesRateHelper(QuantLib::Real Price, QuantLib::Date IborStartDate, boost::shared_ptr<QuantLib::IborIndex> IborIndex, QuantLib::Rate ConvexityAdjustment, QuantLib::Futures::Type Type)", 
         "", "qlFuturesRateHelper"),
     ("Constructor", "ql/termstructures/yield/oisratehelper.hpp", 
-        "QuantLib::OISRateHelper(QuantLib::Natural SettlementDays, QuantLib::Period Tenor, QuantLib::Handle<QuantLib::Quote> FixedRate, boost::shared_ptr<QuantLib::OvernightIndex> OvernightIndex, QuantLib::Handle<QuantLib::YieldTermStructure> DiscountingCurve)", 
+        "QuantLib::OISRateHelper(QuantLib::Natural SettlementDays, QuantLib::Period Tenor, QuantLib::Handle<QuantLib::Quote> FixedRate, boost::shared_ptr<QuantLib::OvernightIndex> OvernightIndex, QuantLib::Handle<QuantLib::YieldTermStructure> DiscountingCurve = QuantLib::Handle<QuantLib::YieldTermStructure>())", 
         "", "qlOISRateHelper"),
 ]
 
