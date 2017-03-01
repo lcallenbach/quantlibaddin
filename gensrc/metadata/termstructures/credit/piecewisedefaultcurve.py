@@ -19,7 +19,7 @@
 
 QuantLibTypes = [
     ("Constructor", "ql/termstructures/credit/piecewisedefaultcurve.hpp", 
-        "<Traits, Interpolator>QuantLib::PiecewiseDefaultCurve(QuantLib::Date ReferenceDate, std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::DefaultProbabilityTermStructure> > > BootstrapInstruments, QuantLib::DayCounter DayCounter, QuantLib::Real Accuracy)", 
+        "<Traits, Interpolator>QuantLib::PiecewiseDefaultCurve(QuantLib::Date ReferenceDate, std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::DefaultProbabilityTermStructure> > > BootstrapInstruments, QuantLib::DayCounter DayCounter, QuantLib::Real Accuracy = 1e-12)", 
         "", "qlPiecewiseDefaultCurve"),
      
     ("TemplateArgument", "ql/termstructures/credit/probabilitytraits.hpp", 

@@ -46,57 +46,41 @@ namespace Addin {
          *   python conversion functions
          **/
 
-	class AnyException: public std::exception {
-	    const char * what () const throw () {
-      	        return "No value or not valid type for parameter provided!";
-            }
-	};
-
-
 	inline void conversionAnyToIDL(IDL_any from, IDL_string &to) {
     	    rtl::OString type = from.getValueTypeName().toUtf8();
 	    //std::cerr << "IDL_string " << type.getStr() << std::endl;
-	    if(from.hasValue()) {
-		if(type.equalsIgnoreAsciiCase(STRFROMANSI("STRING").toUtf8())) {
-   	            IDL_string temp;
-	            from >>= temp;
-	            to = (IDL_string)(temp);
-		    return;
-                }
-            } 
-	    throw AnyException();
+	    if(type.equalsIgnoreAsciiCase(STRFROMANSI("STRING").toUtf8())) {
+   	        IDL_string temp;
+	        from >>= temp;
+	        to = (IDL_string)(temp);
+		return;
+            }
         }    
 
 	inline void conversionAnyToIDL(IDL_any from, IDL_double &to) {
     	    rtl::OString type = from.getValueTypeName().toUtf8();
 	    //std::cerr << "IDL_double " << type.getStr() << std::endl;
-	    if(from.hasValue()) {
-		if(type.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE").toUtf8()) or type.equalsIgnoreAsciiCase(STRFROMANSI("LONG").toUtf8())) {
-	            from >>= to;
-		    return;
-	        }
+    	    if(type.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE").toUtf8()) or type.equalsIgnoreAsciiCase(STRFROMANSI("LONG").toUtf8())) {
+	        from >>= to;
+		return;
 	    }
-	    throw AnyException();
 	}
 	
 	inline void conversionAnyToIDL(IDL_any from, IDL_long &to) {
     	    rtl::OString type = from.getValueTypeName().toUtf8();
 	    //std::cerr << "IDL_long " << type.getStr() << std::endl;
-	    if(from.hasValue()) {
-		if(type.equalsIgnoreAsciiCase(STRFROMANSI("LONG").toUtf8())) {
-	            long temp;
-        	    from >>= temp;
-        	    to = (IDL_long)((int)(temp));
-		    return;
-	        } 
-		if(type.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE").toUtf8())) {
-	            double temp;
-        	    from >>= temp;
-        	    to = (IDL_long)((int)(temp));
-		    return;
-	        } 
+    	    if(type.equalsIgnoreAsciiCase(STRFROMANSI("LONG").toUtf8())) {
+	        long temp;
+        	from >>= temp;
+        	to = (IDL_long)((int)(temp));
+		return;
+	    } 
+            if(type.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE").toUtf8())) {
+	        double temp;
+        	from >>= temp;
+        	to = (IDL_long)((int)(temp));
+		return;
 	    }
-	    throw AnyException();
 	}
 
 

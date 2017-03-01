@@ -25,7 +25,7 @@ QuantLibTypes = [
         "QuantLib::SwapRateHelper(QuantLib::Rate Rate, QuantLib::Period Tenor, QuantLib::Calendar Calendar, QuantLib::Frequency FixedFrequency, QuantLib::BusinessDayConvention FixedConvention, QuantLib::DayCounter FixedDayCounter, boost::shared_ptr<QuantLib::IborIndex> IborIndex, QuantLib::Handle<QuantLib::Quote> Spread, QuantLib::Period FwdStartPeriod)", 
         "", "qlSwapRateHelper"),
     ("Constructor", "ql/termstructures/yield/ratehelpers.hpp", 
-        "QuantLib::FraRateHelper(QuantLib::Rate Rate, QuantLib::Natural MonthsToStart, QuantLib::Natural MonthsToEnd, QuantLib::Natural FixingDays, QuantLib::Calendar Calendar, QuantLib::BusinessDayConvention Convention, bool EndOfMonth, QuantLib::DayCounter DayCounter, QuantLib::Pillar::Choice Pillar, QuantLib::Date CustomPillarDate)", 
+        "QuantLib::FraRateHelper(QuantLib::Rate Rate, QuantLib::Natural MonthsToStart, QuantLib::Natural MonthsToEnd, QuantLib::Natural FixingDays, QuantLib::Calendar Calendar, QuantLib::BusinessDayConvention Convention, bool EndOfMonth, QuantLib::DayCounter DayCounter, QuantLib::Pillar::Choice Pillar, QuantLib::Date CustomPillarDate = QuantLib::Date())", 
         "", "qlFraRateHelper"),
     ("Constructor", "ql/termstructures/yield/ratehelpers.hpp", 
         "QuantLib::FuturesRateHelper(QuantLib::Real Price, QuantLib::Date IborStartDate, boost::shared_ptr<QuantLib::IborIndex> IborIndex, QuantLib::Rate ConvexityAdjustment, QuantLib::Futures::Type Type)", 
