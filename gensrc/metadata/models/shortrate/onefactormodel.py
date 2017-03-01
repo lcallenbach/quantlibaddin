@@ -1,6 +1,6 @@
 """
  Python source for QuantLib addin in LibreOffice/Calc.
- Copyright (C) 2016 Lars Callenbach
+ Copyright (C) 2017 Lars Callenbach
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,16 +18,9 @@
 
 
 QuantLibTypes = [
-    ("Constructor", "ql/pricingengines/vanilla/analyticeuropeanengine.hpp", 
-     "QuantLib::AnalyticEuropeanEngine(\
-        boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> GeneralizedBlackSchlolesProcess)", 
-        "", "qlAnalyticEuropeanEngine"),
-                                       
-    ("Constructor", "ql/pricingengines/vanilla/analytichestonhullwhiteengine.hpp", 
-     "QuantLib::AnalyticHestonHullWhiteEngine(\
-        boost::shared_ptr<QuantLib::HestonModel> HestonModel, \
-        boost::shared_ptr<QuantLib::HullWhite> HullWhiteModel, \
-        QuantLib::Size IntegrationOrder=144)", 
-        "", "qlAnalyticHestonHullWhiteEngine"),
+    ("MemberFunction", "ql/models/shortrate/onefactormodel.hpp",
+     "QuantLib::OneFactorAffineModel()", "QuantLib::Real discountBond(\
+        QuantLib::Time Now, QuantLib::Time maturity, QuantLib::Real Rate)",
+        "qlOneFactorAffinceModelDiscountBond")
 ]
 
