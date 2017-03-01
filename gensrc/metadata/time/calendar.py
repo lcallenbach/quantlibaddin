@@ -33,6 +33,6 @@ QuantLibTypes = [
         "bool isBusinessDay(QuantLib::Date Date)", "qlCalendarIsBusinessDay"),
     ("MemberFunction", "ql/time/calendar.hpp", 
         "QuantLib::Calendar()", 
-        "QuantLib::Date advance(QuantLib::Date StartDate, QuantLib::Period Period, QuantLib::BusinessDayConvention BusinessDayConvention, bool EndOfMonth)", "qlCalendarAdvance"),
+        "QuantLib::Date advance(QuantLib::Date StartDate, QuantLib::Period Period, QuantLib::BusinessDayConvention BusinessDayConvention, bool EndOfMonth=false)", "qlCalendarAdvance"),
 ]
 

@@ -35,5 +35,18 @@
 #define THROW_MSG(m,r)      throw(CSS::uno::RuntimeException( m , r))
 
 
+namespace Addin {
+
+   class AddinException : public std::exception {
+      public:
+        AddinException(const std::string& message = "")  { message_ = message; };
+        ~AddinException() throw() {}
+        const char* what() const throw () { return message_.c_str(); };
+      private:
+        std::string message_;
+  };
+
+}
+
 #endif
 

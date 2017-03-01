@@ -17,17 +17,13 @@
 """
 
 
-QuantLibTypes = [
-    ("MemberFunction", "ql/experimental/credit/riskybond.hpp",
-        "QuantLib::RiskyBond()", "QuantLib::Currency ccy()",
-        "qlRiskyBondCurrency"),
-    ("Constructor", "ql/experimental/credit/riskybond.hpp", 
-        "QuantLib::RiskyFixedBond(std::string Name, QuantLib::Currency Ccy, \
-        QuantLib::Real RecoveryRate, QuantLib::Handle<QuantLib::DefaultProbabilityTermStructure> DefaultTS, \
-        QuantLib::Schedule Schedule, QuantLib::Real Rate, QuantLib::DayCounter DayCounter, \
-        QuantLib::BusinessDayConvention PaymentConvention, std::vector<QuantLib::Real> Notionals, \
-        QuantLib::Handle<QuantLib::YieldTermStructure> YieldTS)",
-        "", "qlRiskyFixedBond"),
+
+ImplicitConversionsCalc = [
+    ("QuantLib::Protection::Side",  "std::string", "string", "EnumeratedType", "<<"),
 ]
 
 
+QuantLibTypes = [
+    ("EnumeratedType", "ql/default.hpp", "QuantLib::Protection::Side", "std::string", "Buyer", "QuantLib::Protection::Buyer"),
+    ("EnumeratedType", "ql/default.hpp", "QuantLib::Protection::Side", "std::string", "Seller", "QuantLib::Protection::Seller"),
+]

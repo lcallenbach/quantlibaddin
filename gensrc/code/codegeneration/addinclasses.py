@@ -615,7 +615,7 @@ class AddinClasses(CodeGeneration):
         
         parameter_list = func.get_parameters()
         (code, argument_list) = \
-            self.generate_param_body(parameter_list, True, True, [], True)
+            self.generate_param_body(parameter_list, True, True, [], False)
 
         lines += self.shift_text(1, code)
             
@@ -974,10 +974,14 @@ class AddinClasses(CodeGeneration):
             line = 'scalarInterfaceToCpp(%s, %s, %s);' % \
                     (var_name, var_name+suffix, conv_func)
             lines.append((1, line))
+            line = '} else { '
+            lines.append((0, line))
             if parameter.default_value is not None:
-                line = '} else { '
-                lines.append((0, line))
                 line = '%s = %s; ' % (var_name+suffix, parameter.default_value)
+                lines.append((1, line))
+            else:
+                line = 'throw AddinException("no parameter value for %s");' % \
+                        (var_name)
                 lines.append((1, line))
             line = '}'            
             lines.append((0, line))
@@ -1075,10 +1079,14 @@ class AddinClasses(CodeGeneration):
                 line = 'this->precedentIDs_.insert(getObjectName(%s));' % var_name
                 lines.append((1, line))
                 
+            line = '} else { '
+            lines.append((0, line))
             if parameter.default_value is not None:
-                line = '} else { '
-                lines.append((0, line))
                 line = '%s = %s; ' % (var_name+suffix, parameter.default_value)
+                lines.append((1, line))
+            else:
+                line = 'throw AddinException("no parameter value for %s");' % \
+                        (var_name)
                 lines.append((1, line))
             line = '}'            
             lines.append((0, line))
@@ -1177,10 +1185,14 @@ class AddinClasses(CodeGeneration):
             conv_line = '%s(%s, %s);' % \
                         (conv_func, var_name, var_name+suffix)
             lines.append((1, conv_line))                
+            line = '} else { '
+            lines.append((0, line))
             if parameter.default_value is not None:
-                line = '} else { '
-                lines.append((0, line))
                 line = '%s = %s; ' % (var_name+suffix, parameter.default_value)
+                lines.append((1, line))
+            else:
+                line = 'throw AddinException("no parameter value for %s");' % \
+                        (var_name)
                 lines.append((1, line))
             line = '}'            
             lines.append((0, line))
@@ -1198,10 +1210,14 @@ class AddinClasses(CodeGeneration):
             conv_line = 'scalarInterfaceToCpp(%s, %s, %s);' % \
                         (var_name, var_name+suffix, conv_func)
             lines.append((1, conv_line))                 
+            line = '} else { '
+            lines.append((0, line))
             if parameter.default_value is not None:
-                line = '} else { '
-                lines.append((0, line))
                 line = '%s = %s; ' % (var_name+suffix, parameter.default_value)
+                lines.append((1, line))
+            else:
+                line = 'throw AddinException("no parameter value for %s");' % \
+                        (var_name)
                 lines.append((1, line))
             line = '}'            
             lines.append((0, line))
@@ -1219,10 +1235,14 @@ class AddinClasses(CodeGeneration):
             line = 'vectorInterfaceToCpp(%s, %s, %s);' % \
                     (var_name, var_name+suffix, conv_func)
             lines.append((1, line))
+            line = '} else { '
+            lines.append((0, line))
             if parameter.default_value is not None:
-                line = '} else { '
-                lines.append((0, line))
                 line = '%s = %s; ' % (var_name+suffix, parameter.default_value)
+                lines.append((1, line))
+            else:
+                line = 'throw AddinException("no parameter value for %s");' % \
+                        (var_name)
                 lines.append((1, line))
             line = '}'            
             lines.append((0, line))
