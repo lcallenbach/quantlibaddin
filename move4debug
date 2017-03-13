@@ -1,0 +1,3 @@
+#! /bin/sh
+find ./gensrc -name '*.py' -type f -exec sed -i 's/from code\./from codesrc\./' {} \;
+mv ./gensrc/code ./gensrc/codesrc

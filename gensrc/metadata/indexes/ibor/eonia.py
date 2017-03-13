@@ -1,6 +1,6 @@
 """
  Python source for QuantLib addin in LibreOffice/Calc.
- Copyright (C) 2016 Lars Callenbach
+ Copyright (C) 2017 Jose Aparicio
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,14 +18,8 @@
 
 
 QuantLibTypes = [
-    ("Constructor", "ql/indexes/ibor/euribor.hpp", 
-        "QuantLib::Euribor(QuantLib::Period Tenor, QuantLib::Handle<QuantLib::YieldTermStructure> ForwardCurve = QuantLib::Handle<QuantLib::YieldTermStructure>())", 
-        "", "qlEuribor"),
-    ("Constructor", "ql/indexes/ibor/euribor.hpp", 
-        "QuantLib::Euribor365(QuantLib::Period Tenor, QuantLib::Handle<QuantLib::YieldTermStructure> ForwardCurve = QuantLib::Handle<QuantLib::YieldTermStructure>())", 
-        "", "qlEuribor365"),
-    ("MemberFunction", "ql/indexes/interestrateindex.hpp",
-        "QuantLib::InterestRateIndex()", "std::string name()",
-        "qlName")
+    ("Constructor", "ql/indexes/ibor/eonia.hpp", 
+        "QuantLib::Eonia(QuantLib::Handle<QuantLib::YieldTermStructure> ForwardCurve = QuantLib::Handle<QuantLib::YieldTermStructure>())", 
+        "", "qlEonia"),
 ]
 

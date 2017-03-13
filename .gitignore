@@ -1,0 +1,9 @@
+*.pyc
+gensrc/gensr.log
+Calc/addin.hpp
+Calc/qlcalc.hpp
+Calc/addin.cpp
+Calc/qlcalc.cpp
+Calc/QuantLibAddinCalc.idl
+*~
+
