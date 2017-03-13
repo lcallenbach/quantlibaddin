@@ -18,16 +18,10 @@
 
 
 QuantLibTypes = [
-    ("Constructor", "ql/pricingengines/vanilla/analyticeuropeanengine.hpp", 
-     "QuantLib::AnalyticEuropeanEngine(\
-        boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess> GeneralizedBlackSchlolesProcess)", 
-        "", "qlAnalyticEuropeanEngine"),
-                                       
-    ("Constructor", "ql/pricingengines/vanilla/analytichestonhullwhiteengine.hpp", 
-     "QuantLib::AnalyticHestonHullWhiteEngine(\
-        boost::shared_ptr<QuantLib::HestonModel> HestonModel, \
-        boost::shared_ptr<QuantLib::HullWhite> HullWhiteModel, \
-        QuantLib::Size IntegrationOrder=144)", 
-        "", "qlAnalyticHestonHullWhiteEngine"),
+    ("Constructor", "ql/models/shortrate/onefactormodels/hullwhite.hpp", 
+     "QuantLib::HullWhite(\
+        QuantLib::Handle<QuantLib::YieldTermStructure> TermStructure, \
+        QuantLib::Real A=0.01, QuantLib::Real Sigma=0.01)", 
+        "", "qlHullWhiteModel"),
 ]
 
